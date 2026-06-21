@@ -14,6 +14,7 @@ export default function NowNextPanel({ dag }: { dag: RecipeDag }) {
   useExecute((s) => s.tick);
   const complete = useExecute((s) => s.complete);
   const skip = useExecute((s) => s.skip);
+  const resumed = useExecute((s) => s.resumed);
   if (!engine) return null;
 
   const elapsed = E.elapsedMin(engine, Date.now());
@@ -47,6 +48,12 @@ export default function NowNextPanel({ dag }: { dag: RecipeDag }) {
   return (
     <div className="now-panel">
       <div aria-live="polite" className="sr-only">{liveText}</div>
+      {resumed && engine.status === "paused" && (
+        <div className="now-card" style={{ borderLeft: "4px solid var(--accent-3)" }}>
+          <div className="now-eyebrow"><span>Resumed</span></div>
+          <p>Picked up where you left off. Press play to continue the cook.</p>
+        </div>
+      )}
       {engine.status === "ready" && (
         <div className="now-card">
           <div className="now-eyebrow"><span>Ready</span></div>

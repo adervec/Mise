@@ -2,6 +2,7 @@ import { create } from "zustand";
 import type { Item } from "@/data/types";
 import { getDag, type DagSource } from "../model/dag";
 import * as E from "./engine";
+import { clearCook, loadCook, saveCook } from "./persistence";
 import {
   beepDone,
   beepStep,
@@ -15,7 +16,9 @@ const TICK_MS = 400;
 interface ExecuteStore {
   engine: E.EngineState | null;
   recipeTitle: string;
+  recipeId: string;
   source: DagSource;
+  resumed: boolean;
   tick: number; // bumps each clock tick to drive countdown re-renders
   timer: number | null;
 
@@ -48,6 +51,11 @@ export const useExecute = create<ExecuteStore>((set, get) => {
     }
   }
 
+  function persist() {
+    const { engine, recipeId } = get();
+    if (engine && recipeId) saveCook(recipeId, engine);
+  }
+
   function startClock() {
     if (get().timer != null) return;
     const id = window.setInterval(() => {
@@ -55,20 +63,25 @@ export const useExecute = create<ExecuteStore>((set, get) => {
       if (!eng || eng.status !== "running") return;
       const before = activeIds(eng);
       const { state, fired } = E.reconcile(eng, Date.now());
+      const after = activeIds(state);
+
+      let isNew = false;
+      for (const id of after) if (!before.has(id)) isNew = true;
 
       if (fired.length) {
         beepDone();
         for (const f of fired) notify("Timer done", f.label);
-      } else {
-        // chime softly when a brand-new step becomes active
-        const after = activeIds(state);
-        let isNew = false;
-        for (const id of after) if (!before.has(id)) isNew = true;
-        if (isNew) beepStep();
+      } else if (isNew) {
+        beepStep();
       }
 
       set({ engine: state, tick: get().tick + 1 });
-      if (state.status === "completed") stopClock();
+      if (state.status === "completed") {
+        stopClock();
+        clearCook();
+      } else if (fired.length || isNew) {
+        saveCook(get().recipeId, state);
+      }
     }, TICK_MS);
     set({ timer: id });
   }
@@ -76,17 +89,22 @@ export const useExecute = create<ExecuteStore>((set, get) => {
   return {
     engine: null,
     recipeTitle: "",
+    recipeId: "",
     source: "draft",
+    resumed: false,
     tick: 0,
     timer: null,
 
     load: (item, source, cooks = 1) => {
       stopClock();
       const dag = getDag(item);
+      const saved = loadCook(item.id, dag.steps.map((s) => s.id));
       set({
-        engine: E.initEngine(dag, cooks),
+        engine: saved ?? E.initEngine(dag, cooks),
         recipeTitle: item.title,
+        recipeId: item.id,
         source,
+        resumed: !!saved,
         tick: 0,
       });
     },
@@ -96,8 +114,9 @@ export const useExecute = create<ExecuteStore>((set, get) => {
       if (!eng) return;
       unlockAudio();
       requestNotificationPermission();
-      set({ engine: E.play(eng, Date.now()) });
+      set({ engine: E.play(eng, Date.now()), resumed: false });
       startClock();
+      persist();
     },
 
     pause: () => {
@@ -105,13 +124,15 @@ export const useExecute = create<ExecuteStore>((set, get) => {
       if (!eng) return;
       stopClock();
       set({ engine: E.pause(eng, Date.now()), tick: get().tick + 1 });
+      persist();
     },
 
     reset: () => {
       const eng = get().engine;
       if (!eng) return;
       stopClock();
-      set({ engine: E.reset(eng), tick: get().tick + 1 });
+      clearCook();
+      set({ engine: E.reset(eng), resumed: false, tick: get().tick + 1 });
     },
 
     setCooks: (n) => {
@@ -137,7 +158,12 @@ export const useExecute = create<ExecuteStore>((set, get) => {
       if (!eng) return;
       const state = E.completeStep(eng, id, Date.now());
       set({ engine: state, tick: get().tick + 1 });
-      if (state.status === "completed") stopClock();
+      if (state.status === "completed") {
+        stopClock();
+        clearCook();
+      } else {
+        saveCook(get().recipeId, state);
+      }
     },
 
     skip: (id) => {
@@ -145,12 +171,18 @@ export const useExecute = create<ExecuteStore>((set, get) => {
       if (!eng) return;
       const state = E.skipStep(eng, id, Date.now());
       set({ engine: state, tick: get().tick + 1 });
-      if (state.status === "completed") stopClock();
+      if (state.status === "completed") {
+        stopClock();
+        clearCook();
+      } else {
+        saveCook(get().recipeId, state);
+      }
     },
 
     teardown: () => {
       stopClock();
-      set({ engine: null, recipeTitle: "", source: "draft", tick: 0 });
+      // keep any saved cook so it can be resumed later
+      set({ engine: null, recipeTitle: "", recipeId: "", source: "draft", resumed: false, tick: 0 });
     },
   };
 });
