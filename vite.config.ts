@@ -23,8 +23,9 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,svg,woff,woff2}"],
-        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024, // the data-laden JS bundle
+        // precache app shell + the fetched catalog JSON so it works fully offline
+        globPatterns: ["**/*.{js,css,html,svg,woff,woff2,json}"],
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024, // items.json is ~780KB
       },
     }),
   ],

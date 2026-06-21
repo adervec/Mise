@@ -18,7 +18,7 @@ function decode(s) {
     .trim();
 }
 
-const items = JSON.parse(readFileSync(resolve(root, "src/data/items.json"), "utf8"));
+const items = JSON.parse(readFileSync(resolve(root, "public/data/items.json"), "utf8"));
 const recipes = items.filter((i) => i.cat === "recipe" && !HEROES.has(i.id));
 
 const compact = recipes.map((r) => ({

@@ -3,9 +3,7 @@ import type { RecipeDag, Step } from "./types";
 import { HERO_DAGS } from "./heroDags";
 import { deriveLinearDag } from "./deriveDag";
 import { isDag } from "../scheduler/graph";
-import authored from "@/data/recipes.dag.json";
-
-const AUTHORED = authored as unknown as Record<string, RecipeDag>;
+import { authoredDags } from "@/data/catalog";
 
 export type DagSource = "curated" | "authored" | "draft";
 
@@ -24,14 +22,14 @@ function valid(dag: RecipeDag | undefined): dag is RecipeDag {
 export function getDag(item: Item): RecipeDag {
   const hero = HERO_DAGS[item.id];
   if (hero) return hero;
-  const a = AUTHORED[item.id];
+  const a = authoredDags[item.id];
   if (valid(a)) return { ...a, id: item.id };
   return deriveLinearDag(item);
 }
 
 export function dagSource(item: Item): DagSource {
   if (HERO_DAGS[item.id]) return "curated";
-  if (valid(AUTHORED[item.id])) return "authored";
+  if (valid(authoredDags[item.id])) return "authored";
   return "draft";
 }
 

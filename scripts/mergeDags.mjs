@@ -13,7 +13,7 @@ const STATIONS = new Set(["stove","oven","pressure","board","mixer","sink","coun
 const ATTENTION = new Set(["active","passive","wait"]);
 const PHASES = new Set(["prep","cook","cleanup"]);
 
-const items = JSON.parse(readFileSync(resolve(root, "src/data/items.json"), "utf8"));
+const items = JSON.parse(readFileSync(resolve(root, "public/data/items.json"), "utf8"));
 const recipeIds = new Set(items.filter((i) => i.cat === "recipe").map((i) => i.id));
 const HEROES = new Set(["beef-shank-stew", "whole-roast-chicken", "pasta-carbonara"]);
 
@@ -106,7 +106,7 @@ for (const file of outFiles) {
   }
 }
 
-writeFileSync(resolve(root, "src/data/recipes.dag.json"), JSON.stringify(merged));
+writeFileSync(resolve(root, "public/data/recipes.dag.json"), JSON.stringify(merged));
 
 const authored = new Set(Object.keys(merged));
 const missing = [...recipeIds].filter((id) => !HEROES.has(id) && !authored.has(id));

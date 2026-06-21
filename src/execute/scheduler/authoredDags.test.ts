@@ -1,9 +1,13 @@
 import { describe, it, expect } from "vitest";
-import authored from "@/data/recipes.dag.json";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { schedule } from "./schedule";
 import type { Step } from "../model/types";
 
-const dags = authored as unknown as Record<string, { steps: Step[] }>;
+const authored = JSON.parse(
+  readFileSync(resolve(process.cwd(), "public/data/recipes.dag.json"), "utf8")
+);
+const dags = authored as Record<string, { steps: Step[] }>;
 
 describe("authored DAGs", () => {
   it("there is at least one authored recipe", () => {

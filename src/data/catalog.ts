@@ -1,12 +1,33 @@
 import type { Category, DietKey, DietMeta, Guide, Item } from "./types";
-import rawItems from "./items.json";
-import rawGuides from "./guides.json";
+import type { RecipeDag } from "@/execute/model/types";
 
-export const items = rawItems as unknown as Item[];
-export const guides = rawGuides as unknown as Guide[];
+// Catalog data is fetched at startup (see loadCatalog) rather than bundled, to keep
+// the initial JS small. These live bindings are populated before the app renders.
+export let items: Item[] = [];
+export let guides: Guide[] = [];
+export let recipes: Item[] = [];
+export let itemById = new Map<string, Item>();
+export let guideById = new Map<string, Guide>();
+export let authoredDags: Record<string, RecipeDag> = {};
 
-export const itemById = new Map(items.map((i) => [i.id, i]));
-export const guideById = new Map(guides.map((g) => [g.id, g]));
+let loaded = false;
+
+export async function loadCatalog(): Promise<void> {
+  if (loaded) return;
+  const base = import.meta.env.BASE_URL;
+  const [it, gu, dg] = await Promise.all([
+    fetch(base + "data/items.json").then((r) => r.json()),
+    fetch(base + "data/guides.json").then((r) => r.json()),
+    fetch(base + "data/recipes.dag.json").then((r) => r.json()),
+  ]);
+  items = it as Item[];
+  guides = gu as Guide[];
+  recipes = items.filter((i) => i.cat === "recipe");
+  itemById = new Map(items.map((i) => [i.id, i]));
+  guideById = new Map(guides.map((g) => [g.id, g]));
+  authoredDags = dg as Record<string, RecipeDag>;
+  loaded = true;
+}
 
 export const CAT_LABELS: Record<Category, string> = {
   recipe: "Recipe",
@@ -55,5 +76,3 @@ export const BADGE_PRIORITY: DietKey[] = [
   "halal",
   "kosher",
 ];
-
-export const recipes = items.filter((i) => i.cat === "recipe");

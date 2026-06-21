@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
-const dataDir = resolve(root, "src/data");
+const dataDir = resolve(root, "public/data");
 mkdirSync(dataDir, { recursive: true });
 
 function read(file) {

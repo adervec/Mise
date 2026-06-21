@@ -5,12 +5,12 @@ import { useFilters, applyFilters, SORT_LABELS, type SortMode } from "./filters"
 import { useUi } from "./ui";
 import Card from "./Card";
 
-const techniqueCount = items.filter((i) => i.cat === "technique").length;
-const ingredientCount = items.filter((i) => i.cat === "ingredient").length;
-
 export default function Browse() {
   const { search, cat, sort, diet, setSearch, setCat, setSort } = useFilters();
   const openSettings = useUi((s) => s.openSettings);
+
+  const techniqueCount = items.filter((i) => i.cat === "technique").length;
+  const ingredientCount = items.filter((i) => i.cat === "ingredient").length;
 
   const visible = useMemo(
     () => applyFilters(items, { search, cat, sort, diet }),
