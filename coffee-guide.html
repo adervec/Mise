@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Extraction — A Field Guide to Coffee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Spline+Sans+Mono:wght@300..600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c140d;
+    --paper:#f4ece0;
+    --paper-2:#ece1d0;
+    --crema:#c9852f;
+    --crema-deep:#9c5a18;
+    --roast:#3a2417;
+    --line:#bcae99;
+    --accent:#7a2e1e;
+    --shadow:rgba(58,36,23,.18);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Newsreader',Georgia,serif;
+    font-size:19px;
+    line-height:1.65;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(156,90,24,.05), transparent 36%),
+      radial-gradient(circle at 88% 72%, rgba(122,46,30,.045), transparent 40%);
+  }
+  /* grain */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+  }
+  ::selection{background:var(--crema);color:var(--paper)}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    min-height:96vh;display:flex;flex-direction:column;justify-content:center;
+    padding:6vw clamp(1.5rem,7vw,10rem) 4vw;position:relative;border-bottom:2px solid var(--ink);
+  }
+  .kicker{
+    font-family:'Spline Sans Mono',monospace;font-size:.78rem;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--crema-deep);display:flex;gap:1rem;align-items:center;
+  }
+  .kicker::after{content:"";flex:1;height:1px;background:var(--line);max-width:240px}
+  h1.title{
+    font-family:'Fraunces',serif;font-weight:600;font-size:clamp(3.2rem,13vw,11rem);
+    line-height:.9;letter-spacing:-.02em;margin:.35em 0 .1em;
+  }
+  h1.title em{font-style:italic;color:var(--accent);font-weight:400}
+  .deck{
+    font-size:clamp(1.1rem,2.4vw,1.6rem);max-width:46ch;color:var(--roast);
+    font-style:italic;margin-top:1.2rem;
+  }
+  .hero-meta{
+    margin-top:3rem;display:flex;flex-wrap:wrap;gap:2.5rem;
+    font-family:'Spline Sans Mono',monospace;font-size:.72rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--roast);
+  }
+  .hero-meta span b{display:block;font-size:1.4rem;font-family:'Fraunces',serif;letter-spacing:0;text-transform:none;color:var(--ink)}
+  .steam{position:absolute;top:8%;right:8%;font-size:7rem;opacity:.12;transform:rotate(-8deg)}
+
+  /* ---------- NAV ---------- */
+  nav.toc{
+    position:sticky;top:0;z-index:50;background:var(--ink);color:var(--paper);
+    display:flex;gap:0;overflow-x:auto;border-bottom:2px solid var(--ink);
+    font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;
+  }
+  nav.toc a{
+    color:var(--paper);text-decoration:none;padding:1rem 1.4rem;white-space:nowrap;
+    border-right:1px solid rgba(244,236,224,.15);transition:.25s;flex-shrink:0;
+  }
+  nav.toc a:hover{background:var(--crema);color:var(--ink)}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:clamp(3rem,8vw,7rem) clamp(1.5rem,7vw,10rem);border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:1.8rem}
+  .sec-num{font-family:'Spline Sans Mono',monospace;font-size:.85rem;color:var(--crema-deep);letter-spacing:.2em}
+  h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(2rem,5vw,3.4rem);line-height:1;letter-spacing:-.01em}
+  h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.5rem;margin:2rem 0 .6rem;color:var(--roast)}
+  p{max-width:68ch;margin-bottom:1.1rem}
+  .lead{font-size:1.25rem;max-width:60ch}
+  .dropcap::first-letter{
+    font-family:'Fraunces',serif;font-weight:600;float:left;font-size:4.6rem;line-height:.78;
+    padding:.05em .12em 0 0;color:var(--accent);
+  }
+
+  /* timeline */
+  .timeline{border-left:2px solid var(--line);margin:2rem 0 0;padding-left:0}
+  .tl-item{position:relative;padding:0 0 2rem 2.2rem}
+  .tl-item::before{content:"";position:absolute;left:-7px;top:.45rem;width:12px;height:12px;border-radius:50%;background:var(--crema);border:2px solid var(--ink)}
+  .tl-year{font-family:'Spline Sans Mono',monospace;font-size:.8rem;letter-spacing:.18em;color:var(--crema-deep)}
+
+  /* science cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem;margin-top:2rem}
+  .card{background:var(--paper-2);border:1px solid var(--line);padding:1.6rem 1.5rem;position:relative;overflow:hidden}
+  .card::after{content:"";position:absolute;top:0;right:0;width:44px;height:44px;background:var(--crema);clip-path:polygon(100% 0,0 0,100% 100%)}
+  .card .ic{font-size:1.8rem;display:block;margin-bottom:.6rem}
+  .card h4{font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:.4rem}
+  .card p{font-size:.95rem;margin:0}
+
+  /* ---------- METHODS ---------- */
+  .method{
+    margin-top:3.5rem;border:2px solid var(--ink);background:var(--paper-2);
+    box-shadow:8px 8px 0 var(--shadow);
+  }
+  .method-top{display:grid;grid-template-columns:1fr;}
+  @media(min-width:840px){.method-top{grid-template-columns:1.1fr 1fr}}
+  .method-id{padding:2rem 2rem 1.5rem;border-bottom:2px solid var(--ink)}
+  @media(min-width:840px){.method-id{border-bottom:none;border-right:2px solid var(--ink)}}
+  .method-id .tag{font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--crema-deep)}
+  .method-id h3{margin:.3rem 0 .8rem;font-size:2rem;color:var(--ink)}
+  .specs{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+  .spec{font-family:'Spline Sans Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:.35rem .6rem}
+  .spec.alt{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .method-blurb{padding:2rem}
+  .method-blurb p{font-size:1rem}
+
+  /* steps */
+  .steps{counter-reset:step;list-style:none;padding:1.8rem 2rem 2rem;border-top:2px dashed var(--line)}
+  .steps li{counter-increment:step;position:relative;padding-left:3rem;margin-bottom:1rem;font-size:1rem;max-width:64ch}
+  .steps li::before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:0;font-family:'Spline Sans Mono',monospace;font-size:.9rem;color:var(--paper);background:var(--accent);width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;border-radius:50%}
+
+  /* tradeoffs */
+  .tradeoffs{display:grid;grid-template-columns:1fr;border-top:2px solid var(--ink)}
+  @media(min-width:680px){.tradeoffs{grid-template-columns:1fr 1fr}}
+  .pros,.cons{padding:1.6rem 2rem}
+  .pros{background:rgba(201,133,47,.10)}
+  .cons{background:rgba(122,46,30,.07);border-top:1px solid var(--line)}
+  @media(min-width:680px){.cons{border-top:none;border-left:1px solid var(--ink)}}
+  .toff-h{font-family:'Spline Sans Mono',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem;display:flex;gap:.5rem;align-items:center}
+  .pros .toff-h{color:var(--crema-deep)}
+  .cons .toff-h{color:var(--accent)}
+  .tradeoffs ul{list-style:none}
+  .tradeoffs li{font-size:.95rem;padding:.3rem 0 .3rem 1.4rem;position:relative}
+  .pros li::before{content:"+";position:absolute;left:0;color:var(--crema-deep);font-weight:700}
+  .cons li::before{content:"–";position:absolute;left:0;color:var(--accent);font-weight:700}
+
+  blockquote{
+    font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.4rem,3.5vw,2.2rem);
+    line-height:1.3;max-width:24ch;margin:3rem auto;text-align:center;color:var(--roast);position:relative;
+  }
+  blockquote::before{content:"“";font-size:4rem;color:var(--crema);display:block;line-height:.5;margin-bottom:.2rem}
+
+  table.ratio{width:100%;border-collapse:collapse;margin-top:2rem;font-size:.95rem}
+  table.ratio th,table.ratio td{border:1px solid var(--line);padding:.7rem 1rem;text-align:left}
+  table.ratio th{background:var(--ink);color:var(--paper);font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:400}
+  table.ratio tr:nth-child(even){background:var(--paper-2)}
+
+  footer{padding:4rem clamp(1.5rem,7vw,10rem);background:var(--ink);color:var(--paper);text-align:center}
+  footer .big{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.5rem,4vw,2.4rem);margin-bottom:1rem}
+  footer p{margin:0 auto;color:#cbbba5;font-size:.95rem}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="steam">☕</div>
+  <div class="kicker">A Field Guide · Bean to Cup</div>
+  <h1 class="title">The<br><em>Extraction</em></h1>
+  <p class="deck">Where chemistry, history, and ritual dissolve into a single cup. A complete guide to brewing coffee — and to understanding why it tastes the way it does.</p>
+  <div class="hero-meta">
+    <span><b>7</b>Methods</span>
+    <span><b>~1,200</b>Years of history</span>
+    <span><b>800+</b>Aroma compounds</span>
+    <span><b>1</b>Honest cup</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#origins">01 · Origins</a>
+  <a href="#science">02 · The Science</a>
+  <a href="#variables">03 · Variables</a>
+  <a href="#pourover">04 · Pour-Over</a>
+  <a href="#frenchpress">05 · French Press</a>
+  <a href="#espresso">06 · Espresso</a>
+  <a href="#aeropress">07 · AeroPress</a>
+  <a href="#moka">08 · Moka Pot</a>
+  <a href="#coldbrew">09 · Cold Brew</a>
+  <a href="#turkish">10 · Turkish</a>
+</nav>
+
+<!-- ORIGINS -->
+<section id="origins" class="reveal">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Origins &amp; Culture</h2></div>
+  <p class="lead dropcap">Coffee begins as a legend and ends as a habit shared by billions. The cherry of <em>Coffea</em>, native to the highlands of Ethiopia, traveled along trade routes, through prohibitions and revolutions, to become the most consumed psychoactive beverage on earth. Each brewing method carries the fingerprints of the place that perfected it.</p>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">9TH C. · ETHIOPIA</div><p>The Kaldi legend places coffee's discovery among goatherds in the Ethiopian highlands, where the cherries were first eaten and brewed as <em>qahwa</em>. Indigenous Oromo communities ground beans with fat into energy balls long before.</p></div>
+    <div class="tl-item"><div class="tl-year">15TH C. · YEMEN</div><p>Sufi monasteries in Mokha cultivated and roasted coffee to sustain night-long prayer. The port of Mokha gave its name to the bean — and the world its first coffee trade.</p></div>
+    <div class="tl-item"><div class="tl-year">16TH C. · OTTOMAN EMPIRE</div><p>The <em>qahveh khaneh</em> — coffeehouse — spread through Istanbul, Cairo, and Damascus as a "school of the wise." Finely ground, unfiltered coffee became a fixture of hospitality and politics.</p></div>
+    <div class="tl-item"><div class="tl-year">17TH C. · EUROPE</div><p>Venetian traders, then London "penny universities," made the coffeehouse a hub of commerce and ideas. Lloyd's of London and the modern stock exchange grew from coffee tables.</p></div>
+    <div class="tl-item"><div class="tl-year">1884–1933 · ITALY</div><p>Angelo Moriondo, then Luigi Bezzera and Desiderio Pavoni, patented and commercialized the espresso machine — pressure-driven coffee for a hurried, industrializing nation.</p></div>
+    <div class="tl-item"><div class="tl-year">1908 · GERMANY</div><p>Melitta Bentz punctured a brass pot and lined it with blotting paper, inventing the paper filter and the clean, sediment-free cup that defines the pour-over.</p></div>
+    <div class="tl-item"><div class="tl-year">1990s–NOW · GLOBAL</div><p>The "third wave" reframed coffee as an agricultural product with terroir, traceability, and craft — driving today's obsession with grind, water, and ratio.</p></div>
+  </div>
+
+  <blockquote>A cup of coffee is a small map of where it came from.</blockquote>
+</section>
+
+<!-- SCIENCE -->
+<section id="science" class="reveal">
+  <div class="sec-head"><span class="sec-num">02</span><h2>The Science of Extraction</h2></div>
+  <p class="lead">Brewing is dissolution. Hot water is a solvent pulling soluble compounds out of roasted, ground beans. The art is stopping at the right moment — taking the good and leaving the harsh behind.</p>
+
+  <h3>The extraction window</h3>
+  <p>Of a coffee ground's mass, only about 28–30% is water-soluble. Pull too little (under-extraction) and you get sour, salty, thin coffee — the bright acids dissolve first. Pull too much (over-extraction) and bitter, astringent compounds dominate. The sweet spot is an <strong>extraction yield of roughly 18–22%</strong>, with the dissolved solids landing the brew somewhere near <strong>1.15–1.45% TDS</strong> (total dissolved solids) for filter coffee.</p>
+
+  <div class="grid">
+    <div class="card"><span class="ic">🌡️</span><h4>Temperature</h4><p>90–96°C (195–205°F) is ideal. Hotter extracts faster and risks bitterness; cooler favors acidity and can under-extract.</p></div>
+    <div class="card"><span class="ic">⏱️</span><h4>Time</h4><p>Contact time scales inversely with grind size. Espresso: ~25s. Pour-over: 2.5–4 min. Cold brew: 12–24 hours.</p></div>
+    <div class="card"><span class="ic">⚙️</span><h4>Grind Size</h4><p>More surface area = faster extraction. Fine for espresso, coarse for press — the single biggest lever you control.</p></div>
+    <div class="card"><span class="ic">💧</span><h4>Water</h4><p>Coffee is ~98% water. Aim for ~150 ppm hardness, balanced minerals, no chlorine. Bad water ruins great beans.</p></div>
+    <div class="card"><span class="ic">🧪</span><h4>Agitation</h4><p>Stirring and pour turbulence speed extraction and even out the bed. Too much causes channeling and silt.</p></div>
+    <div class="card"><span class="ic">⏳</span><h4>Freshness</h4><p>Roasted beans degas CO₂ for ~2 weeks. Grind just before brewing — aromatics vanish within minutes of grinding.</p></div>
+  </div>
+
+  <h3>What's actually dissolving</h3>
+  <p>The first compounds to leave the grounds are fruity acids (citric, malic) and salts, then sugars and the prized Maillard-reaction melanoidins that give body and sweetness, and finally — last and least welcome — bitter polyphenols and woody, astringent compounds. <strong>Caffeine</strong>, contrary to myth, is largely temperature-driven and extracts fairly steadily; a darker roast doesn't mean more caffeine. Crema on espresso is an emulsion of CO₂, oils, and melanoidins stabilized by pressure.</p>
+</section>
+
+<!-- VARIABLES -->
+<section id="variables" class="reveal">
+  <div class="sec-head"><span class="sec-num">03</span><h2>The Master Variables</h2></div>
+  <p class="lead">Every method below is just a different settlement of the same negotiation between these levers. Learn them once and you can brew anything.</p>
+  <table class="ratio">
+    <thead><tr><th>Method</th><th>Grind</th><th>Ratio (coffee:water)</th><th>Water Temp</th><th>Brew Time</th></tr></thead>
+    <tbody>
+      <tr><td>Pour-Over</td><td>Medium-fine</td><td>1:16</td><td>92–96°C</td><td>2.5–4 min</td></tr>
+      <tr><td>French Press</td><td>Coarse</td><td>1:15</td><td>93–96°C</td><td>4 min</td></tr>
+      <tr><td>Espresso</td><td>Very fine</td><td>1:2</td><td>90–94°C</td><td>25–30 sec</td></tr>
+      <tr><td>AeroPress</td><td>Fine–medium</td><td>1:12–1:16</td><td>80–90°C</td><td>1–2 min</td></tr>
+      <tr><td>Moka Pot</td><td>Fine-medium</td><td>1:7–1:10</td><td>stovetop</td><td>4–5 min</td></tr>
+      <tr><td>Cold Brew</td><td>Extra coarse</td><td>1:8 (concentrate)</td><td>Room/cold</td><td>12–24 hr</td></tr>
+      <tr><td>Turkish</td><td>Powder-fine</td><td>1:10</td><td>just below boil</td><td>3–4 min</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:1.5rem;font-style:italic;color:var(--roast)">Ratios are starting points, not laws. Taste, adjust one variable at a time, and keep notes.</p>
+</section>
+
+<!-- METHODS -->
+<section style="border-bottom:none;padding-bottom:0">
+  <div class="sec-head"><span class="sec-num">04–10</span><h2>The Methods</h2></div>
+  <p class="lead">Seven ways to dissolve a bean. Each is a coherent philosophy — clarity vs. body, speed vs. patience, control vs. forgiveness.</p>
+
+  <!-- POUR OVER -->
+  <article class="method reveal" id="pourover">
+    <div class="method-top">
+      <div class="method-id">
+        <span class="tag">Drip · Gravity · Filtered</span>
+        <h3>Pour-Over</h3>
+        <div class="specs">
+          <span class="spec">1:16 ratio</span><span class="spec">92–96°C</span><span class="spec">2.5–4 min</span>
+          <span class="spec alt">Medium-fine grind</span><span class="spec alt">Clarity</span>
+        </div>
+      </div>
+      <div class="method-blurb">
+        <p>The connoisseur's method. Water passes once through a paper-filtered cone (V60, Kalita, Chemex), trapping oils and fines to yield a tea-like, transparent cup that showcases origin character. Born from Melitta Bentz's 1908 paper filter; perfected by Japanese precision and the third-wave café.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li>Heat water to 93°C and rinse the paper filter to remove papery taste and preheat the vessel; discard the rinse water.</li>
+      <li>Add ~22g medium-fine grounds (for 350g water); level the bed.</li>
+      <li><strong>Bloom:</strong> pour ~45g water, just saturating the grounds, and wait 30–45s as trapped CO₂ escapes.</li>
+      <li>Pour in slow, concentric spirals in 2–3 pulses, keeping the bed level and avoiding the filter walls.</li>
+      <li>Aim for a total brew of 2.5–4 min; a flat, even bed at the end signals an even extraction.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Crystal clarity and bright, articulate flavor</li><li>Total control over every variable</li><li>Cheap gear, easy cleanup</li><li>Best for showcasing single-origin beans</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Demands technique and consistency</li><li>Light body — strips oils and texture</li><li>Slow; poor for multiple cups</li><li>Unforgiving of bad grind or pour</li></ul></div>
+    </div>
+  </article>
+
+  <!-- FRENCH PRESS -->
+  <article class="method reveal" id="frenchpress">
+    <div class="method-top">
+      <div class="method-id">
+        <span class="tag">Immersion · Metal Filter</span>
+        <h3>French Press</h3>
+        <div class="specs">
+          <span class="spec">1:15 ratio</span><span class="spec">93–96°C</span><span class="spec">4 min</span>
+          <span class="spec alt">Coarse grind</span><span class="spec alt">Full body</span>
+        </div>
+      </div>
+      <div class="method-blurb">
+        <p>Full immersion, full body. Grounds steep freely in hot water, then a metal mesh presses them down — letting oils and micro-fines through for a rich, heavy, rounded cup. Patented in its modern form by Italian designer Attilio Calimani (1929) and beloved across Europe as the <em>cafetière</em>.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li>Add coarse grounds (~30g per 450g water) to the warmed carafe.</li>
+      <li>Pour all the water at 94°C in one go; start a 4-minute timer.</li>
+      <li>At ~1 minute, break and stir the floating crust, then skim off the foam and floating grounds for clarity.</li>
+      <li>At 4 minutes, press the plunger down slowly and evenly.</li>
+      <li>Decant immediately into cups — leaving coffee on the grounds keeps extracting and turns it bitter.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Heavy, syrupy body and full mouthfeel</li><li>Forgiving — hard to ruin completely</li><li>No paper, no waste, low cost</li><li>Easily scaled for several cups</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Sediment and silt in the cup</li><li>Muddies delicate, bright notes</li><li>Over-extracts if left sitting</li><li>Tedious, messy cleanup</li></ul></div>
+    </div>
+  </article>
+
+  <!-- ESPRESSO -->
+  <article class="method reveal" id="espresso">
+    <div class="method-top">
+      <div class="method-id">
+        <span class="tag">Pressure · 9 bar</span>
+        <h3>Espresso</h3>
+        <div class="specs">
+          <span class="spec">1:2 ratio</span><span class="spec">90–94°C</span><span class="spec">25–30 sec</span>
+          <span class="spec alt">Very fine grind</span><span class="spec alt">Intensity</span>
+        </div>
+      </div>
+      <div class="method-blurb">
+        <p>The most concentrated, technical brew. About 9 bar of pressure forces hot water through a tightly packed puck in seconds, producing an intense, syrupy shot crowned with crema. The engine of Italian café culture and the base of every latte, cappuccino, and flat white.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li>Dose ~18g into the portafilter basket; distribute evenly to avoid clumps.</li>
+      <li>Tamp level with firm, consistent pressure to form a uniform puck.</li>
+      <li>Lock in and start the shot; aim to pull ~36g of liquid (a 1:2 ratio).</li>
+      <li>Target 25–30s. Too fast = sour/under-extracted; too slow = bitter — adjust grind finer or coarser accordingly.</li>
+      <li>Watch the stream: it should run like warm honey, blonding near the end. Stop before it goes pale and watery.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Intense, complex, concentrated flavor</li><li>Foundation for all milk drinks</li><li>Fast once dialed in</li><li>Signature crema and texture</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Expensive machine + good grinder required</li><li>Steep learning curve; "dialing in" is finicky</li><li>Hypersensitive to grind, dose, freshness</li><li>Daily cleaning and maintenance</li></ul></div>
+    </div>
+  </article>
+
+  <!-- AEROPRESS -->
+  <article class="method reveal" id="aeropress">
+    <div class="method-top">
+      <div class="method-id">
+        <span class="tag">Immersion + Pressure</span>
+        <h3>AeroPress</h3>
+        <div class="specs">
+          <span class="spec">1:12–1:16</span><span class="spec">80–90°C</span><span class="spec">1–2 min</span>
+          <span class="spec alt">Fine–medium grind</span><span class="spec alt">Versatile</span>
+        </div>
+      </div>
+      <div class="method-blurb">
+        <p>Invented in 2005 by Aerobie's Alan Adler, the AeroPress combines short immersion with manual plunger pressure through a paper filter. Endlessly tweakable (and home to a global brewing championship), it makes a clean, low-acid concentrate that's nearly impossible to ruin — and trivial to clean.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li>Insert a rinsed paper filter in the cap; assemble onto a sturdy mug (or use the "inverted" method).</li>
+      <li>Add ~15g fine-medium grounds and ~230g water at 85°C.</li>
+      <li>Stir 10s, then steep 60–90s.</li>
+      <li>Insert the plunger and press down slowly and steadily over 20–30s until you hear a hiss.</li>
+      <li>Dilute the concentrate with hot water to taste, americano-style, if desired.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Extremely forgiving and consistent</li><li>Clean cup, low bitterness and acidity</li><li>Fast cleanup; durable and portable</li><li>Huge recipe flexibility</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Makes only 1 small serving at a time</li><li>Not "true" espresso despite claims</li><li>Plastic build feels less premium</li><li>Requires paper filters (or metal upgrade)</li></ul></div>
+    </div>
+  </article>
+
+  <!-- MOKA -->
+  <article class="method reveal" id="moka">
+    <div class="method-top">
+      <div class="method-id">
+        <span class="tag">Stovetop · Steam Pressure</span>
+        <h3>Moka Pot</h3>
+        <div class="specs">
+          <span class="spec">1:7–1:10</span><span class="spec">Stovetop</span><span class="spec">4–5 min</span>
+          <span class="spec alt">Fine-medium grind</span><span class="spec alt">Bold</span>
+        </div>
+      </div>
+      <div class="method-blurb">
+        <p>Alfonso Bialetti's 1933 octagonal aluminum icon brought café-strength coffee to the Italian home. Steam pressure (~1.5 bar) pushes water up through the grounds into the top chamber. Not true espresso, but bold, strong, and unmistakably stovetop — a fixture in millions of kitchens.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li>Fill the bottom chamber with hot water up to (not over) the safety valve.</li>
+      <li>Fill the funnel basket with fine-medium grounds; level but do <em>not</em> tamp.</li>
+      <li>Assemble and place on medium-low heat with the lid open.</li>
+      <li>When coffee streams up and turns pale/gurgles, remove from heat immediately and cool the base under cold water to halt extraction.</li>
+      <li>Stir the top chamber to even out the brew, then serve.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Strong, rich, espresso-adjacent intensity</li><li>No electricity; cheap and durable</li><li>Iconic, simple, scalable by pot size</li><li>Great base for milk drinks at home</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Easy to scorch and over-extract</li><li>No real crema; can taste metallic</li><li>Fixed strength; little fine control</li><li>Aluminum models need careful cleaning</li></ul></div>
+    </div>
+  </article>
+
+  <!-- COLD BREW -->
+  <article class="method reveal" id="coldbrew">
+    <div class="method-top">
+      <div class="method-id">
+        <span class="tag">Cold Immersion · Time</span>
+        <h3>Cold Brew</h3>
+        <div class="specs">
+          <span class="spec">1:8 concentrate</span><span class="spec">Cold/room</span><span class="spec">12–24 hr</span>
+          <span class="spec alt">Extra coarse grind</span><span class="spec alt">Smooth</span>
+        </div>
+      </div>
+      <div class="method-blurb">
+        <p>Time replaces heat. Steeping coarse grounds in cold water for half a day extracts sugars and caffeine while leaving most bitter and acidic compounds behind — yielding an exceptionally smooth, sweet, low-acid concentrate. Rooted in Japan's Kyoto-style slow-drip and Latin America's <em>café de olla</em> traditions; now a summer staple worldwide.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li>Combine extra-coarse grounds with cold filtered water at ~1:8 (concentrate) in a jar.</li>
+      <li>Stir to fully saturate, cover, and steep 12–24 hours at room temperature or in the fridge.</li>
+      <li>Strain through a fine mesh, then a paper filter or cloth to remove fines.</li>
+      <li>Store the concentrate (keeps ~1 week refrigerated).</li>
+      <li>Dilute 1:1 with water or milk over ice to serve.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Smooth, sweet, very low acidity</li><li>Gentle on sensitive stomachs</li><li>Make-ahead; lasts a week as concentrate</li><li>No special equipment needed</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Requires 12+ hours of planning</li><li>Mutes the bright, delicate top notes</li><li>Uses more coffee per serving</li><li>Caffeine content is easy to misjudge</li></ul></div>
+    </div>
+  </article>
+
+  <!-- TURKISH -->
+  <article class="method reveal" id="turkish" style="margin-bottom:4rem">
+    <div class="method-top">
+      <div class="method-id">
+        <span class="tag">Unfiltered · Boiled</span>
+        <h3>Turkish / Ibrik</h3>
+        <div class="specs">
+          <span class="spec">1:10 ratio</span><span class="spec">Below boil</span><span class="spec">3–4 min</span>
+          <span class="spec alt">Powder-fine grind</span><span class="spec alt">Heritage</span>
+        </div>
+      </div>
+      <div class="method-blurb">
+        <p>The oldest method still in daily use. Powder-fine coffee, water, and often sugar are simmered together in a long-handled <em>cezve</em> (ibrik) and served unfiltered, grounds and all. A UNESCO-recognized cultural tradition across Turkey, the Balkans, and the Middle East — bound up with hospitality, fortune-telling, and ceremony.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li>Add cold water, powder-fine coffee (~1 heaping tsp per demitasse), and sugar to taste into the cezve.</li>
+      <li>Stir once, then heat slowly over low flame — do not stir again.</li>
+      <li>As foam rises toward the rim (just before boiling), lift off the heat to preserve the crucial foam.</li>
+      <li>Spoon a little foam into each cup, return to heat briefly to raise foam once or twice more, then pour.</li>
+      <li>Let the grounds settle for ~1 minute before sipping; never drink the silt at the bottom.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Intense, thick, aromatic, full-flavored</li><li>Deep cultural ritual and ceremony</li><li>Minimal, inexpensive equipment</li><li>Built-in spice and sweetness control</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Heavy sediment by design</li><li>Needs a special ultra-fine grind</li><li>Easy to boil over and scald</li><li>Small servings; attention-intensive</li></ul></div>
+    </div>
+  </article>
+</section>
+
+<footer>
+  <div class="big">"Good coffee is just chemistry you can taste."</div>
+  <p>Start with one method. Change one variable at a time. Keep notes, trust your palate, and let the ritual become its own reward.</p>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

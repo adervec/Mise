@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ferment — A Field Guide to Alcohol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..700&family=Archivo:wght@300..800&family=IBM+Plex+Mono:wght@300..600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15110d;
+    --paper:#ece4d6;
+    --paper-2:#e0d6c2;
+    --amber:#b8762a;
+    --amber-deep:#8a4f17;
+    --copper:#a85a32;
+    --burgundy:#6b2436;
+    --gold:#c69a4a;
+    --line:#b3a589;
+    --shadow:rgba(21,17,13,.20);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'Archivo',system-ui,sans-serif;font-size:18px;line-height:1.65;overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 12% 16%, rgba(184,118,42,.06), transparent 38%),
+      radial-gradient(circle at 88% 80%, rgba(107,36,54,.05), transparent 42%);
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+  }
+  ::selection{background:var(--amber);color:var(--paper)}
+
+  /* ---------- AGE GATE ---------- */
+  .gate{position:fixed;inset:0;z-index:10000;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;padding:2rem;text-align:center}
+  .gate-inner{max-width:30rem}
+  .gate h2{font-family:'Bodoni Moda',serif;font-size:2.4rem;margin-bottom:1rem;color:var(--gold);font-weight:500}
+  .gate p{font-size:1rem;color:#cabd a6;margin-bottom:1.6rem;color:#c9bda4}
+  .gate button{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;padding:.9rem 2rem;margin:.3rem;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer;transition:.25s}
+  .gate button.yes{background:var(--gold);color:var(--ink)}
+  .gate button:hover{transform:translateY(-2px)}
+  .gate.hidden{display:none}
+
+  /* ---------- HERO ---------- */
+  header.hero{min-height:96vh;display:flex;flex-direction:column;justify-content:center;padding:6vw clamp(1.5rem,7vw,10rem) 4vw;position:relative;border-bottom:2px solid var(--ink)}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.4em;text-transform:uppercase;color:var(--amber-deep);display:flex;gap:1rem;align-items:center;font-weight:500}
+  .kicker::after{content:"";flex:1;height:1px;background:var(--line);max-width:240px}
+  h1.title{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(3.2rem,13vw,11rem);line-height:.88;letter-spacing:-.01em;margin:.3em 0 .1em}
+  h1.title em{font-style:italic;color:var(--burgundy);font-weight:400}
+  .deck{font-size:clamp(1.1rem,2.3vw,1.55rem);max-width:46ch;color:var(--amber-deep);margin-top:1.2rem;font-family:'Bodoni Moda',serif;font-style:italic}
+  .hero-meta{margin-top:3rem;display:flex;flex-wrap:wrap;gap:2.5rem;font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-deep)}
+  .hero-meta span b{display:block;font-size:1.5rem;font-family:'Bodoni Moda',serif;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600}
+  .glass{position:absolute;top:9%;right:9%;font-size:7rem;opacity:.1;transform:rotate(-6deg)}
+
+  /* ---------- HEALTH BANNER ---------- */
+  .banner{background:var(--burgundy);color:var(--paper);padding:1.1rem clamp(1.5rem,7vw,10rem);font-size:.92rem;display:flex;gap:.8rem;align-items:center;border-bottom:2px solid var(--ink)}
+  .banner b{font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:.7rem}
+
+  /* ---------- NAV ---------- */
+  nav.toc{position:sticky;top:0;z-index:50;background:var(--ink);color:var(--paper);display:flex;gap:0;overflow-x:auto;border-bottom:2px solid var(--ink);font-family:'IBM Plex Mono',monospace;font-size:.67rem;letter-spacing:.13em;text-transform:uppercase}
+  nav.toc a{color:var(--paper);text-decoration:none;padding:1rem 1.2rem;white-space:nowrap;border-right:1px solid rgba(236,228,214,.14);transition:.25s;flex-shrink:0}
+  nav.toc a:hover{background:var(--amber);color:var(--ink)}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:clamp(3rem,8vw,7rem) clamp(1.5rem,7vw,10rem);border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:1.8rem}
+  .sec-num{font-family:'IBM Plex Mono',monospace;font-size:.82rem;color:var(--gold);letter-spacing:.2em}
+  h2{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2rem,5vw,3.6rem);line-height:1;letter-spacing:-.01em}
+  h3{font-family:'Bodoni Moda',serif;font-weight:600;font-size:1.6rem;margin:2rem 0 .6rem;color:var(--amber-deep)}
+  p{max-width:68ch;margin-bottom:1.1rem}
+  .lead{font-size:1.22rem;max-width:60ch}
+  .dropcap::first-letter{font-family:'Bodoni Moda',serif;font-weight:500;float:left;font-size:4.8rem;line-height:.76;padding:.06em .12em 0 0;color:var(--burgundy)}
+
+  /* timeline */
+  .timeline{border-left:2px solid var(--line);margin:2rem 0 0}
+  .tl-item{position:relative;padding:0 0 2rem 2.2rem}
+  .tl-item::before{content:"";position:absolute;left:-7px;top:.45rem;width:12px;height:12px;border-radius:50%;background:var(--amber);border:2px solid var(--ink)}
+  .tl-year{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.18em;color:var(--gold)}
+
+  /* cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem;margin-top:2rem}
+  .card{background:var(--paper-2);border:1px solid var(--line);padding:1.6rem 1.5rem;position:relative;overflow:hidden}
+  .card::after{content:"";position:absolute;top:0;right:0;width:44px;height:44px;background:var(--amber);clip-path:polygon(100% 0,0 0,100% 100%)}
+  .card .ic{font-size:1.7rem;display:block;margin-bottom:.5rem}
+  .card h4{font-family:'Bodoni Moda',serif;font-size:1.25rem;margin-bottom:.3rem;font-weight:600}
+  .card p{font-size:.95rem;margin:0}
+
+  /* spectrum */
+  .spectrum{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;margin-top:2rem;border:2px solid var(--ink)}
+  .swatch{padding:1.4rem 1.1rem;color:#fff;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end;border-right:1px solid rgba(255,255,255,.18)}
+  .swatch:last-child{border-right:none}
+  .swatch .lbl{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+  .swatch .nm{font-family:'Bodoni Moda',serif;font-size:1.4rem;font-weight:600;line-height:1}
+  .swatch small{font-size:.82rem;opacity:.92;margin-top:.3rem}
+
+  /* methods */
+  .method{margin-top:3.5rem;border:2px solid var(--ink);background:var(--paper-2);box-shadow:8px 8px 0 var(--shadow)}
+  .method-top{display:grid;grid-template-columns:1fr}
+  @media(min-width:840px){.method-top{grid-template-columns:1.1fr 1fr}}
+  .method-id{padding:2rem 2rem 1.5rem;border-bottom:2px solid var(--ink)}
+  @media(min-width:840px){.method-id{border-bottom:none;border-right:2px solid var(--ink)}}
+  .method-id .tag{font-family:'IBM Plex Mono',monospace;font-size:.67rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .method-id h3{margin:.3rem 0 .8rem;font-size:2.1rem;color:var(--ink)}
+  .specs{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+  .spec{font-family:'IBM Plex Mono',monospace;font-size:.63rem;letter-spacing:.05em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:.35rem .6rem}
+  .spec.alt{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .method-blurb{padding:2rem}
+  .method-blurb p{font-size:1rem}
+
+  .steps{counter-reset:step;list-style:none;padding:1.8rem 2rem 2rem;border-top:2px dashed var(--line)}
+  .steps li{counter-increment:step;position:relative;padding-left:3rem;margin-bottom:1rem;font-size:1rem;max-width:64ch}
+  .steps li::before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:0;font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:var(--paper);background:var(--burgundy);width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;border-radius:50%}
+
+  .tradeoffs{display:grid;grid-template-columns:1fr;border-top:2px solid var(--ink)}
+  @media(min-width:680px){.tradeoffs{grid-template-columns:1fr 1fr}}
+  .pros,.cons{padding:1.6rem 2rem}
+  .pros{background:rgba(184,118,42,.12)}
+  .cons{background:rgba(107,36,54,.08);border-top:1px solid var(--line)}
+  @media(min-width:680px){.cons{border-top:none;border-left:1px solid var(--ink)}}
+  .toff-h{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem}
+  .pros .toff-h{color:var(--amber-deep)}
+  .cons .toff-h{color:var(--burgundy)}
+  .tradeoffs ul{list-style:none}
+  .tradeoffs li{font-size:.95rem;padding:.3rem 0 .3rem 1.4rem;position:relative}
+  .pros li::before{content:"+";position:absolute;left:0;color:var(--amber-deep);font-weight:700}
+  .cons li::before{content:"–";position:absolute;left:0;color:var(--burgundy);font-weight:700}
+
+  blockquote{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(1.4rem,3.4vw,2.3rem);line-height:1.3;max-width:26ch;margin:3rem auto;text-align:center;color:var(--amber-deep);position:relative;font-weight:400}
+  blockquote::before{content:"❧";font-size:2rem;color:var(--amber);display:block;margin-bottom:.4rem}
+
+  table.ratio{width:100%;border-collapse:collapse;margin-top:2rem;font-size:.95rem}
+  table.ratio th,table.ratio td{border:1px solid var(--line);padding:.7rem 1rem;text-align:left}
+  table.ratio th{background:var(--ink);color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:400}
+  table.ratio tr:nth-child(even){background:var(--paper-2)}
+  table.ratio td:first-child{font-weight:700;color:var(--amber-deep)}
+
+  footer{padding:4rem clamp(1.5rem,7vw,10rem);background:var(--ink);color:var(--paper);text-align:center}
+  footer .big{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(1.5rem,4vw,2.4rem);margin-bottom:1rem}
+  footer p{margin:0 auto 1rem;color:#cabda4;font-size:.95rem;max-width:60ch}
+  footer .resources{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--gold);margin-top:1.5rem}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- AGE GATE -->
+<div class="gate" id="gate">
+  <div class="gate-inner">
+    <h2>A Word Before You Enter</h2>
+    <p>This is an educational guide to how alcoholic drinks are made, served, and tasted — written for adults of legal drinking age. It is not a drinking challenge or an encouragement to drink.</p>
+    <p>Are you of legal drinking age in your country?</p>
+    <button class="yes" onclick="document.getElementById('gate').classList.add('hidden')">Yes, enter</button>
+    <button onclick="window.location.href='https://www.who.int/health-topics/alcohol'">No / leave</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="glass">🥃</div>
+  <div class="kicker">A Field Guide · Grain, Grape &amp; Glass</div>
+  <h1 class="title">The<br><em>Ferment</em></h1>
+  <p class="deck">Sugar, yeast, time, and sometimes fire. A guide to how the world's drinks are made and served — and an honest look at what they cost the body.</p>
+  <div class="hero-meta">
+    <span><b>7</b>Categories</span>
+    <span><b>~9,000</b>Years of history</span>
+    <span><b>1</b>Molecule: ethanol</span>
+    <span><b>0</b>"Safe" amount, per WHO</span>
+  </div>
+</header>
+
+<div class="banner"><b>Note</b><span>There is no level of alcohol consumption that is risk-free for health. Drink moderately or not at all, never drink and drive, and never serve anyone underage or pregnant. Resources are listed at the end.</span></div>
+
+<nav class="toc">
+  <a href="#origins">01 · Origins</a>
+  <a href="#science">02 · The Science</a>
+  <a href="#spectrum">03 · The Spectrum</a>
+  <a href="#variables">04 · Variables</a>
+  <a href="#beer">05 · Beer</a>
+  <a href="#wine">06 · Wine</a>
+  <a href="#cider">07 · Cider &amp; Mead</a>
+  <a href="#sake">08 · Sake</a>
+  <a href="#whiskey">09 · Whisky</a>
+  <a href="#clear">10 · Clear Spirits</a>
+  <a href="#cocktail">11 · Cocktails</a>
+  <a href="#health">12 · Health</a>
+</nav>
+
+<!-- ORIGINS -->
+<section id="origins" class="reveal">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Origins &amp; Culture</h2></div>
+  <p class="lead dropcap">Fermented drink is older than writing, older than the wheel, arguably older than agriculture itself. Wherever humans settled with sugar and patience, yeast did the rest. Alcohol has served as medicine, currency, sacrament, and social glue — and as a source of harm running just as deep through human history.</p>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">~7000 BCE · CHINA</div><p>Residue on pottery from Jiahu reveals one of the earliest known fermented drinks — a blend of rice, honey, and fruit. Fermentation appears almost everywhere humans settle.</p></div>
+    <div class="tl-item"><div class="tl-year">~6000 BCE · CAUCASUS</div><p>The earliest winemaking traces appear in present-day Georgia and Armenia, where grapes were fermented in buried clay <em>qvevri</em> — a method still used today.</p></div>
+    <div class="tl-item"><div class="tl-year">~3000 BCE · MESOPOTAMIA &amp; EGYPT</div><p>Beer becomes a dietary staple and even a wage. The Sumerian hymn to Ninkasi doubles as a beer recipe; Egyptian workers were partly paid in bread and beer.</p></div>
+    <div class="tl-item"><div class="tl-year">~800–1300 CE · ARAB WORLD</div><p>Alchemists refine distillation (the word "alcohol" comes from Arabic <em>al-kuḥl</em>), originally for medicine and perfume — the technology that later created spirits.</p></div>
+    <div class="tl-item"><div class="tl-year">15TH–17TH C. · EUROPE</div><p>Distilled spirits spread: whisky in Scotland and Ireland, brandy from wine, genever in the Low Countries — the ancestor of gin.</p></div>
+    <div class="tl-item"><div class="tl-year">1920–1933 · UNITED STATES</div><p>Prohibition bans alcohol nationwide, fueling organized crime and, paradoxically, the inventive golden age of the cocktail in exile abroad.</p></div>
+    <div class="tl-item"><div class="tl-year">NOW · CRAFT &amp; SOBRIETY</div><p>A craft renaissance in beer and spirits runs alongside a fast-growing "sober-curious" movement and a booming market for zero-proof drinks.</p></div>
+  </div>
+
+  <blockquote>Fermentation is what happens when sugar meets time.</blockquote>
+</section>
+
+<!-- SCIENCE -->
+<section id="science" class="reveal">
+  <div class="sec-head"><span class="sec-num">02</span><h2>The Science of Fermentation</h2></div>
+  <p class="lead">Every alcoholic drink begins with the same simple act: yeast eats sugar and excretes ethanol and carbon dioxide. Everything else — strength, flavor, color, fizz — is a variation on where the sugar comes from and what happens after.</p>
+
+  <h3>Fermentation, then distillation</h3>
+  <p>In <strong>fermentation</strong>, yeast converts sugars into ethanol and CO₂, plus heat and hundreds of flavor compounds (esters, fusel alcohols, acids). Yeast typically tolerates alcohol only up to roughly 15–20% before it dies in its own product, which caps how strong a purely fermented drink can be. To go higher, you <strong>distill</strong>: gently heating the ferment so ethanol (which boils at 78.4°C, below water's 100°C) evaporates first, then condensing those vapors to concentrate the alcohol. Fermentation makes beer, wine, cider, and sake; distillation makes whisky, vodka, rum, and the rest of the spirits.</p>
+
+  <div class="grid">
+    <div class="card"><span class="ic">🍬</span><h4>Sugar Source</h4><p>Grapes make wine; grain makes beer and whisky; agave makes tequila; sugarcane makes rum. The base sugar shapes the flavor.</p></div>
+    <div class="card"><span class="ic">🦠</span><h4>Yeast</h4><p>Different strains throw different esters and aromas. Yeast choice is as decisive as the ingredient it ferments.</p></div>
+    <div class="card"><span class="ic">🌡️</span><h4>Temperature</h4><p>Cool, slow ferments preserve delicate aromatics; warm, fast ones build bold, fruity, or funky character.</p></div>
+    <div class="card"><span class="ic">🔥</span><h4>Distillation</h4><p>Separates and concentrates ethanol from a ferment. Pot stills keep flavor; column stills make cleaner, higher-proof spirit.</p></div>
+    <div class="card"><span class="ic">🛢️</span><h4>Aging</h4><p>Time in oak adds color, vanilla, spice, and tannin; the wood and char define bourbon, scotch, and aged rum.</p></div>
+    <div class="card"><span class="ic">📊</span><h4>ABV &amp; Proof</h4><p>"ABV" is % alcohol by volume. US "proof" is double the ABV. Beer ~5%, wine ~12%, spirits ~40%.</p></div>
+  </div>
+
+  <h3>What alcohol does in the body</h3>
+  <p>Ethanol is a small molecule that crosses into the bloodstream and brain quickly, acting as a depressant: it enhances the calming neurotransmitter GABA and dampens glutamate, producing relaxation, lowered inhibition, slowed reaction, and impaired judgment. The liver clears it at a roughly fixed rate — about one standard drink per hour — which nothing (coffee, cold showers, food after the fact) meaningfully speeds up. The metabolic byproduct acetaldehyde is toxic and is a major driver of both hangovers and long-term harm.</p>
+</section>
+
+<!-- SPECTRUM -->
+<section id="spectrum" class="reveal">
+  <div class="sec-head"><span class="sec-num">03</span><h2>The Strength Spectrum</h2></div>
+  <p class="lead">From a gentle session beer to overproof spirit, drinks span a huge range of strength. Understanding <strong>ABV</strong> — and what counts as one "standard drink" — is the single most useful thing for drinking responsibly.</p>
+  <div class="spectrum">
+    <div class="swatch" style="background:#c9a24a"><span class="lbl">~4–6% ABV</span><span class="nm">Beer</span><small>Fermented grain</small></div>
+    <div class="swatch" style="background:#9c6f2e"><span class="lbl">~5–7%</span><span class="nm">Cider</span><small>Fermented fruit</small></div>
+    <div class="swatch" style="background:#7a3346"><span class="lbl">~11–14%</span><span class="nm">Wine</span><small>Fermented grape</small></div>
+    <div class="swatch" style="background:#8a5a22"><span class="lbl">~15–20%</span><span class="nm">Fortified</span><small>Port, sherry</small></div>
+    <div class="swatch" style="background:#5a2e16"><span class="lbl">~40%+</span><span class="nm">Spirits</span><small>Distilled</small></div>
+  </div>
+  <p style="margin-top:1.5rem"><strong>A "standard drink"</strong> contains roughly 14g of pure alcohol (US): about a 350ml regular beer, a 150ml glass of wine, or a 45ml shot of 40% spirit — all carry similar alcohol. A strong craft beer or a generous pour can quietly equal two or three.</p>
+</section>
+
+<!-- VARIABLES -->
+<section id="variables" class="reveal">
+  <div class="sec-head"><span class="sec-num">04</span><h2>The Master Variables</h2></div>
+  <p class="lead">Serving is its own craft. Temperature, glass, and dilution change how the same drink tastes more than most people expect.</p>
+  <table class="ratio">
+    <thead><tr><th>Drink</th><th>Typical ABV</th><th>Serve Temp</th><th>Glass</th><th>Pour</th></tr></thead>
+    <tbody>
+      <tr><td>Lager</td><td>4–5%</td><td>3–7°C</td><td>Pint / flute</td><td>330–500ml</td></tr>
+      <tr><td>Ale / Stout</td><td>5–8%</td><td>8–13°C</td><td>Tulip / nonic</td><td>330–500ml</td></tr>
+      <tr><td>White Wine</td><td>11–13%</td><td>7–10°C</td><td>Smaller bowl</td><td>120–150ml</td></tr>
+      <tr><td>Red Wine</td><td>13–15%</td><td>15–18°C</td><td>Large bowl</td><td>120–150ml</td></tr>
+      <tr><td>Sake</td><td>14–16%</td><td>5–55°C*</td><td>Ochoko / wine</td><td>60–180ml</td></tr>
+      <tr><td>Whisky (neat)</td><td>40–46%</td><td>Room temp</td><td>Glencairn</td><td>30–45ml</td></tr>
+      <tr><td>Vodka / Gin</td><td>40%</td><td>Chilled / mixed</td><td>Varies</td><td>45ml shot</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:1.2rem;font-style:italic;color:var(--amber-deep)">*Sake is unusually flexible — some are best chilled, others gently warmed; serving temperature is part of its art.</p>
+</section>
+
+<!-- METHODS -->
+<section style="border-bottom:none;padding-bottom:0">
+  <div class="sec-head"><span class="sec-num">05–11</span><h2>The Categories</h2></div>
+  <p class="lead">Seven families of drink, each a different answer to the question of what to ferment — and whether to distill afterward. Each entry covers how it's made and served, plus honest tradeoffs.</p>
+
+  <!-- BEER -->
+  <article class="method reveal" id="beer">
+    <div class="method-top">
+      <div class="method-id"><span class="tag">Fermented Grain · ~4–8% ABV</span><h3>Beer</h3>
+        <div class="specs"><span class="spec">Malt + hops</span><span class="spec">3–13°C serve</span><span class="spec alt">Ale or lager</span><span class="spec alt">Sessionable</span></div>
+      </div>
+      <div class="method-blurb"><p>The world's oldest and most-consumed alcoholic drink: malted grain (usually barley) is mashed to release sugars, boiled with hops for bitterness and aroma, then fermented. Top-fermenting yeast makes fruity, complex <em>ales</em>; cold, bottom-fermenting yeast makes crisp, clean <em>lagers</em>. The base of pub culture worldwide.</p></div>
+    </div>
+    <ol class="steps">
+      <li>Serve at the right temperature — crisp lagers cold (3–7°C), rich ales and stouts warmer (8–13°C) to reveal aroma.</li>
+      <li>Pour into a clean, appropriate glass at ~45°, straightening as it fills to build a proper head.</li>
+      <li>Let the foam settle; the head traps aroma and protects carbonation.</li>
+      <li>Drink fresh — most beer (especially hoppy styles) does not improve with age.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Lower ABV; the most "sessionable" category</li><li>Vast range of styles and flavors</li><li>Affordable and food-friendly</li><li>Strong, accessible social tradition</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Higher in calories and carbs per serving</li><li>Volume makes overconsumption easy</li><li>Bloating and rapid spoilage once open</li><li>Strong craft beers can hide high ABV</li></ul></div>
+    </div>
+  </article>
+
+  <!-- WINE -->
+  <article class="method reveal" id="wine">
+    <div class="method-top">
+      <div class="method-id"><span class="tag">Fermented Grape · ~11–15% ABV</span><h3>Wine</h3>
+        <div class="specs"><span class="spec">Grapes</span><span class="spec">7–18°C serve</span><span class="spec alt">Red / white / sparkling</span><span class="spec alt">Terroir</span></div>
+      </div>
+      <div class="method-blurb"><p>Fermented grape juice, and the drink most bound to place — its <em>terroir</em> of soil, climate, and variety. Reds ferment with their skins for color and tannin; whites without. Sparkling wines undergo a second fermentation for fizz. Few drinks reward attention to glass, temperature, and aeration more.</p></div>
+    </div>
+    <ol class="steps">
+      <li>Serve at the right temperature: whites and sparkling chilled (7–10°C), reds cool room temperature (15–18°C) — never warm.</li>
+      <li>Pour only a third of the glass, leaving room to swirl and release aroma.</li>
+      <li>Decant or aerate young, tannic reds 30–60 minutes to soften them.</li>
+      <li>Swirl, smell, then sip — most of "taste" is aroma.</li>
+      <li>Reseal and refrigerate leftovers; oxygen degrades wine within a few days.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Enormous complexity and food pairing range</li><li>Some bottles improve for years or decades</li><li>Deep cultural and regional tradition</li><li>Moderate serving sizes by design</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Higher ABV than beer — easy to underestimate</li><li>Tannins/sulfites trigger headaches in some</li><li>Quality and price vary bewilderingly</li><li>Oxidizes quickly once opened</li></ul></div>
+    </div>
+  </article>
+
+  <!-- CIDER & MEAD -->
+  <article class="method reveal" id="cider">
+    <div class="method-top">
+      <div class="method-id"><span class="tag">Fermented Fruit &amp; Honey · ~5–12%</span><h3>Cider &amp; Mead</h3>
+        <div class="specs"><span class="spec">Apples / honey</span><span class="spec">Chilled</span><span class="spec alt">Often gluten-free</span><span class="spec alt">Ancient</span></div>
+      </div>
+      <div class="method-blurb"><p>Two of the oldest ferments. <em>Cider</em> is fermented apple juice — dry to sweet, still or sparkling, a staple from England to Normandy to Spain. <em>Mead</em>, fermented honey and water, may be humanity's most ancient alcoholic drink, ranging from light and floral to rich and port-like. Both are enjoying a craft revival.</p></div>
+    </div>
+    <ol class="steps">
+      <li>Chill cider well (4–7°C); serve mead chilled or at cool room temperature depending on style and sweetness.</li>
+      <li>Pour cider into a glass to appreciate aroma; pour mead into a wine glass.</li>
+      <li>For traditional Spanish cider, pour from a height to aerate and enliven it.</li>
+      <li>Note the sweetness level — both range widely from bone-dry to dessert-sweet.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Often naturally gluten-free (cider)</li><li>Approachable, fruit-forward flavors</li><li>Wide sweetness and strength range</li><li>Deep historical character</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Sweet versions can be high in sugar</li><li>Mead's strength is easy to underestimate</li><li>Quality varies; mass cider can be cloying</li><li>Less food-versatile than wine</li></ul></div>
+    </div>
+  </article>
+
+  <!-- SAKE -->
+  <article class="method reveal" id="sake">
+    <div class="method-top">
+      <div class="method-id"><span class="tag">Fermented Rice · ~14–16% ABV</span><h3>Sake</h3>
+        <div class="specs"><span class="spec">Rice + kōji</span><span class="spec">5–55°C serve</span><span class="spec alt">Brewed, not distilled</span><span class="spec alt">Umami</span></div>
+      </div>
+      <div class="method-blurb"><p>Often called "rice wine," sake is actually brewed more like beer — but by a unique <em>multiple parallel fermentation</em> in which <em>kōji</em> mold converts rice starch to sugar while yeast ferments it simultaneously. The result is smooth, complex, and umami-rich. More polished rice (e.g. junmai daiginjo) yields a more refined, fragrant sake.</p></div>
+    </div>
+    <ol class="steps">
+      <li>Choose a serving temperature to suit the sake — delicate premium types chilled (5–10°C), robust styles warmed (40–55°C).</li>
+      <li>Warm gently in a hot-water bath if serving warm; never microwave or boil.</li>
+      <li>Serve in small ochoko cups or a wine glass for aromatic styles.</li>
+      <li>By custom, pour for others rather than yourself.</li>
+      <li>Drink fresh; once opened, refrigerate and finish within days.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Smooth, low-acid, umami depth</li><li>Often low in sulfites and tannins</li><li>Flexible served warm or cold</li><li>Pairs beautifully with food</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Higher ABV than wine; sips add up</li><li>Quality grading is confusing to newcomers</li><li>Best fresh; degrades after opening</li><li>Premium bottles are pricey</li></ul></div>
+    </div>
+  </article>
+
+  <!-- WHISKY -->
+  <article class="method reveal" id="whiskey">
+    <div class="method-top">
+      <div class="method-id"><span class="tag">Distilled &amp; Aged · ~40–46% ABV</span><h3>Whisky &amp; Aged Spirits</h3>
+        <div class="specs"><span class="spec">Distilled grain</span><span class="spec">Neat / rocks</span><span class="spec alt">Oak-aged</span><span class="spec alt">Sipping</span></div>
+      </div>
+      <div class="method-blurb"><p>Distilled from fermented grain and aged in oak, whisky is the archetypal sipping spirit — scotch, bourbon, rye, Irish, and Japanese each defined by grain, distillation, and barrel. Aged rum, brandy, and tequila añejo share the same logic: the wood does much of the flavor work. Meant to be savored slowly, not shot.</p></div>
+    </div>
+    <ol class="steps">
+      <li>Pour a small measure (30–45ml) into a tulip-shaped glass that concentrates aroma.</li>
+      <li>Nose it gently with mouth slightly open; high proof can overwhelm the nose.</li>
+      <li>Sip neat first to taste it as intended.</li>
+      <li>Add a few drops of water to "open up" aromas and tame the burn — a respected practice, not a sin.</li>
+      <li>Use ice only if you prefer it colder, accepting that it mutes aroma as it dilutes.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Deep, layered, complex flavor</li><li>No sugar or carbs; very long shelf life</li><li>Small serving sizes by nature</li><li>Rewards slow, mindful sipping</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>High ABV — easy to over-pour</li><li>Quality bottles are expensive</li><li>Harsh and intimidating to beginners</li><li>Concentrated alcohol hits fast</li></ul></div>
+    </div>
+  </article>
+
+  <!-- CLEAR SPIRITS -->
+  <article class="method reveal" id="clear">
+    <div class="method-top">
+      <div class="method-id"><span class="tag">Distilled · ~40% ABV</span><h3>Clear &amp; Mixing Spirits</h3>
+        <div class="specs"><span class="spec">Vodka · gin · rum · tequila</span><span class="spec">Chilled / mixed</span><span class="spec alt">Versatile</span></div>
+      </div>
+      <div class="method-blurb"><p>The backbone of the bar. <em>Vodka</em> aims for neutrality; <em>gin</em> is vodka reimagined with juniper and botanicals; white <em>rum</em> comes from sugarcane; <em>tequila/mezcal</em> from agave. Usually unaged or lightly aged, they're built for chilling, mixing, and cocktails rather than slow neat sipping (though fine tequila and rum reward it).</p></div>
+    </div>
+    <ol class="steps">
+      <li>Store vodka and gin in the freezer for a clean, viscous chilled pour if drinking neat.</li>
+      <li>Use quality ice — bigger cubes melt slower and dilute less in mixed drinks.</li>
+      <li>For tequila, sip a good 100%-agave blanco slowly rather than shooting it.</li>
+      <li>Measure pours with a jigger; "free pouring" routinely over-serves.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Endlessly versatile in cocktails</li><li>No sugar in the spirit itself</li><li>Long shelf life; mixes with anything</li><li>Premium agave spirits are deeply complex</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>High ABV; very easy to over-pour</li><li>Cheap versions cause worse hangovers</li><li>Neutral spirits hide alcohol in sweet mixers</li><li>Shooting encourages fast intoxication</li></ul></div>
+    </div>
+  </article>
+
+  <!-- COCKTAILS -->
+  <article class="method reveal" id="cocktail" style="margin-bottom:4rem">
+    <div class="method-top">
+      <div class="method-id"><span class="tag">Mixed · Balance &amp; Dilution</span><h3>Cocktails</h3>
+        <div class="specs"><span class="spec">Spirit + balance</span><span class="spec">Shaken / stirred</span><span class="spec alt">Strong/sweet/sour/bitter</span></div>
+      </div>
+      <div class="method-blurb"><p>Not a drink but a discipline: combining a base spirit with sweet, sour, bitter, and dilution into something balanced. The classic logic — roughly 2 parts spirit, 1 part sweet, 1 part sour — underlies countless drinks. Shaking with ice both chills and dilutes; stirring chills with clarity. Dilution is a feature, not a flaw.</p></div>
+    </div>
+    <ol class="steps">
+      <li>Measure every ingredient with a jigger — balance, and knowing your dose, depend on it.</li>
+      <li>Shake drinks with citrus or juice hard with ice (~10–15s); stir spirit-only drinks (~30s) for clarity.</li>
+      <li>Strain over fresh ice (or up, into a chilled glass) — never serve over the cloudy ice you shook with.</li>
+      <li>Express citrus peel oils over the top for aroma as a garnish.</li>
+      <li>Track the spirit count — a single cocktail can hold two or more standard drinks.</li>
+    </ol>
+    <div class="tradeoffs">
+      <div class="pros"><div class="toff-h">Strengths</div><ul><li>Endless creativity and balance</li><li>Dilution and mixers can lower intensity</li><li>Excellent zero-proof versions now exist</li><li>A craft and social ritual in itself</li></ul></div>
+      <div class="cons"><div class="toff-h">Tradeoffs</div><ul><li>Sweet drinks mask alcohol dangerously well</li><li>Often hold multiple standard drinks each</li><li>High sugar adds calories and worse hangovers</li><li>Easy to lose count of total intake</li></ul></div>
+    </div>
+  </article>
+</section>
+
+<!-- HEALTH -->
+<section id="health" class="reveal" style="background:var(--paper-2)">
+  <div class="sec-head"><span class="sec-num">12</span><h2>The Honest Tradeoffs</h2></div>
+  <p class="lead">No guide to alcohol is complete without this. However it's made or served, ethanol is the same molecule — and the body treats it as a toxin to be cleared.</p>
+
+  <h3>What the evidence says</h3>
+  <p>The older idea that moderate drinking is heart-healthy has weakened considerably; large recent reviews and the World Health Organization conclude there is no level of alcohol consumption that is completely safe for health. Alcohol is a recognized carcinogen linked to cancers of the mouth, throat, esophagus, liver, colon, and breast, and contributes to liver disease, high blood pressure, and dependence. Risk rises with the amount and frequency of drinking.</p>
+
+  <div class="grid">
+    <div class="card"><span class="ic">⏱️</span><h4>Pace &amp; Hydrate</h4><p>The body clears about one standard drink per hour. Alternate with water and never "catch up."</p></div>
+    <div class="card"><span class="ic">🍽️</span><h4>Never on Empty</h4><p>Food slows absorption. Drinking on an empty stomach spikes intoxication fast.</p></div>
+    <div class="card"><span class="ic">🚗</span><h4>Never Drive</h4><p>Impairment begins before you feel it. Plan a ride before the first drink.</p></div>
+    <div class="card"><span class="ic">💊</span><h4>Check Meds</h4><p>Alcohol interacts dangerously with many medications. When in doubt, abstain.</p></div>
+    <div class="card"><span class="ic">🚫</span><h4>Know the Hard Lines</h4><p>No alcohol if pregnant, underage, in recovery, or operating anything that requires a clear head.</p></div>
+    <div class="card"><span class="ic">🌙</span><h4>Mind Your Sleep</h4><p>Alcohol may help you fall asleep but fragments sleep quality through the night.</p></div>
+  </div>
+
+  <h3>If drinking stops being a choice</h3>
+  <p>Warning signs of a problem include drinking more or longer than intended, failed attempts to cut down, cravings, and continuing despite harm to health, work, or relationships. If any of that feels familiar — for you or someone close — it is worth talking to a doctor or a confidential support line. Seeking help is a sign of strength, not failure.</p>
+</section>
+
+<footer>
+  <div class="big">"The poison is in the dose."</div>
+  <p>Made well, served with care, and drunk in moderation by adults who choose to, these drinks carry centuries of craft and culture. None of that changes the chemistry — so drink less, drink slower, or don't drink at all, and look out for the people around you.</p>
+  <p class="resources">Support: WHO alcohol resources · national helplines such as SAMHSA (US) 1-800-662-4357 · or speak with your doctor.</p>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
