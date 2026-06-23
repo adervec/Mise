@@ -53,8 +53,19 @@ Recipe DAGs resolve as **curated hero DAGs** (`heroDags.ts`) → **validated aut
 DAGs** (`public/data/recipes.dag.json`, from the LLM authoring pass) → **safe linear
 fallback** (`deriveDag.ts`). An invalid DAG can never crash a cook — it falls back.
 
+## Adding recipes
+
+New recipes live in two committed source files that the pipeline merges, so they
+survive re-running the extractor:
+
+- `src/data/extra-recipes.json` — full catalog items (merged into `items.json`).
+- `src/data/extra-dags.json` — their step DAGs (merged into `recipes.dag.json`).
+
+Run `npm run extract && node scripts/mergeDags.mjs` to regenerate.
+
 ## Status
 
-- 102/102 recipes executable; ~57% show real parallelism (78% of 30 min+ recipes).
-- The other ~43% are genuinely single-track (a seared steak, an overnight brine).
+- 114 recipes, all executable; the latest batch is lean/high-protein mains
+  (chicken breast, shrimp, cod, tofu, turkey, scallops/fish, tuna, cottage cheese).
+- Parallelism concentrates in involved recipes; quick single-track dishes stay linear.
 - Source HTML guides (`*.html`) are kept as the data source for the extractor.

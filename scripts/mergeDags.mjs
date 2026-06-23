@@ -1,7 +1,7 @@
 // Merge the per-batch authored DAGs into src/data/recipes.dag.json, validating
 // and normalizing each. Invalid recipes are skipped (they fall back to a linear
 // DAG at runtime). Run after the authoring workflow completes.
-import { readFileSync, writeFileSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -82,24 +82,53 @@ const merged = {};
 let parsed = 0, invalid = 0;
 const badFiles = [];
 
-// Process plain out-NN.json first, then out-r2-NN.json so re-authored versions win.
-const outFiles = readdirSync(authDir)
-  .filter((f) => /^out-(r2-)?\d+\.json$/.test(f))
-  .sort();
-for (const file of outFiles) {
-  let obj;
-  try {
-    obj = JSON.parse(readFileSync(resolve(authDir, file), "utf8"));
-  } catch (e) {
-    badFiles.push(`${file}: ${e.message}`);
-    continue;
+const dagOut = resolve(root, "public/data/recipes.dag.json");
+
+if (existsSync(authDir)) {
+  // Regenerate authored DAGs from the per-batch outputs.
+  // Process plain out-NN.json first, then out-r2-NN.json so re-authored versions win.
+  const outFiles = readdirSync(authDir)
+    .filter((f) => /^out-(r2-)?\d+\.json$/.test(f))
+    .sort();
+  for (const file of outFiles) {
+    let obj;
+    try {
+      obj = JSON.parse(readFileSync(resolve(authDir, file), "utf8"));
+    } catch (e) {
+      badFiles.push(`${file}: ${e.message}`);
+      continue;
+    }
+    for (const [id, raw] of Object.entries(obj)) {
+      if (!recipeIds.has(id) || HEROES.has(id)) continue;
+      const dag = normalizeDag(id, raw);
+      if (dag) {
+        merged[id] = dag;
+        parsed++;
+      } else {
+        invalid++;
+      }
+    }
   }
-  for (const [id, raw] of Object.entries(obj)) {
-    if (!recipeIds.has(id) || HEROES.has(id)) continue;
+} else if (existsSync(dagOut)) {
+  // Authoring intermediates were cleaned up; preserve the already-merged DAGs.
+  const existing = JSON.parse(readFileSync(dagOut, "utf8"));
+  for (const [id, dag] of Object.entries(existing)) {
+    merged[id] = dag;
+    parsed++;
+  }
+}
+
+// merge hand-authored DAGs for the extra recipes (committed source file)
+const extraDagPath = resolve(root, "src/data/extra-dags.json");
+let extraCount = 0;
+if (existsSync(extraDagPath)) {
+  const extra = JSON.parse(readFileSync(extraDagPath, "utf8"));
+  for (const [id, raw] of Object.entries(extra)) {
+    if (!recipeIds.has(id)) continue;
     const dag = normalizeDag(id, raw);
     if (dag) {
       merged[id] = dag;
-      parsed++;
+      extraCount++;
     } else {
       invalid++;
     }
@@ -111,7 +140,7 @@ writeFileSync(resolve(root, "public/data/recipes.dag.json"), JSON.stringify(merg
 const authored = new Set(Object.keys(merged));
 const missing = [...recipeIds].filter((id) => !HEROES.has(id) && !authored.has(id));
 
-console.log(`Merged ${parsed} valid DAGs (${invalid} rejected).`);
+console.log(`Merged ${parsed} authored + ${extraCount} extra DAGs (${invalid} rejected).`);
 if (badFiles.length) console.log("Unparseable files:\n  " + badFiles.join("\n  "));
 console.log(`Coverage: ${authored.size}/${recipeIds.size - HEROES.size} non-hero recipes authored.`);
 if (missing.length) console.log(`Missing (linear fallback): ${missing.join(", ")}`);

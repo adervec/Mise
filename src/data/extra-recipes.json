@@ -1,0 +1,230 @@
+[
+  {
+    "id": "grilled-chicken-breast",
+    "cat": "recipe",
+    "title": "Juicy Chicken Breast (No More Dry)",
+    "summary": "A 15-minute brine plus a sear-and-steam finish keeps lean chicken breast tender. The high-protein staple for meal prep.",
+    "time": 25,
+    "timeLabel": "~25 min",
+    "tags": ["lean", "high-protein", "chicken", "meal-prep", "gluten-free"],
+    "nutrition": { "cal": 240, "protein": "39g", "carbs": "2g", "fat": "7g", "serving": "Per serving (serves 2)" },
+    "diet": { "vegan": false, "vegetarian": false, "pescatarian": false, "glutenFree": true, "dairyFree": true, "nutFree": true, "eggFree": true, "porkFree": true, "shellfishFree": true, "halal": true, "kosher": true },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>A short salt brine seasons the meat and helps it hold water; finishing covered on low heat cooks it gently so it stays juicy right up to 74&deg;C.</p>\n\n<h4>Ingredients (serves 2)</h4>\n<ul>\n  <li>2 boneless skinless chicken breasts (~180g each)</li>\n  <li>2 tsp kosher salt (for the brine)</li>\n  <li>1 tbsp olive oil &middot; squeeze of lemon</li>\n  <li>&frac12; tsp each garlic powder, paprika, black pepper</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Quick brine.</strong> Dissolve salt in 2 cups cold water; submerge the breasts 15 min. Pat very dry.</li>\n  <li><strong>Even them out.</strong> Pound the thick end so each breast is an even thickness.</li>\n  <li><strong>Season &amp; sear.</strong> Rub with oil and spices. Sear in a hot pan 3&ndash;4 min until golden.</li>\n  <li><strong>Flip &amp; steam.</strong> Flip, drop heat to low, cover, and cook 6&ndash;8 min to 74&deg;C internal.</li>\n  <li><strong>Rest &amp; slice.</strong> Rest 5 min, slice against the grain, finish with lemon.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Dry-sear in a nonstick pan with no oil to cut fat further &mdash; the brine still keeps it moist.</div>\n\n<h4>Storage</h4>\n<p>Keeps 4 days refrigerated. Slice cold over salads or into wraps.</p>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): 2 chicken breasts; kosher salt; olive oil; garlic powder, paprika, pepper; lemon.", "Clear and wipe down your counter and cutting board.", "Fill the sink with hot soapy water for clean-as-you-go.", "Budget your time: about ~25 min."],
+      "modules": [{ "title": "Method", "steps": ["Quick brine. Dissolve salt in 2 cups cold water; submerge the breasts 15 min. Pat very dry.", "Even them out. Pound the thick end so each breast is an even thickness.", "Season & sear. Rub with oil and spices. Sear in a hot pan 3-4 min until golden.", "Flip & steam. Flip, drop heat to low, cover, and cook 6-8 min to 74C internal.", "Rest & slice. Rest 5 min, slice against the grain, finish with lemon."] }],
+      "cleanup": ["Transfer leftovers to an airtight container; refrigerate within 2 hours.", "Wash the pan, knife, and cutting board.", "Wipe down the stovetop and counters.", "Put away oil and spices.", "Run the dishwasher if needed."]
+    }
+  },
+  {
+    "id": "garlic-shrimp-greens",
+    "cat": "recipe",
+    "title": "Garlic Shrimp & Wilted Greens",
+    "summary": "Ten-minute skillet of plump shrimp and dark greens in garlic and lemon. Almost all protein, barely any fat.",
+    "time": 12,
+    "timeLabel": "~12 min",
+    "tags": ["lean", "high-protein", "shrimp", "quick", "low-carb"],
+    "nutrition": { "cal": 230, "protein": "30g", "carbs": "8g", "fat": "8g", "serving": "Per serving (serves 2)" },
+    "diet": { "vegan": false, "vegetarian": false, "pescatarian": true, "glutenFree": true, "dairyFree": true, "nutFree": true, "eggFree": true, "porkFree": true, "shellfishFree": false, "halal": true, "kosher": false },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>Shrimp cook in two minutes, so everything else goes in first. A hot pan and a quick toss keep them snappy, not rubbery.</p>\n\n<h4>Ingredients (serves 2)</h4>\n<ul>\n  <li>340g raw shrimp, peeled &amp; deveined</li>\n  <li>1 tbsp olive oil &middot; 4 garlic cloves, sliced</li>\n  <li>1 large bunch spinach or chard</li>\n  <li>Pinch chili flakes &middot; juice of &frac12; lemon &middot; salt</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Bloom garlic.</strong> Warm oil, garlic, and chili over medium until fragrant, 1 min.</li>\n  <li><strong>Wilt greens.</strong> Add the greens with a pinch of salt; toss until just wilted. Push to the side.</li>\n  <li><strong>Sear shrimp.</strong> Add shrimp in one layer; cook 1&ndash;2 min per side until pink and opaque.</li>\n  <li><strong>Finish.</strong> Squeeze lemon over, toss everything together, taste for salt.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Serve over cauliflower rice or as-is &mdash; it's a complete low-carb plate at ~230 cal.</div>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): 340g shrimp; olive oil; garlic; spinach/chard; chili flakes; lemon; salt.", "Pat the shrimp dry so they sear, not steam.", "Fill the sink with hot soapy water for clean-as-you-go.", "Budget your time: about ~12 min."],
+      "modules": [{ "title": "Method", "steps": ["Bloom garlic. Warm oil, garlic, and chili over medium until fragrant, 1 min.", "Wilt greens. Add the greens with a pinch of salt; toss until just wilted. Push to the side.", "Sear shrimp. Add shrimp in one layer; cook 1-2 min per side until pink and opaque.", "Finish. Squeeze lemon over, toss everything together, taste for salt."] }],
+      "cleanup": ["Refrigerate leftovers within 2 hours.", "Wash the skillet and knife.", "Wipe the stovetop and board.", "Put away oil and seasonings.", "Run the dishwasher if needed."]
+    }
+  },
+  {
+    "id": "egg-white-scramble",
+    "cat": "recipe",
+    "title": "Egg-White & Veggie Scramble",
+    "summary": "Fluffy egg-white scramble loaded with vegetables. A 10-minute breakfast that's nearly fat-free and high in protein.",
+    "time": 10,
+    "timeLabel": "~10 min",
+    "tags": ["lean", "high-protein", "breakfast", "vegetarian", "low-carb"],
+    "nutrition": { "cal": 190, "protein": "25g", "carbs": "9g", "fat": "5g", "serving": "Per serving (serves 1)" },
+    "diet": { "vegan": false, "vegetarian": true, "pescatarian": true, "glutenFree": true, "dairyFree": true, "nutFree": true, "eggFree": false, "porkFree": true, "shellfishFree": true, "halal": true, "kosher": true },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>Egg whites overcook fast and turn rubbery. Cook the veg first, then add whites off the strongest heat and pull them while still glossy.</p>\n\n<h4>Ingredients (serves 1)</h4>\n<ul>\n  <li>6 egg whites (or ~180ml carton whites)</li>\n  <li>1 tsp olive oil &middot; handful spinach</li>\n  <li>&frac12; bell pepper, diced &middot; 2 mushrooms, sliced</li>\n  <li>Salt, pepper &middot; pinch of chili or herbs</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Soften veg.</strong> Saut&eacute; pepper and mushroom in the oil 3&ndash;4 min; add spinach to wilt.</li>\n  <li><strong>Add whites.</strong> Lower the heat. Pour in seasoned whites and let them set 20 sec.</li>\n  <li><strong>Fold gently.</strong> Push from the edges to the center in big folds until just set, ~1 min.</li>\n  <li><strong>Plate.</strong> Pull while glossy &mdash; carryover heat finishes them. Season and serve.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Add a tablespoon of feta or a slice of whole-grain toast if you want more without much fat.</div>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): 6 egg whites; olive oil; spinach; bell pepper; mushrooms; salt, pepper, chili/herbs.", "Dice the pepper and slice the mushrooms.", "Fill the sink with hot soapy water for clean-as-you-go.", "Budget your time: about ~10 min."],
+      "modules": [{ "title": "Method", "steps": ["Soften veg. Saute pepper and mushroom in the oil 3-4 min; add spinach to wilt.", "Add whites. Lower the heat. Pour in seasoned whites and let them set 20 sec.", "Fold gently. Push from the edges to the center in big folds until just set, ~1 min.", "Plate. Pull while glossy - carryover heat finishes them. Season and serve."] }],
+      "cleanup": ["Refrigerate any leftovers within 2 hours.", "Wash the nonstick pan and spatula.", "Wipe the stovetop and board.", "Put away the carton and seasonings.", "Run the dishwasher if needed."]
+    }
+  },
+  {
+    "id": "baked-cod-tomatoes",
+    "cat": "recipe",
+    "title": "Baked Cod with Burst Tomatoes",
+    "summary": "Flaky cod roasted over garlicky cherry tomatoes. Lean white fish, hands-off oven time, big flavor.",
+    "time": 25,
+    "timeLabel": "~25 min",
+    "tags": ["lean", "high-protein", "fish", "oven", "low-carb"],
+    "nutrition": { "cal": 220, "protein": "34g", "carbs": "9g", "fat": "6g", "serving": "Per serving (serves 2)" },
+    "diet": { "vegan": false, "vegetarian": false, "pescatarian": true, "glutenFree": true, "dairyFree": true, "nutFree": true, "eggFree": true, "porkFree": true, "shellfishFree": true, "halal": true, "kosher": true },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>Roasting the tomatoes first builds a quick pan sauce; the cod then bakes gently on top and stays just-set and flaky.</p>\n\n<h4>Ingredients (serves 2)</h4>\n<ul>\n  <li>2 cod fillets (~170g each)</li>\n  <li>2 cups cherry tomatoes &middot; 3 garlic cloves, smashed</li>\n  <li>1 tbsp olive oil &middot; pinch chili flakes</li>\n  <li>Salt, pepper &middot; fresh basil or parsley &middot; lemon</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Preheat.</strong> Heat the oven to 220&deg;C.</li>\n  <li><strong>Roast tomatoes.</strong> Toss tomatoes, garlic, oil, chili, salt on a tray; roast 12 min until bursting.</li>\n  <li><strong>Add the cod.</strong> Pat fillets dry, season, nestle into the tomatoes. Spoon some juices over.</li>\n  <li><strong>Bake.</strong> Roast 10&ndash;12 min until the fish flakes at 60&deg;C.</li>\n  <li><strong>Finish.</strong> Squeeze lemon, scatter herbs, serve with the pan juices.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Any firm white fish works (haddock, pollock). Serve over greens to keep it low-carb.</div>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): 2 cod fillets; cherry tomatoes; garlic; olive oil; chili flakes; herbs; lemon; salt, pepper.", "Pat the cod dry and bring to room temp.", "Fill the sink with hot soapy water for clean-as-you-go.", "Budget your time: about ~25 min."],
+      "modules": [{ "title": "Method", "steps": ["Preheat. Heat the oven to 220C.", "Roast tomatoes. Toss tomatoes, garlic, oil, chili, salt on a tray; roast 12 min until bursting.", "Add the cod. Pat fillets dry, season, nestle into the tomatoes. Spoon some juices over.", "Bake. Roast 10-12 min until the fish flakes at 60C.", "Finish. Squeeze lemon, scatter herbs, serve with the pan juices."] }],
+      "cleanup": ["Refrigerate leftovers within 2 hours.", "Soak and wash the roasting tray.", "Wipe the counters and board.", "Put away oil and seasonings.", "Run the dishwasher if needed."]
+    }
+  },
+  {
+    "id": "turkey-spinach-meatballs",
+    "cat": "recipe",
+    "title": "Baked Turkey & Spinach Meatballs",
+    "summary": "Lean ground-turkey meatballs bound with egg and spinach, baked not fried. Gluten-free and great for batch prep.",
+    "time": 30,
+    "timeLabel": "~30 min",
+    "tags": ["lean", "high-protein", "turkey", "meal-prep", "gluten-free"],
+    "nutrition": { "cal": 290, "protein": "34g", "carbs": "6g", "fat": "13g", "serving": "Per serving (serves 4)" },
+    "diet": { "vegan": false, "vegetarian": false, "pescatarian": false, "glutenFree": true, "dairyFree": true, "nutFree": true, "eggFree": false, "porkFree": true, "shellfishFree": true, "halal": true, "kosher": true },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>Lean turkey dries out easily; chopped spinach and an egg keep the meatballs moist, and baking on a rack lets fat drip away while they brown.</p>\n\n<h4>Ingredients (serves 4)</h4>\n<ul>\n  <li>500g lean ground turkey</li>\n  <li>1 egg &middot; 100g spinach, finely chopped</li>\n  <li>3 garlic cloves, minced &middot; 1 tsp each oregano, salt</li>\n  <li>2 tbsp ground oats (optional binder) &middot; black pepper</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Preheat.</strong> Heat the oven to 200&deg;C; line a tray (a rack helps).</li>\n  <li><strong>Mix.</strong> Combine turkey, egg, spinach, garlic, oats, and seasoning &mdash; don't overwork.</li>\n  <li><strong>Roll.</strong> Form ~16 even balls with damp hands.</li>\n  <li><strong>Bake.</strong> Bake 18&ndash;20 min until 74&deg;C and lightly golden.</li>\n  <li><strong>Serve.</strong> Rest 2 min; serve with marinara, greens, or grains.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Use 99% lean turkey breast to drop the fat further; the spinach and egg still keep them tender.</div>\n\n<h4>Storage</h4>\n<p>Fridge 4 days; freezes well cooked. Reheat gently so they don't dry out.</p>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): 500g ground turkey; egg; spinach; garlic; oregano, salt, pepper; ground oats.", "Finely chop the spinach and mince the garlic.", "Fill the sink with hot soapy water for clean-as-you-go.", "Budget your time: about ~30 min."],
+      "modules": [{ "title": "Method", "steps": ["Preheat. Heat the oven to 200C; line a tray (a rack helps).", "Mix. Combine turkey, egg, spinach, garlic, oats, and seasoning - don't overwork.", "Roll. Form ~16 even balls with damp hands.", "Bake. Bake 18-20 min until 74C and lightly golden.", "Serve. Rest 2 min; serve with marinara, greens, or grains."] }],
+      "cleanup": ["Transfer leftovers to containers; refrigerate within 2 hours (or freeze).", "Wash the mixing bowl and tray.", "Wipe the counters and board.", "Put away seasonings.", "Run the dishwasher if needed."]
+    }
+  },
+  {
+    "id": "tuna-white-bean-salad",
+    "cat": "recipe",
+    "title": "Tuna & White Bean Salad",
+    "summary": "A no-cook pantry lunch: canned tuna, creamy white beans, lemon and herbs. Ready in ten minutes, packed with protein and fiber.",
+    "time": 10,
+    "timeLabel": "~10 min",
+    "tags": ["lean", "high-protein", "no-cook", "pantry", "pescatarian"],
+    "nutrition": { "cal": 330, "protein": "32g", "carbs": "30g", "fat": "9g", "serving": "Per serving (serves 2)" },
+    "diet": { "vegan": false, "vegetarian": false, "pescatarian": true, "glutenFree": true, "dairyFree": true, "nutFree": true, "eggFree": true, "porkFree": true, "shellfishFree": true, "halal": true, "kosher": true },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>Tuna packed in water keeps it lean; the beans add staying power and fiber. A bright lemon dressing ties it together &mdash; no cooking, no fuss.</p>\n\n<h4>Ingredients (serves 2)</h4>\n<ul>\n  <li>2 cans tuna in water, drained</li>\n  <li>1 can white beans, rinsed</li>\n  <li>&frac14; red onion, finely diced &middot; handful parsley</li>\n  <li>Juice of 1 lemon &middot; 1 tbsp olive oil &middot; salt, pepper</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Dress.</strong> Whisk lemon, oil, salt, and pepper in a bowl.</li>\n  <li><strong>Soften the onion.</strong> Stir the diced onion into the dressing; let it mellow 5 min.</li>\n  <li><strong>Combine.</strong> Fold in beans, flaked tuna, and parsley.</li>\n  <li><strong>Serve.</strong> Taste for lemon and salt; eat as-is or over greens.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Skip the oil and use extra lemon plus a spoon of the bean liquid for a near-fat-free dressing.</div>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): 2 cans tuna; 1 can white beans; red onion; parsley; lemon; olive oil; salt, pepper.", "Drain the tuna and rinse the beans.", "Fill the sink with hot soapy water for clean-as-you-go.", "Budget your time: about ~10 min."],
+      "modules": [{ "title": "Method", "steps": ["Dress. Whisk lemon, oil, salt, and pepper in a bowl.", "Soften the onion. Stir the diced onion into the dressing; let it mellow 5 min.", "Combine. Fold in beans, flaked tuna, and parsley.", "Serve. Taste for lemon and salt; eat as-is or over greens."] }],
+      "cleanup": ["Refrigerate leftovers within 2 hours.", "Rinse the cans for recycling; wash the bowl.", "Wipe the counters and board.", "Put away oil and seasonings.", "Run the dishwasher if needed."]
+    }
+  },
+  {
+    "id": "chicken-quinoa-bowl",
+    "cat": "recipe",
+    "title": "Chicken & Quinoa Power Bowl",
+    "summary": "Seared chicken over fluffy quinoa with crisp veg and a lemon-tahini drizzle. A balanced, high-protein meal-prep bowl.",
+    "time": 30,
+    "timeLabel": "~30 min",
+    "tags": ["lean", "high-protein", "chicken", "meal-prep", "bowl"],
+    "nutrition": { "cal": 430, "protein": "41g", "carbs": "38g", "fat": "12g", "serving": "Per serving (serves 2)" },
+    "diet": { "vegan": false, "vegetarian": false, "pescatarian": false, "glutenFree": true, "dairyFree": true, "nutFree": false, "eggFree": true, "porkFree": true, "shellfishFree": true, "halal": true, "kosher": true },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>The quinoa simmers unattended while you cook the chicken and prep the veg, so the whole bowl comes together in one 30-minute window.</p>\n\n<h4>Ingredients (serves 2)</h4>\n<ul>\n  <li>2 chicken breasts (~180g each), cubed</li>\n  <li>&frac12; cup quinoa, rinsed &middot; 1 cup water</li>\n  <li>1 cucumber &middot; 1 cup cherry tomatoes &middot; handful greens</li>\n  <li>2 tbsp tahini &middot; juice of 1 lemon &middot; 1 tsp olive oil &middot; salt, cumin</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Cook quinoa.</strong> Simmer quinoa in water, covered, ~15 min until fluffy; rest off heat.</li>\n  <li><strong>Sear chicken.</strong> Meanwhile, toss chicken with cumin and salt; sear in oil 6&ndash;8 min to 74&deg;C.</li>\n  <li><strong>Prep veg.</strong> While both cook, dice cucumber and halve tomatoes.</li>\n  <li><strong>Whisk sauce.</strong> Stir tahini, lemon, and a splash of water into a drizzle.</li>\n  <li><strong>Build.</strong> Bowl the quinoa, greens, veg, and chicken; drizzle with sauce.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Thin the tahini with extra lemon and water to keep the drizzle light, or swap for fat-free yogurt.</div>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): 2 chicken breasts; quinoa; cucumber; tomatoes; greens; tahini; lemon; olive oil; salt, cumin.", "Rinse the quinoa and cube the chicken.", "Fill the sink with hot soapy water for clean-as-you-go.", "Budget your time: about ~30 min."],
+      "modules": [{ "title": "Method", "steps": ["Cook quinoa. Simmer quinoa in water, covered, ~15 min until fluffy; rest off heat.", "Sear chicken. Meanwhile, toss chicken with cumin and salt; sear in oil 6-8 min to 74C.", "Prep veg. While both cook, dice cucumber and halve tomatoes.", "Whisk sauce. Stir tahini, lemon, and a splash of water into a drizzle.", "Build. Bowl the quinoa, greens, veg, and chicken; drizzle with sauce."] }],
+      "cleanup": ["Pack leftovers into meal-prep containers; refrigerate within 2 hours.", "Wash the pot, pan, and knife.", "Wipe the stovetop and board.", "Put away oil and seasonings.", "Run the dishwasher if needed."]
+    }
+  },
+  {
+    "id": "tofu-edamame-stirfry",
+    "cat": "recipe",
+    "title": "Tofu & Edamame Stir-Fry",
+    "summary": "Crisp tofu and edamame in a quick ginger-garlic sauce. A plant-based, high-protein stir-fry that stays lean with tamari and minimal oil.",
+    "time": 20,
+    "timeLabel": "~20 min",
+    "tags": ["lean", "high-protein", "vegan", "tofu", "stir-fry"],
+    "nutrition": { "cal": 320, "protein": "27g", "carbs": "18g", "fat": "16g", "serving": "Per serving (serves 2)" },
+    "diet": { "vegan": true, "vegetarian": true, "pescatarian": true, "glutenFree": true, "dairyFree": true, "nutFree": true, "eggFree": true, "porkFree": true, "shellfishFree": true, "halal": true, "kosher": true },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>Pressing and dry-searing extra-firm tofu gives a crisp edge without deep-frying. Edamame adds a second complete protein and a pop of color.</p>\n\n<h4>Ingredients (serves 2)</h4>\n<ul>\n  <li>1 block extra-firm tofu (~350g), pressed &amp; cubed</li>\n  <li>1 cup shelled edamame &middot; 2 cups mixed stir-fry veg</li>\n  <li>2 tbsp tamari &middot; 1 tbsp rice vinegar &middot; 1 tsp sesame oil</li>\n  <li>1 tbsp grated ginger &middot; 2 garlic cloves &middot; 1 tsp cornstarch</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Crisp tofu.</strong> Sear cubed tofu in a hot nonstick pan until golden on most sides; remove.</li>\n  <li><strong>Stir-fry veg.</strong> Add veg and edamame; toss over high heat 3&ndash;4 min until crisp-tender.</li>\n  <li><strong>Sauce.</strong> Add ginger and garlic 30 sec, then tamari, vinegar, sesame oil, and cornstarch slurry.</li>\n  <li><strong>Combine.</strong> Return tofu; toss until glossy and coated. Serve.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Use tamari for gluten-free and skip extra oil &mdash; the nonstick pan crisps tofu with very little.</div>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): tofu; edamame; stir-fry veg; tamari; rice vinegar; sesame oil; ginger; garlic; cornstarch.", "Press the tofu and cube it; grate the ginger.", "Fill the sink with hot soapy water for clean-as-you-go.", "Budget your time: about ~20 min."],
+      "modules": [{ "title": "Method", "steps": ["Crisp tofu. Sear cubed tofu in a hot nonstick pan until golden on most sides; remove.", "Stir-fry veg. Add veg and edamame; toss over high heat 3-4 min until crisp-tender.", "Sauce. Add ginger and garlic 30 sec, then tamari, vinegar, sesame oil, and cornstarch slurry.", "Combine. Return tofu; toss until glossy and coated. Serve."] }],
+      "cleanup": ["Refrigerate leftovers within 2 hours.", "Wash the wok/pan and knife.", "Wipe the stovetop and board.", "Put away the sauces and seasonings.", "Run the dishwasher if needed."]
+    }
+  },
+  {
+    "id": "sheet-pan-chicken-asparagus",
+    "cat": "recipe",
+    "title": "Sheet-Pan Lemon Chicken & Asparagus",
+    "summary": "Everything roasts on one tray: lean chicken and crisp asparagus with lemon and garlic. Minimal cleanup, maximum protein.",
+    "time": 30,
+    "timeLabel": "~30 min",
+    "tags": ["lean", "high-protein", "chicken", "sheet-pan", "one-pan"],
+    "nutrition": { "cal": 350, "protein": "41g", "carbs": "9g", "fat": "16g", "serving": "Per serving (serves 2)" },
+    "diet": { "vegan": false, "vegetarian": false, "pescatarian": false, "glutenFree": true, "dairyFree": true, "nutFree": true, "eggFree": true, "porkFree": true, "shellfishFree": true, "halal": true, "kosher": true },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>Chicken thighs (or breast) need more time than asparagus, so they get a head start; the spears go in for just the last stretch and stay snappy.</p>\n\n<h4>Ingredients (serves 2)</h4>\n<ul>\n  <li>4 boneless skinless chicken thighs (or 2 breasts)</li>\n  <li>1 bunch asparagus, trimmed</li>\n  <li>1 tbsp olive oil &middot; 3 garlic cloves &middot; 1 lemon</li>\n  <li>Salt, pepper, paprika</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Preheat.</strong> Heat the oven to 220&deg;C.</li>\n  <li><strong>Season &amp; roast chicken.</strong> Toss chicken with oil, garlic, paprika, salt; roast 15 min.</li>\n  <li><strong>Add asparagus.</strong> Add the spears and lemon slices to the tray; roast 8&ndash;10 min more.</li>\n  <li><strong>Check.</strong> Chicken should read 74&deg;C and asparagus be tender-crisp.</li>\n  <li><strong>Finish.</strong> Squeeze the roasted lemon over everything and serve.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Use chicken breast and halve the oil for a ~280-cal plate with the same protein.</div>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): chicken thighs/breasts; asparagus; olive oil; garlic; lemon; salt, pepper, paprika.", "Trim the asparagus and smash the garlic.", "Fill the sink with hot soapy water for clean-as-you-go.", "Budget your time: about ~30 min."],
+      "modules": [{ "title": "Method", "steps": ["Preheat. Heat the oven to 220C.", "Season & roast chicken. Toss chicken with oil, garlic, paprika, salt; roast 15 min.", "Add asparagus. Add the spears and lemon slices to the tray; roast 8-10 min more.", "Check. Chicken should read 74C and asparagus be tender-crisp.", "Finish. Squeeze the roasted lemon over everything and serve."] }],
+      "cleanup": ["Refrigerate leftovers within 2 hours.", "Soak and wash the sheet pan.", "Wipe the counters and board.", "Put away oil and seasonings.", "Run the dishwasher if needed."]
+    }
+  },
+  {
+    "id": "steamed-ginger-fish",
+    "cat": "recipe",
+    "title": "Steamed Ginger-Scallion White Fish",
+    "summary": "Silky steamed white fish finished with sizzling ginger, scallion, and a splash of tamari. Restaurant-classic, barely any fat.",
+    "time": 18,
+    "timeLabel": "~18 min",
+    "tags": ["lean", "high-protein", "fish", "steamed", "low-carb"],
+    "nutrition": { "cal": 210, "protein": "33g", "carbs": "4g", "fat": "7g", "serving": "Per serving (serves 2)" },
+    "diet": { "vegan": false, "vegetarian": false, "pescatarian": true, "glutenFree": true, "dairyFree": true, "nutFree": true, "eggFree": true, "porkFree": true, "shellfishFree": true, "halal": true, "kosher": true },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>Gentle steam keeps lean fish from drying out, and the final hot-oil pour blooms the aromatics in seconds for a glossy, savory finish.</p>\n\n<h4>Ingredients (serves 2)</h4>\n<ul>\n  <li>2 white fish fillets (cod, sole, or sea bass; ~170g each)</li>\n  <li>Thumb of ginger, julienned &middot; 3 scallions, sliced</li>\n  <li>2 tbsp tamari &middot; 1 tsp sugar &middot; 1 tbsp neutral oil</li>\n  <li>Cilantro &middot; pinch white pepper</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Set up the steamer.</strong> Bring 2cm water to a simmer with a rack or heatproof plate.</li>\n  <li><strong>Steam.</strong> Lay fish on a plate with half the ginger; steam covered 7&ndash;9 min until it flakes.</li>\n  <li><strong>Sauce.</strong> Warm tamari with sugar and a splash of the steaming water; pour over the fish.</li>\n  <li><strong>Sizzle.</strong> Top with scallion and remaining ginger; pour over the smoking-hot oil.</li>\n  <li><strong>Serve.</strong> Finish with cilantro and white pepper.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Use just 1 tsp of oil for the sizzle &mdash; you only need enough to bloom the aromatics.</div>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): 2 white fish fillets; ginger; scallions; tamari; sugar; neutral oil; cilantro; white pepper.", "Julienne the ginger and slice the scallions.", "Fill the sink with hot soapy water for clean-as-you-go.", "Budget your time: about ~18 min."],
+      "modules": [{ "title": "Method", "steps": ["Set up the steamer. Bring 2cm water to a simmer with a rack or heatproof plate.", "Steam. Lay fish on a plate with half the ginger; steam covered 7-9 min until it flakes.", "Sauce. Warm tamari with sugar and a splash of the steaming water; pour over the fish.", "Sizzle. Top with scallion and remaining ginger; pour over the smoking-hot oil.", "Serve. Finish with cilantro and white pepper."] }],
+      "cleanup": ["Refrigerate leftovers within 2 hours.", "Wash the steamer, plate, and knife.", "Wipe the stovetop and board.", "Put away the sauces and seasonings.", "Run the dishwasher if needed."]
+    }
+  },
+  {
+    "id": "turkey-taco-lettuce",
+    "cat": "recipe",
+    "title": "Lean Turkey Taco Lettuce Cups",
+    "summary": "Spiced ground-turkey filling spooned into crisp lettuce cups. All the taco-night flavor, low carb and lean.",
+    "time": 20,
+    "timeLabel": "~20 min",
+    "tags": ["lean", "high-protein", "turkey", "low-carb", "quick"],
+    "nutrition": { "cal": 300, "protein": "34g", "carbs": "10g", "fat": "13g", "serving": "Per serving (serves 2)" },
+    "diet": { "vegan": false, "vegetarian": false, "pescatarian": false, "glutenFree": true, "dairyFree": true, "nutFree": true, "eggFree": true, "porkFree": true, "shellfishFree": true, "halal": true, "kosher": true },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>Lean turkey takes on spice beautifully; blooming the seasoning in the pan first and adding a splash of water makes a saucy, taco-truck filling without a packet.</p>\n\n<h4>Ingredients (serves 2)</h4>\n<ul>\n  <li>400g lean ground turkey</li>\n  <li>1 tsp each cumin, chili powder, paprika, oregano &middot; salt</li>\n  <li>1 tsp olive oil &middot; &frac12; onion, diced &middot; 2 garlic cloves</li>\n  <li>1 head little gem or romaine &middot; lime, cilantro, salsa to serve</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Soften aromatics.</strong> Cook onion in the oil 3 min; add garlic and the spices, 30 sec.</li>\n  <li><strong>Brown turkey.</strong> Add turkey; break up and cook until no longer pink.</li>\n  <li><strong>Saucy finish.</strong> Add a splash of water and salt; simmer 3&ndash;4 min until glossy.</li>\n  <li><strong>Assemble.</strong> Spoon into lettuce cups; top with lime, cilantro, and salsa.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Top with a spoon of fat-free Greek yogurt instead of cheese or sour cream.</div>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): 400g ground turkey; cumin, chili, paprika, oregano, salt; olive oil; onion; garlic; lettuce; lime, cilantro, salsa.", "Dice the onion, mince the garlic, separate the lettuce leaves.", "Fill the sink with hot soapy water for clean-as-you-go.", "Budget your time: about ~20 min."],
+      "modules": [{ "title": "Method", "steps": ["Soften aromatics. Cook onion in the oil 3 min; add garlic and the spices, 30 sec.", "Brown turkey. Add turkey; break up and cook until no longer pink.", "Saucy finish. Add a splash of water and salt; simmer 3-4 min until glossy.", "Assemble. Spoon into lettuce cups; top with lime, cilantro, and salsa."] }],
+      "cleanup": ["Refrigerate leftover filling within 2 hours.", "Wash the skillet and knife.", "Wipe the stovetop and board.", "Put away spices and oil.", "Run the dishwasher if needed."]
+    }
+  },
+  {
+    "id": "cottage-cheese-savory-bowl",
+    "cat": "recipe",
+    "title": "Savory Cottage Cheese Bowl",
+    "summary": "A five-minute, no-cook high-protein bowl: cottage cheese with cucumber, tomato, herbs and a crack of pepper.",
+    "time": 5,
+    "timeLabel": "~5 min",
+    "tags": ["lean", "high-protein", "no-cook", "vegetarian", "snack"],
+    "nutrition": { "cal": 250, "protein": "27g", "carbs": "14g", "fat": "9g", "serving": "Per serving (serves 1)" },
+    "diet": { "vegan": false, "vegetarian": true, "pescatarian": true, "glutenFree": true, "dairyFree": false, "nutFree": true, "eggFree": true, "porkFree": true, "shellfishFree": true, "halal": true, "kosher": true },
+    "showDiet": true,
+    "doable": true,
+    "body": "<h4>Why this works</h4>\n<p>Cottage cheese is one of the highest protein-per-calorie foods going. Treating it like a savory base &mdash; not a diet punishment &mdash; makes it a genuinely good quick meal.</p>\n\n<h4>Ingredients (serves 1)</h4>\n<ul>\n  <li>1 cup low-fat cottage cheese</li>\n  <li>&frac12; cucumber, diced &middot; handful cherry tomatoes, halved</li>\n  <li>Drizzle olive oil &middot; squeeze lemon</li>\n  <li>Salt, black pepper, chili flakes &middot; fresh dill or chives</li>\n</ul>\n\n<h4>Method</h4>\n<ol>\n  <li><strong>Base.</strong> Spoon the cottage cheese into a bowl and season with salt and pepper.</li>\n  <li><strong>Top.</strong> Pile on cucumber and tomato.</li>\n  <li><strong>Finish.</strong> Drizzle oil and lemon; scatter herbs and chili flakes.</li>\n</ol>\n\n<div class=\"callout\"><b>Lean tip</b><br/>Use 1% or 2% cottage cheese and skip the oil to make it nearly fat-free with ~25g protein.</div>",
+    "checklist": {
+      "prep": ["Read the whole recipe through once before starting.", "Gather and measure all ingredients (mise en place): cottage cheese; cucumber; cherry tomatoes; olive oil; lemon; salt, pepper, chili; herbs.", "Dice the cucumber and halve the tomatoes.", "Wipe down your counter and board.", "Budget your time: about ~5 min."],
+      "modules": [{ "title": "Method", "steps": ["Base. Spoon the cottage cheese into a bowl and season with salt and pepper.", "Top. Pile on cucumber and tomato.", "Finish. Drizzle oil and lemon; scatter herbs and chili flakes."] }],
+      "cleanup": ["Cover and refrigerate any leftovers.", "Wash the bowl and knife.", "Wipe the board and counter.", "Put away the cottage cheese and seasonings.", "Run the dishwasher if needed."]
+    }
+  }
+]

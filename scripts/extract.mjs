@@ -2,7 +2,7 @@
 //   - kitchen_masterclass.html  ->  src/data/items.json   (all 215 catalog items)
 //   - coffee/tea/alcohol guides ->  src/data/guides.json  (editorial reference pages)
 // Run: npm run extract
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -21,6 +21,21 @@ function extractItems() {
   const m = html.match(/const DATA = (\[[\s\S]*?\]);<\/script>/);
   if (!m) throw new Error("Could not locate `const DATA = [...]` in masterclass.");
   const items = JSON.parse(m[1]);
+
+  // merge hand-authored extra recipes (kept in a committed source file so they
+  // survive re-running this extractor)
+  const extraPath = resolve(root, "src/data/extra-recipes.json");
+  if (existsSync(extraPath)) {
+    const extras = JSON.parse(readFileSync(extraPath, "utf8"));
+    const seen = new Set(items.map((i) => i.id));
+    for (const e of extras) {
+      if (seen.has(e.id)) continue;
+      items.push(e);
+      seen.add(e.id);
+    }
+    console.log(`merged ${extras.length} extra recipes`);
+  }
+
   writeFileSync(resolve(dataDir, "items.json"), JSON.stringify(items));
   const byCat = items.reduce((a, x) => ((a[x.cat] = (a[x.cat] || 0) + 1), a), {});
   console.log(`items.json: ${items.length} items`, byCat);

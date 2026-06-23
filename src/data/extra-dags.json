@@ -1,0 +1,128 @@
+{
+  "grilled-chicken-breast": {
+    "serves": 2,
+    "steps": [
+      { "id": "prep", "label": "Mise en place", "detail": "Measure salt, spices, oil; get a pan ready.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "brine", "label": "Quick brine", "detail": "Submerge the breasts in salted water 15 min, then pat very dry.", "durationMin": 15, "durationConfidence": "explicit", "attention": "wait", "station": "counter", "dependsOn": ["prep"], "timer": true },
+      { "id": "pound", "label": "Pound even", "detail": "Pound the thick end so each breast is an even thickness.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": ["brine"] },
+      { "id": "sear", "label": "Season & sear", "detail": "Rub with oil and spices; sear 3-4 min until golden.", "durationMin": 4, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["pound"] },
+      { "id": "steam", "label": "Flip & steam", "detail": "Flip, cover, low heat 6-8 min to 74C.", "durationMin": 8, "durationConfidence": "explicit", "attention": "passive", "station": "stove", "dependsOn": ["sear"], "timer": true },
+      { "id": "rest", "label": "Rest & slice", "detail": "Rest 5 min, slice against the grain, finish with lemon.", "durationMin": 5, "durationConfidence": "explicit", "attention": "wait", "station": "counter", "dependsOn": ["steam"], "timer": true, "phase": "cleanup" }
+    ]
+  },
+  "garlic-shrimp-greens": {
+    "serves": 2,
+    "steps": [
+      { "id": "prep", "label": "Mise en place", "detail": "Pat shrimp dry, slice garlic, wash greens.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "garlic", "label": "Bloom garlic", "detail": "Warm oil, garlic, and chili until fragrant, 1 min.", "durationMin": 1, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["prep"] },
+      { "id": "greens", "label": "Wilt greens", "detail": "Add greens with a pinch of salt; toss until just wilted.", "durationMin": 2, "durationConfidence": "estimated", "attention": "passive", "station": "stove", "dependsOn": ["garlic"] },
+      { "id": "shrimp", "label": "Sear shrimp", "detail": "Add shrimp in one layer; 1-2 min per side until opaque.", "durationMin": 3, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["greens"] },
+      { "id": "finish", "label": "Lemon & toss", "detail": "Squeeze lemon, toss together, taste for salt.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["shrimp"], "phase": "cleanup" }
+    ]
+  },
+  "egg-white-scramble": {
+    "serves": 1,
+    "steps": [
+      { "id": "prep", "label": "Mise en place", "detail": "Dice pepper, slice mushrooms, measure whites.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "veg", "label": "Soften veg", "detail": "Saute pepper and mushroom 3-4 min; wilt in spinach.", "durationMin": 4, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["prep"] },
+      { "id": "whites", "label": "Add whites", "detail": "Lower heat, pour in seasoned whites, let set 20 sec.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["veg"] },
+      { "id": "fold", "label": "Fold gently", "detail": "Push edges to center in big folds until just set.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["whites"] },
+      { "id": "plate", "label": "Plate", "detail": "Pull while glossy; season and serve.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["fold"], "phase": "cleanup" }
+    ]
+  },
+  "baked-cod-tomatoes": {
+    "serves": 2,
+    "steps": [
+      { "id": "preheat", "label": "Preheat oven 220C", "detail": "Get the oven fully hot before the tomatoes go in.", "durationMin": 8, "durationConfidence": "estimated", "attention": "wait", "station": "oven", "dependsOn": [], "timer": true, "phase": "prep" },
+      { "id": "prep", "label": "Mise en place", "detail": "Pat cod dry and season; halve tomatoes, smash garlic.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "roastTom", "label": "Roast tomatoes", "detail": "Toss tomatoes, garlic, oil, chili; roast 12 min until bursting.", "durationMin": 12, "durationConfidence": "explicit", "attention": "wait", "station": "oven", "dependsOn": ["preheat", "prep"], "timer": true },
+      { "id": "addCod", "label": "Nestle the cod", "detail": "Season fillets, nestle into the tomatoes, spoon juices over.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["roastTom"] },
+      { "id": "bake", "label": "Bake the fish", "detail": "Roast 10-12 min until the cod flakes at 60C.", "durationMin": 12, "durationConfidence": "explicit", "attention": "wait", "station": "oven", "dependsOn": ["addCod"], "timer": true },
+      { "id": "finish", "label": "Lemon & herbs", "detail": "Squeeze lemon, scatter herbs, serve with pan juices.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["bake"], "phase": "cleanup" }
+    ]
+  },
+  "turkey-spinach-meatballs": {
+    "serves": 4,
+    "steps": [
+      { "id": "preheat", "label": "Preheat oven 200C", "detail": "Heat oven and line a tray (a rack helps).", "durationMin": 10, "durationConfidence": "estimated", "attention": "wait", "station": "oven", "dependsOn": [], "timer": true, "phase": "prep" },
+      { "id": "prep", "label": "Mise en place", "detail": "Finely chop spinach, mince garlic, measure seasoning.", "durationMin": 5, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "mix", "label": "Mix the meat", "detail": "Combine turkey, egg, spinach, garlic, oats, seasoning; don't overwork.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["prep"] },
+      { "id": "roll", "label": "Roll balls", "detail": "Form ~16 even balls with damp hands.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": ["mix"] },
+      { "id": "bake", "label": "Bake", "detail": "Bake 18-20 min until 74C and golden.", "durationMin": 20, "durationConfidence": "explicit", "attention": "wait", "station": "oven", "dependsOn": ["preheat", "roll"], "timer": true },
+      { "id": "serve", "label": "Rest & serve", "detail": "Rest 2 min; serve with marinara, greens, or grains.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["bake"], "phase": "cleanup" }
+    ]
+  },
+  "tuna-white-bean-salad": {
+    "serves": 2,
+    "steps": [
+      { "id": "prep", "label": "Mise en place", "detail": "Drain tuna, rinse beans, dice onion, chop parsley.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "dress", "label": "Whisk dressing", "detail": "Whisk lemon, oil, salt, pepper in a bowl.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["prep"] },
+      { "id": "onion", "label": "Mellow onion", "detail": "Stir diced onion into the dressing; let it mellow 5 min.", "durationMin": 5, "durationConfidence": "explicit", "attention": "wait", "station": "counter", "dependsOn": ["dress"], "timer": true },
+      { "id": "combine", "label": "Fold it together", "detail": "Fold in beans, flaked tuna, and parsley.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["onion"] },
+      { "id": "serve", "label": "Taste & serve", "detail": "Adjust lemon and salt; eat as-is or over greens.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["combine"], "phase": "cleanup" }
+    ]
+  },
+  "chicken-quinoa-bowl": {
+    "serves": 2,
+    "steps": [
+      { "id": "prep", "label": "Mise en place", "detail": "Rinse quinoa, cube chicken, gather toppings.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "quinoa", "label": "Simmer quinoa", "detail": "Simmer quinoa in water, covered, ~15 min; rest off heat.", "durationMin": 15, "durationConfidence": "explicit", "attention": "wait", "station": "stove", "dependsOn": ["prep"], "timer": true },
+      { "id": "sear", "label": "Sear chicken", "detail": "Toss chicken with cumin and salt; sear 6-8 min to 74C.", "durationMin": 8, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["prep"] },
+      { "id": "veg", "label": "Prep the veg", "detail": "Dice cucumber and halve tomatoes while things cook.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": ["prep"] },
+      { "id": "sauce", "label": "Whisk tahini sauce", "detail": "Stir tahini, lemon, and water into a drizzle.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["prep"] },
+      { "id": "build", "label": "Build the bowls", "detail": "Bowl quinoa, greens, veg, and chicken; drizzle sauce.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["quinoa", "sear", "veg", "sauce"], "phase": "cleanup" }
+    ]
+  },
+  "tofu-edamame-stirfry": {
+    "serves": 2,
+    "steps": [
+      { "id": "prep", "label": "Mise en place", "detail": "Press and cube tofu, grate ginger, prep veg.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "saucemix", "label": "Mix the sauce", "detail": "Stir tamari, vinegar, sesame oil, and cornstarch slurry.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["prep"] },
+      { "id": "tofu", "label": "Crisp the tofu", "detail": "Sear cubed tofu until golden on most sides; remove.", "durationMin": 6, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["prep"] },
+      { "id": "veg", "label": "Stir-fry veg", "detail": "Toss veg and edamame over high heat 3-4 min.", "durationMin": 4, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["tofu"] },
+      { "id": "sauce", "label": "Add aromatics & sauce", "detail": "Ginger and garlic 30 sec, then the sauce to thicken.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["veg", "saucemix"] },
+      { "id": "combine", "label": "Toss & serve", "detail": "Return tofu; toss until glossy and coated.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["sauce"], "phase": "cleanup" }
+    ]
+  },
+  "sheet-pan-chicken-asparagus": {
+    "serves": 2,
+    "steps": [
+      { "id": "preheat", "label": "Preheat oven 220C", "detail": "Get the oven fully hot.", "durationMin": 8, "durationConfidence": "estimated", "attention": "wait", "station": "oven", "dependsOn": [], "timer": true, "phase": "prep" },
+      { "id": "prep", "label": "Mise en place", "detail": "Season chicken, trim asparagus, smash garlic, slice lemon.", "durationMin": 5, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "roastChicken", "label": "Roast chicken", "detail": "Tray the chicken with oil, garlic, paprika; roast 15 min.", "durationMin": 15, "durationConfidence": "explicit", "attention": "wait", "station": "oven", "dependsOn": ["preheat", "prep"], "timer": true },
+      { "id": "addAsp", "label": "Add asparagus", "detail": "Add spears and lemon slices to the tray.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["roastChicken"] },
+      { "id": "roastAsp", "label": "Roast asparagus", "detail": "Roast 8-10 min more until chicken is 74C and spears tender-crisp.", "durationMin": 10, "durationConfidence": "explicit", "attention": "wait", "station": "oven", "dependsOn": ["addAsp"], "timer": true },
+      { "id": "finish", "label": "Squeeze & serve", "detail": "Squeeze the roasted lemon over everything and serve.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["roastAsp"], "phase": "cleanup" }
+    ]
+  },
+  "steamed-ginger-fish": {
+    "serves": 2,
+    "steps": [
+      { "id": "prep", "label": "Mise en place", "detail": "Julienne ginger, slice scallions, set up the steamer plate.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "steamer", "label": "Heat the steamer", "detail": "Bring 2cm water to a simmer with a rack or plate.", "durationMin": 3, "durationConfidence": "estimated", "attention": "passive", "station": "stove", "dependsOn": ["prep"] },
+      { "id": "steam", "label": "Steam the fish", "detail": "Steam fish with half the ginger 7-9 min until it flakes.", "durationMin": 9, "durationConfidence": "explicit", "attention": "wait", "station": "stove", "dependsOn": ["steamer"], "timer": true },
+      { "id": "sauce", "label": "Warm the sauce", "detail": "Warm tamari with sugar and a splash of steaming water; pour over.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["steam"] },
+      { "id": "sizzle", "label": "Sizzle aromatics", "detail": "Top with scallion and ginger; pour over smoking-hot oil.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["sauce"] },
+      { "id": "serve", "label": "Garnish & serve", "detail": "Finish with cilantro and white pepper.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["sizzle"], "phase": "cleanup" }
+    ]
+  },
+  "turkey-taco-lettuce": {
+    "serves": 2,
+    "steps": [
+      { "id": "prep", "label": "Mise en place", "detail": "Dice onion, mince garlic, separate lettuce, ready toppings.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "aromatics", "label": "Soften aromatics", "detail": "Cook onion 3 min; add garlic and spices 30 sec.", "durationMin": 3, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["prep"] },
+      { "id": "brown", "label": "Brown the turkey", "detail": "Add turkey; break up and cook until no longer pink.", "durationMin": 5, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["aromatics"] },
+      { "id": "simmer", "label": "Saucy finish", "detail": "Add a splash of water and salt; simmer 3-4 min until glossy.", "durationMin": 4, "durationConfidence": "explicit", "attention": "passive", "station": "stove", "dependsOn": ["brown"], "timer": true },
+      { "id": "assemble", "label": "Build the cups", "detail": "Spoon into lettuce cups; top with lime, cilantro, salsa.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["simmer"], "phase": "cleanup" }
+    ]
+  },
+  "cottage-cheese-savory-bowl": {
+    "serves": 1,
+    "steps": [
+      { "id": "prep", "label": "Mise en place", "detail": "Dice cucumber and halve the tomatoes.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
+      { "id": "base", "label": "Season the base", "detail": "Spoon cottage cheese into a bowl; season with salt and pepper.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["prep"] },
+      { "id": "top", "label": "Add toppings", "detail": "Pile on cucumber and tomato.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["base"] },
+      { "id": "finish", "label": "Drizzle & serve", "detail": "Drizzle oil and lemon; scatter herbs and chili flakes.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["top"], "phase": "cleanup" }
+    ]
+  }
+}
