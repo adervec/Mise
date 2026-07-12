@@ -1,5 +1,6 @@
 import { useExecute } from "../runtime/executeStore";
 import * as E from "../runtime/engine";
+import { useVoice, voiceSupported } from "../runtime/voice";
 
 const SPEEDS = [1, 5, 20, 60];
 const COOKS = [1, 2, 3];
@@ -22,6 +23,7 @@ export default function TransportBar() {
   const setCooks = useExecute((s) => s.setCooks);
   const setSpeed = useExecute((s) => s.setSpeed);
   const setSimulate = useExecute((s) => s.setSimulate);
+  const voice = useVoice();
   if (!engine) return null;
 
   const running = engine.status === "running";
@@ -77,6 +79,17 @@ export default function TransportBar() {
       >
         {engine.simulate ? "Preview: on" : "Preview"}
       </button>
+
+      {voiceSupported && (
+        <button
+          className="text-btn"
+          style={voice.on ? { borderColor: "var(--accent)", color: "var(--ink)" } : undefined}
+          onClick={voice.toggle}
+          title="Hands-free: say play, pause, done, skip, or repeat"
+        >
+          {voice.on ? "🎙 Voice: on" : "🎙 Voice"}
+        </button>
+      )}
     </div>
   );
 }

@@ -17,6 +17,22 @@ npm test           # scheduler + runtime unit tests
 Open a recipe → **Execute this recipe**. Deep link to a hands-free demo:
 `/i/pasta-carbonara/cook?play=1&speed=30&sim=1`.
 
+Or just double-click **Mise.cmd** (there's a `Mise` shortcut on the desktop):
+it builds, serves, and opens the app. From the browser, use *Install app*
+(address-bar icon in Edge/Chrome) to install it as a PWA — the installed app
+has the logo, its own window, and works offline. Re-run `Mise.cmd` after
+recipe changes so the service worker picks up the update.
+
+## Voice control & cook log
+
+- **🎙 Voice** (on the execute screen, Chrome/Edge): hands-free commands —
+  *play*, *pause*, *done*, *skip*, *repeat* — and steps are announced aloud
+  as they start. Handy when your hands are covered in food.
+- Every finished cook is logged locally. **Settings → Cook log → Export**
+  downloads `mise-cook-log.json`; drop it in this folder and ask Claude for a
+  progress report. `CLAUDE.md` tells Claude how to analyze it and how to add
+  or update recipes.
+
 ## How it works
 
 The flagship is a **schedule-and-play engine** over a per-recipe step DAG.

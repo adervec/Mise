@@ -3,6 +3,7 @@ import type { Item } from "@/data/types";
 import { getDag, type DagSource } from "../model/dag";
 import * as E from "./engine";
 import { clearCook, loadCook, saveCook } from "./persistence";
+import { appendCookLog } from "./cookLog";
 import {
   beepDone,
   beepStep,
@@ -56,6 +57,25 @@ export const useExecute = create<ExecuteStore>((set, get) => {
     if (engine && recipeId) saveCook(recipeId, engine);
   }
 
+  function finishCook(state: E.EngineState) {
+    stopClock();
+    clearCook();
+    const statuses = Object.values(state.steps).map((r) => r.status);
+    appendCookLog({
+      recipeId: get().recipeId,
+      title: get().recipeTitle,
+      finishedAt: new Date().toISOString(),
+      elapsedMin: Math.round(E.elapsedMin(state, Date.now()) * 10) / 10,
+      steps: {
+        total: statuses.length,
+        completed: statuses.filter((s) => s === "done").length,
+        skipped: statuses.filter((s) => s === "skipped").length,
+      },
+      simulate: state.simulate,
+      speed: state.speed,
+    });
+  }
+
   function startClock() {
     if (get().timer != null) return;
     const id = window.setInterval(() => {
@@ -77,8 +97,7 @@ export const useExecute = create<ExecuteStore>((set, get) => {
 
       set({ engine: state, tick: get().tick + 1 });
       if (state.status === "completed") {
-        stopClock();
-        clearCook();
+        finishCook(state);
       } else if (fired.length || isNew) {
         saveCook(get().recipeId, state);
       }
@@ -159,8 +178,7 @@ export const useExecute = create<ExecuteStore>((set, get) => {
       const state = E.completeStep(eng, id, Date.now());
       set({ engine: state, tick: get().tick + 1 });
       if (state.status === "completed") {
-        stopClock();
-        clearCook();
+        finishCook(state);
       } else {
         saveCook(get().recipeId, state);
       }
@@ -172,8 +190,7 @@ export const useExecute = create<ExecuteStore>((set, get) => {
       const state = E.skipStep(eng, id, Date.now());
       set({ engine: state, tick: get().tick + 1 });
       if (state.status === "completed") {
-        stopClock();
-        clearCook();
+        finishCook(state);
       } else {
         saveCook(get().recipeId, state);
       }

@@ -2,6 +2,7 @@ import { useTheme, THEMES } from "./theme";
 import { useFilters } from "./filters";
 import { useUi } from "./ui";
 import { DIETS } from "@/data/catalog";
+import { exportCookLog, readCookLog } from "@/execute/runtime/cookLog";
 
 export default function Settings() {
   const open = useUi((s) => s.settingsOpen);
@@ -81,6 +82,20 @@ export default function Settings() {
                 </button>
               </div>
             )}
+          </section>
+
+          <section className="settings-section">
+            <h3>Cook log</h3>
+            <p className="hint">
+              {readCookLog().length} cooks logged. Export the log and save
+              <code> mise-cook-log.json</code> into the project folder — Claude
+              reads it to report on your cooking progress.
+            </p>
+            <div className="settings-actions">
+              <button className="text-btn" onClick={exportCookLog}>
+                Export cook log
+              </button>
+            </div>
           </section>
         </div>
       </aside>
