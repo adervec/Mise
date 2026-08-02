@@ -1,4 +1,5 @@
 import { useTheme, THEMES } from "./theme";
+import { useOrientation, ORIENTATIONS } from "./orientation";
 import { useFilters } from "./filters";
 import { useUi } from "./ui";
 import { DIETS } from "@/data/catalog";
@@ -8,6 +9,7 @@ export default function Settings() {
   const open = useUi((s) => s.settingsOpen);
   const close = useUi((s) => s.closeSettings);
   const { theme, setTheme } = useTheme();
+  const { orientation, lockFailed, setOrientation } = useOrientation();
   const diet = useFilters((s) => s.diet);
   const toggleDiet = useFilters((s) => s.toggleDiet);
   const clearDiet = useFilters((s) => s.clearDiet);
@@ -45,6 +47,30 @@ export default function Settings() {
                 </button>
               ))}
             </div>
+          </section>
+
+          <section className="settings-section">
+            <h3>Screen orientation</h3>
+            <p className="hint">
+              Lock the screen while you cook — no flipping when the phone tilts.
+            </p>
+            <div className="theme-grid">
+              {ORIENTATIONS.map((o) => (
+                <button
+                  key={o.id}
+                  className={"theme-opt" + (orientation === o.id ? " active" : "")}
+                  onClick={() => setOrientation(o.id)}
+                >
+                  <div className="tname">{o.name}</div>
+                </button>
+              ))}
+            </div>
+            {lockFailed && (
+              <p className="hint" style={{ marginTop: 10 }}>
+                Couldn't lock in this browser — orientation lock needs the
+                installed app (Add to Home Screen / Install Mise).
+              </p>
+            )}
           </section>
 
           <section className="settings-section">
