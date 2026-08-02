@@ -2,11 +2,12 @@ import { Link, useParams } from "react-router-dom";
 import { guideById } from "@/data/catalog";
 
 const FONTS =
-  '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">';
+  '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">';
 
-// The three field guides are bespoke full-bleed editorial pages (each with its own
+// The field guides are bespoke full-bleed editorial pages (each with its own
 // 100vh hero + design language). We present them within the app shell but render
-// them in an isolated frame so their layouts stay pixel-faithful.
+// them in an isolated frame so their layouts stay pixel-faithful. Script-driven
+// guides (protein pages) carry their JS in guide.script.
 export default function GuidePage() {
   const { id } = useParams();
   const guide = id ? guideById.get(id) : undefined;
@@ -20,7 +21,7 @@ export default function GuidePage() {
     );
   }
 
-  const srcDoc = `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">${FONTS}<style>${guide.style}</style></head><body>${guide.body}</body></html>`;
+  const srcDoc = `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">${FONTS}<style>${guide.style}</style></head><body>${guide.body}${guide.script ? `<script>${guide.script}</script>` : ""}</body></html>`;
 
   return (
     <div className="wrap" style={{ paddingBottom: 40 }}>

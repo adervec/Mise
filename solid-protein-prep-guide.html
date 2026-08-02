@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Solid State — A Protein-Prep Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --soot:#16130d;
+    --soot-raised:#1f1a12;
+    --soot-sunk:#120f0a;
+    --line:#33291d;
+    --line-soft:#261f16;
+    --bone:#ece5d6;
+    --bone-dim:#b3a893;
+    --ash:#7d735f;
+    --ember:#d0602e;
+    --ember-soft:#e5924f;
+    --ember-deep:#8f3d1c;
+    --ice:#8fb0c0;
+    --font-display:'Fraunces',Georgia,'Times New Roman',serif;
+    --font-body:'Newsreader',Georgia,serif;
+    --font-mono:'JetBrains Mono','SF Mono',ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--soot);
+    color:var(--bone);
+    font-family:var(--font-body);
+    font-size:18px;
+    line-height:1.6;
+    font-optical-sizing:auto;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(120% 80% at 50% -10%, #1d1810 0%, var(--soot) 60%);
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 26px}
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--ash);
+    font-weight:500;
+  }
+
+  /* hero */
+  .hero{padding:92px 0 40px}
+  .hero .eyebrow{color:var(--ember-soft)}
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:clamp(2.7rem,7.4vw,5.1rem);
+    line-height:.96;
+    letter-spacing:-.025em;
+    margin:22px 0 26px;
+  }
+  .hero h1 em{font-style:italic;color:var(--ember-soft);font-weight:600}
+  .lede{font-size:1.22rem;color:var(--bone-dim);max-width:62ch;line-height:1.55}
+  .lede strong{color:var(--bone);font-weight:600}
+
+  /* legend */
+  .legend{
+    margin-top:34px;padding-top:26px;border-top:1px solid var(--line-soft);
+    display:flex;flex-wrap:wrap;gap:18px 32px;
+  }
+  .legend-item{
+    font-family:var(--font-mono);font-size:.74rem;color:var(--ash);
+    letter-spacing:.02em;display:flex;align-items:center;gap:9px;
+  }
+  .legend-item b{color:var(--bone-dim);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.68rem}
+  .lg-bar{width:26px;height:7px;border-radius:2px;background:linear-gradient(90deg,var(--ember-deep),var(--ember))}
+  .lg-dots{color:var(--ember-soft);letter-spacing:1px}
+  .lg-ice{color:var(--ice)}
+  .lg-hot{color:var(--ember)}
+  .lg-dia{color:var(--ember);font-size:.7rem}
+
+  /* section heads */
+  .sec{padding:56px 0 8px}
+  .sec-head{margin-bottom:32px}
+  .sec-head .eyebrow{display:block;margin-bottom:12px}
+  .sec-head h2{
+    font-family:var(--font-display);font-weight:600;
+    font-size:clamp(1.7rem,4vw,2.4rem);letter-spacing:-.01em;line-height:1.05;
+  }
+  .sec-head p{color:var(--bone-dim);margin-top:10px;max-width:58ch;font-size:1.02rem}
+
+  /* principles */
+  .principles{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+    background:var(--line-soft);border:1px solid var(--line-soft);
+    border-radius:12px;overflow:hidden;
+  }
+  .pr{background:var(--soot-raised);padding:26px 24px 28px}
+  .pr-n{font-family:var(--font-mono);font-size:.72rem;color:var(--ember);letter-spacing:.1em;margin-bottom:12px}
+  .pr h3{font-family:var(--font-display);font-weight:600;font-size:1.16rem;margin-bottom:9px;line-height:1.2}
+  .pr p{font-size:.97rem;color:var(--bone-dim);line-height:1.5}
+  .pr p .fix{color:var(--bone)}
+
+  /* tiers */
+  .tier{margin-top:46px}
+  .tier:first-child{margin-top:8px}
+  .tier-head{
+    display:flex;align-items:baseline;gap:20px;
+    padding-bottom:18px;margin-bottom:22px;border-bottom:1px solid var(--line);
+  }
+  .tier-letter{font-family:var(--font-display);font-weight:900;font-size:clamp(2.6rem,8vw,3.7rem);line-height:.8;letter-spacing:-.03em}
+  .tier-meta{padding-bottom:4px}
+  .tier-title{font-family:var(--font-display);font-weight:600;font-size:1.28rem;letter-spacing:-.01em}
+  .tier-sub{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--ash);margin-top:4px;text-transform:uppercase}
+
+  .cards{display:flex;flex-direction:column;gap:16px}
+  .mix{
+    background:var(--soot-raised);border:1px solid var(--line-soft);
+    border-radius:12px;padding:22px 24px 20px;transition:border-color .25s ease;
+  }
+  .mix:hover{border-color:var(--line)}
+  .mix.mine{border-color:#4a3320;background:linear-gradient(180deg,#241b12,var(--soot-raised))}
+
+  .mix-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  .mix-name{font-family:var(--font-display);font-weight:600;font-size:1.34rem;letter-spacing:-.01em;line-height:1.1}
+  .badge{
+    font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--soot);background:var(--ember);padding:4px 8px 3px;border-radius:4px;font-weight:700;white-space:nowrap;
+  }
+
+  /* meta: meter + stat chips */
+  .meta{display:flex;flex-direction:column;gap:15px;margin-bottom:15px}
+  .meter-block{width:100%}
+  .meter-label{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-family:var(--font-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);margin-bottom:7px;
+  }
+  .meter-label .load{color:var(--bone-dim);letter-spacing:.04em}
+  .track{height:8px;background:var(--soot-sunk);border-radius:5px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.4)}
+  .fill{
+    height:100%;width:0;border-radius:5px;
+    background:linear-gradient(90deg,var(--ember-deep) 0%,var(--ember) 62%,var(--ember-soft) 100%);
+    transition:width 1.1s cubic-bezier(.22,.61,.36,1);
+  }
+  .stat-row{display:flex;flex-wrap:wrap;gap:12px 26px}
+  .stat{display:flex;align-items:center;gap:9px}
+  .stat-cap{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash)}
+  .dots{font-family:var(--font-mono);font-size:.82rem;letter-spacing:2px;color:var(--ember-soft)}
+  .dots .off{color:#3c3225}
+  .mask-word{font-family:var(--font-mono);font-size:.74rem;color:var(--bone-dim)}
+
+  .why{color:var(--bone-dim);font-size:1.02rem;line-height:1.5;margin-bottom:16px}
+
+  .formula{
+    background:var(--soot-sunk);border:1px solid var(--line-soft);border-radius:8px 8px 0 0;
+    border-bottom:none;padding:15px 16px 13px;
+    font-family:var(--font-mono);font-size:.82rem;line-height:1.5;color:var(--bone-dim);
+  }
+  .f-line{display:flex;gap:10px;align-items:baseline;padding:2px 0}
+  .f-mark{color:var(--ember);font-weight:700;flex:0 0 auto;width:12px}
+  .f-line.go .f-mark{color:var(--ember-soft)}
+  .f-main{flex:1 1 auto}
+  .f-main b{color:var(--bone);font-weight:500}
+  .f-note{color:var(--ash);flex:0 0 auto;font-size:.76rem}
+  .f-line.go .f-main{color:var(--bone)}
+
+  /* prep strip: freeze + reheat */
+  .prep{
+    background:#100d08;border:1px solid var(--line-soft);border-radius:0 0 8px 8px;
+    padding:13px 16px;display:flex;flex-direction:column;gap:7px;
+  }
+  .p-line{display:flex;align-items:baseline;gap:11px;font-family:var(--font-mono);font-size:.76rem;color:var(--bone-dim);line-height:1.45}
+  .p-mark{flex:0 0 auto;font-size:.9rem;line-height:1}
+  .p-mark.fz{color:var(--ice)}
+  .p-mark.hot{color:var(--ember)}
+  .p-cap{flex:0 0 46px;color:var(--ash);text-transform:uppercase;letter-spacing:.1em;font-size:.63rem}
+  .p-txt{flex:1 1 auto}
+
+  /* outro */
+  .outro{margin:64px 0 0;padding:40px 0 30px;border-top:1px solid var(--line)}
+  .outro .eyebrow{color:var(--ember-soft);margin-bottom:16px;display:block}
+  .rule{font-family:var(--font-display);font-weight:600;font-size:clamp(1.5rem,3.6vw,2.05rem);line-height:1.22;letter-spacing:-.01em;max-width:24ch}
+  .rule em{font-style:italic;color:var(--ember-soft);font-weight:400}
+  .fineprint{margin-top:24px;font-family:var(--font-mono);font-size:.74rem;line-height:1.7;color:var(--ash);max-width:62ch}
+
+  .desk{margin-top:30px;display:flex;flex-direction:column;gap:13px}
+  .desk-line{font-size:.98rem;color:var(--bone-dim);line-height:1.5}
+  .desk-tag{
+    font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+    padding:4px 9px 3px;border-radius:4px;margin-right:11px;font-weight:700;white-space:nowrap;display:inline-block;
+  }
+  .desk-tag.good{background:var(--ember);color:var(--soot)}
+  .desk-tag.bad{border:1px solid var(--ash);color:var(--ash)}
+
+  footer{padding:46px 0 70px;text-align:center}
+  footer .eyebrow{color:#4a4030}
+
+  @media (max-width:640px){
+    body{font-size:17px}
+    .wrap{padding:0 20px}
+    .hero{padding:64px 0 32px}
+    .principles{grid-template-columns:1fr}
+    .tier-head{gap:16px}
+    .f-note{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .fill{transition:none}
+    *{scroll-behavior:auto}
+  }
+  :focus-visible{outline:2px solid var(--ember-soft);outline-offset:3px;border-radius:3px}
+
+  /* no-bake: bars & balls */
+  .nb-rules{background:var(--soot-raised);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-bottom:20px}
+  .nb-title{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);margin-bottom:13px}
+  .nb-line{display:flex;gap:12px;align-items:baseline;padding:5px 0;color:var(--bone-dim);font-size:.99rem;line-height:1.5}
+  .nb-mark{color:var(--ember-soft);flex:0 0 auto;font-weight:700}
+  .nb-line b{color:var(--bone);font-weight:600}
+
+  .recipes{display:flex;flex-direction:column;gap:16px}
+  .recipe{background:var(--soot-raised);border:1px solid var(--line-soft);border-radius:12px;padding:22px 24px 20px;transition:border-color .25s ease}
+  .recipe:hover{border-color:var(--line)}
+  .recipe-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:9px}
+  .r-name{font-family:var(--font-display);font-weight:600;font-size:1.34rem;letter-spacing:-.01em;line-height:1.1}
+  .r-tag{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ember-soft);border:1px solid var(--ember-deep);padding:3px 8px 2px;border-radius:4px;font-weight:700;white-space:nowrap}
+  .r-tag.ice{color:var(--ice);border-color:#3f5560}
+  .r-desc{color:var(--bone-dim);font-size:1.02rem;line-height:1.5;margin-bottom:16px}
+  .rstat-row{display:flex;flex-wrap:wrap;gap:14px 26px;margin-bottom:16px;padding-bottom:17px;border-bottom:1px solid var(--line-soft)}
+  .rstat{display:flex;flex-direction:column;gap:4px}
+  .rs-cap{font-family:var(--font-mono);color:var(--ash);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
+  .rs-val{font-family:var(--font-mono);color:var(--bone);font-size:.82rem}
+  .rs-val .dots{font-size:.8rem}
+
+  .variant{margin-top:16px;padding:19px 22px;border:1px dashed var(--line);border-radius:10px;color:var(--bone-dim);font-size:.97rem;line-height:1.58}
+  .variant b{color:var(--bone);font-weight:600}
+  .v-tag{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ember-soft);display:block;margin-bottom:9px}
+
+  /* protein types */
+  .proteins{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(288px,100%),1fr));gap:14px}
+  .protein{background:var(--soot-raised);border:1px solid var(--line-soft);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;transition:border-color .25s ease}
+  .protein:hover{border-color:var(--line)}
+  .protein.base{border-color:#4a3320;background:linear-gradient(180deg,#241b12,var(--soot-raised))}
+  .pp-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .pp-name{font-family:var(--font-display);font-weight:600;font-size:1.24rem;letter-spacing:-.01em;line-height:1.05}
+  .pp-type{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ash)}
+  .pp-suit{display:flex;flex-wrap:wrap;gap:9px 18px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line-soft)}
+  .suit{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.63rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ash)}
+  .suit .dots{font-size:.78rem}
+  .pp-verdict{color:var(--bone-dim);font-size:.96rem;line-height:1.5;margin-bottom:14px;flex:1 1 auto}
+  .pp-verdict b{color:var(--bone);font-weight:600}
+  .pp-traits{font-family:var(--font-mono);font-size:.68rem;line-height:1.75;color:var(--ash)}
+  .pp-traits b{color:var(--bone-dim);font-weight:500}
+  .p-mark.swap{color:var(--bone-dim)}
+
+  /* formats catalog */
+  .fmt-cat{margin:32px 0 15px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .fmt-cat:first-child{margin-top:6px}
+  .fmt-cat-name{font-family:var(--font-display);font-weight:600;font-size:1.28rem;letter-spacing:-.01em}
+  .fmt-cat-note{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ash)}
+  .fmts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px}
+  .fmt{background:var(--soot-raised);border:1px solid var(--line-soft);border-radius:11px;padding:18px 20px;display:flex;flex-direction:column;transition:border-color .25s ease}
+  .fmt:hover{border-color:var(--line)}
+  .fmt-top{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:8px}
+  .fmt-name{font-family:var(--font-display);font-weight:600;font-size:1.12rem;letter-spacing:-.01em;line-height:1.12}
+  .fmt-tag{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ember-soft);border:1px solid var(--ember-deep);padding:2px 6px 1px;border-radius:3px;font-weight:700;white-space:nowrap}
+  .fmt-tag.wf{color:var(--ice);border-color:#3f5560}
+  .fmt-blurb{color:var(--bone-dim);font-size:.93rem;line-height:1.45;margin-bottom:12px;flex:1 1 auto}
+  .fmt-stats{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--font-mono);font-size:.65rem;color:var(--ash);margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--line-soft)}
+  .fmt-stats b{color:var(--bone-dim);font-weight:500}
+  .fmt-stats .dots{font-size:.72rem;letter-spacing:1px;color:var(--ember-soft)}
+  .fmt-stats .off{color:#3c3225}
+  .fmt-build{font-family:var(--font-mono);font-size:.75rem;line-height:1.5;color:var(--bone-dim)}
+  .fmt-build .fb-mark{color:var(--ember);font-weight:700;margin-right:7px}
+  .fmt-swap{margin-top:10px;font-family:var(--font-mono);font-size:.72rem;line-height:1.45;color:var(--ash)}
+  .fmt-swap .sw{color:var(--bone-dim);font-weight:700;margin-right:5px}
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <span class="eyebrow">The Solid-Protein Prep Field Guide</span>
+  <h1>Protein you can <em>pack</em>.</h1>
+  <p class="lede">A shake is the easy answer — this is <strong>everything else</strong>. Every way to prep protein into something solid enough to stack in a container, freeze, and drop in a bag: baked in a pan, set in the fridge, bound in eggs, whipped into dairy, or built around a scoop of powder. Powder is just one lever here, and <strong>pea is just one powder</strong> — the whole toolkit is below.</p>
+
+  <div class="legend">
+    <span class="legend-item"><span class="lg-bar"></span><b>Tolerance</b>&nbsp;powder before texture breaks</span>
+    <span class="legend-item"><span class="lg-dots">●●●○</span><b>Rated</b>&nbsp;how it scores, at a glance</span>
+    <span class="legend-item"><span class="lg-ice">❄</span><span class="lg-hot">♨</span><span style="color:var(--bone-dim)">⇄</span><b>Prep</b>&nbsp;freeze · reheat · swap</span>
+    <span class="legend-item"><span class="lg-dia">◆</span><b>In your kitchen</b></span>
+  </div>
+</header>
+
+<section class="sec wrap">
+  <div class="sec-head">
+    <span class="eyebrow">First, the physics</span>
+    <h2>Four things a protein powder does</h2>
+    <p>Whenever a powder goes into a batter, every fix is a countermove to one of these. (The whole-food formats near the end skip all four.)</p>
+  </div>
+  <div class="principles">
+    <div class="pr">
+      <div class="pr-n">01</div>
+      <h3>It drinks liquid</h3>
+      <p>A scoop soaks up moisture like a sponge. <span class="fix">Add it back</span> — yogurt, kefir, mashed fruit, an extra egg, a splash of milk. The batter should look a touch wetter than the box wants.</p>
+    </div>
+    <div class="pr">
+      <div class="pr-n">02</div>
+      <h3>It adds structure</h3>
+      <p>More protein means firmer, drier, cakier. <span class="fix">Fight it with fat</span> — keep the oil or butter, add an egg yolk — and don't overmix once the powder's in.</p>
+    </div>
+    <div class="pr">
+      <div class="pr-n">03</div>
+      <h3>It brings a flavor</h3>
+      <p>Plant powders read grassy and gritty; whey and casein are milder; collagen is flavorless. <span class="fix">Bury the earthy ones</span> under chocolate, spice, banana, or caramel, plus a pinch of salt — more cocoa or cinnamon, more powder you can hide.</p>
+    </div>
+    <div class="pr">
+      <div class="pr-n">04</div>
+      <h3>It browns &amp; dries fast</h3>
+      <p>Fortified batters overbake in a blink. <span class="fix">Drop the oven ~25°F</span>, pull everything a few minutes early, and judge by moist crumbs — never a clean toothpick.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <div class="sec-head">
+    <span class="eyebrow">The ranking</span>
+    <h2>From thirstiest to most hostile</h2>
+    <p>Loads are per batch and are starting points, not limits. Read the meter as tolerance, the dots for how each handles the freezer and a microwave, and the formula for the real numbers.</p>
+  </div>
+  <div id="ranking"></div>
+</section>
+
+<section class="sec wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Batch now, eat all week</span>
+    <h2>The freezer &amp; the office microwave</h2>
+    <p>Protein bakes are built for meal-prep — dense, sturdy, freezer-proof. The catch is the office microwave, which is merciless on anything with protein in it. Four habits keep a Tuesday muffin tasting like Sunday's.</p>
+  </div>
+  <div class="principles">
+    <div class="pr">
+      <div class="pr-n">01</div>
+      <h3>Freeze the day you bake</h3>
+      <p>That extra structure stales fast. Freeze within a day, <span class="fix">wrapped individually</span>, and the just-baked moisture holds for weeks — plus you pull exactly one for the bag.</p>
+    </div>
+    <div class="pr">
+      <div class="pr-n">02</div>
+      <h3>Thaw, then zap</h3>
+      <p>A frozen center forces you to overheat the edges to warm the middle — the fastest route to rubber. <span class="fix">Move one to the fridge overnight</span>, or let it sit at your desk 30–60 min, then a short burst finishes it.</p>
+    </div>
+    <div class="pr">
+      <div class="pr-n">03</div>
+      <h3>Give it a moisture buffer</h3>
+      <p>The office microwave is high-power and blunt. <span class="fix">Lay a damp paper towel over the top</span> (or set a mug of water beside it). The steam keeps the crumb from drying as it warms — the single biggest save.</p>
+    </div>
+    <div class="pr">
+      <div class="pr-n">04</div>
+      <h3>Warm, never hot</h3>
+      <p>Overheated pea protein goes tough and squeaky. <span class="fix">Short bursts — 10 to 20 seconds</span> — and stop while it's just warm to the touch. You can always add five seconds; you can't undo rubber.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <div class="sec-head">
+    <span class="eyebrow">No oven required</span>
+    <h2>The no-bake route: bars &amp; balls</h2>
+    <p>These flip the whole guide. Instead of hiding protein powder inside a mix, you build the snack around it — the powder is the main event. With no oven to bake off dryness, the binder does all the structural work: get the ratio right and a week of grab-and-go protein lives in your bag.</p>
+  </div>
+
+  <div class="nb-rules">
+    <div class="nb-title">The no-bake fix</div>
+    <div class="nb-line"><span class="nb-mark">→</span><span><b>Binder is the structure.</b> Nut butter or dates hold it together — no flour, no egg, no oven to fall back on.</span></div>
+    <div class="nb-line"><span class="nb-mark">→</span><span><b>Sticky sweetener is the glue.</b> Honey, maple, or the dates themselves add hold and moisture in one move.</span></div>
+    <div class="nb-line"><span class="nb-mark">→</span><span><b>Bind wet, then chill.</b> Pea drinks liquid, so add milk or kefir a teaspoon at a time until it just clumps when squeezed — then firm it in the fridge.</span></div>
+  </div>
+
+  <div class="recipes">
+
+    <article class="recipe">
+      <div class="recipe-top">
+        <span class="r-name">The No-Bake Dough</span>
+        <span class="r-tag">balls or bars</span>
+      </div>
+      <p class="r-desc">One bowl, one dough, two shapes — the canonical office protein snack. Roll it for balls or press it for bars; the recipe doesn't change.</p>
+      <div class="rstat-row">
+        <div class="rstat"><span class="rs-cap">Yield</span><span class="rs-val">~16 balls</span></div>
+        <div class="rstat"><span class="rs-cap">Per piece</span><span class="rs-val">~5–6 g protein</span></div>
+        <div class="rstat"><span class="rs-cap">Keeps</span><span class="rs-val">1 wk fridge · freezes</span></div>
+        <div class="rstat"><span class="rs-cap">Travel</span><span class="rs-val"><span class="dots">●●●<span class="off">○</span></span></span></div>
+      </div>
+      <div class="formula">
+        <div class="f-line"><span class="f-mark">+</span><span class="f-main">1 cup rolled oats</span></div>
+        <div class="f-line"><span class="f-mark">+</span><span class="f-main">½ cup nut butter <span style="color:var(--ash)">— fat, bind, and it masks the pea</span></span></div>
+        <div class="f-line"><span class="f-mark">+</span><span class="f-main">½ cup pea protein</span></div>
+        <div class="f-line"><span class="f-mark">+</span><span class="f-main">⅓ cup honey or maple syrup</span></div>
+        <div class="f-line"><span class="f-mark">+</span><span class="f-main">½ cup mini chocolate chips or seeds · 1 tsp vanilla · pinch of salt</span></div>
+        <div class="f-line"><span class="f-mark">+</span><span class="f-main">1–3 tbsp milk or kefir <span style="color:var(--ash)">— only as needed to bind</span></span></div>
+      </div>
+      <div class="prep">
+        <div class="p-line"><span class="p-mark hot">▸</span><span class="p-cap">Roll</span><span class="p-txt">mix dry + wet, add liquid a splash at a time until it holds when squeezed, roll, chill 30 min</span></div>
+        <div class="p-line"><span class="p-mark hot">▸</span><span class="p-cap">Press</span><span class="p-txt">or pack hard into a lined 8×8 or loaf pan, chill, cut cold — dip the tops in melted chocolate if you like</span></div>
+        <div class="p-line"><span class="p-mark fz">❄</span><span class="p-cap">Keep</span><span class="p-txt">airtight — a week in the fridge, a day at your desk; freezes for months</span></div>
+        <div class="p-line"><span class="p-mark swap">⇄</span><span class="p-cap">Swap</span><span class="p-txt">casein makes the thickest, best dough · whey stays smooth · pea is the grittiest of the three · collagen can't bind, don't build on it</span></div>
+      </div>
+    </article>
+
+    <article class="recipe">
+      <div class="recipe-top">
+        <span class="r-name">Date Bars</span>
+        <span class="r-tag ice">no added sugar</span>
+      </div>
+      <p class="r-desc">Processor bars glued by dates alone — the most travel-proof thing here. No chocolate to melt, no fridge required; they hold shape in a warm bag all day.</p>
+      <div class="rstat-row">
+        <div class="rstat"><span class="rs-cap">Yield</span><span class="rs-val">~10 bars</span></div>
+        <div class="rstat"><span class="rs-cap">Per piece</span><span class="rs-val">~7 g protein</span></div>
+        <div class="rstat"><span class="rs-cap">Keeps</span><span class="rs-val">2 wk · no fridge needed</span></div>
+        <div class="rstat"><span class="rs-cap">Travel</span><span class="rs-val"><span class="dots">●●●●</span></span></div>
+      </div>
+      <div class="formula">
+        <div class="f-line"><span class="f-mark">+</span><span class="f-main">1½ cups pitted soft dates <span style="color:var(--ash)">— Medjool; soak 10 min if dry</span></span></div>
+        <div class="f-line"><span class="f-mark">+</span><span class="f-main">1 cup almonds or cashews</span></div>
+        <div class="f-line"><span class="f-mark">+</span><span class="f-main">½ cup pea protein</span></div>
+        <div class="f-line"><span class="f-mark">+</span><span class="f-main">2 tbsp cocoa or cinnamon · pinch of salt</span></div>
+        <div class="f-line"><span class="f-mark">+</span><span class="f-main">1–2 tbsp water or coconut milk <span style="color:var(--ash)">— only if it won't clump</span></span></div>
+      </div>
+      <div class="prep">
+        <div class="p-line"><span class="p-mark hot">▸</span><span class="p-cap">Make</span><span class="p-txt">pulse nuts to coarse crumbs, add dates + protein + cocoa, process to a sticky mass, press hard into a lined pan, chill, cut</span></div>
+        <div class="p-line"><span class="p-mark fz">❄</span><span class="p-cap">Keep</span><span class="p-txt">airtight — two weeks in the fridge, and they ride in a warm bag all day</span></div>
+        <div class="p-line"><span class="p-mark swap">⇄</span><span class="p-cap">Swap</span><span class="p-txt">dates do the binding, so anything works — even collagen; casein/whey stay smooth, pea/rice go a touch gritty</span></div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="variant">
+    <span class="v-tag">Want them baked?</span>
+    For a soft, flapjack-style bar, bake the no-bake dough: drop the honey to <b>¼ cup</b>, add <b>1 egg</b> and <b>½ cup mashed banana or pumpkin</b>, spread in a lined 8×8, and bake at <b>350°F for ~20 min</b>. Cut when cool. These freeze well and reheat exactly like the quick breads — damp towel, 15–20s.
+  </div>
+</section>
+
+<section class="sec wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Pick your powder</span>
+    <h2>The powder changes the rules</h2>
+    <p>The recipes here default to pea because it's cheap, complete, and neutral — but it's one of eight real options, and several beat it outright. Swap the powder and the physics shift: some rubberize in the oven, one stays moist through anything, one dissolves to nothing. Here's how each behaves, rated for the three modes the baked and no-bake formats run on — a <b>forgiving bake</b>, a <b>structured bake</b>, and <b>no-bake</b>. Every recipe above also carries a ⇄ swap note with its best alternate.</p>
+  </div>
+
+  <div class="proteins">
+
+    <article class="protein">
+      <div class="pp-head"><span class="pp-name">Pea isolate</span><span class="pp-type">plant</span></div>
+      <div class="pp-suit">
+        <span class="suit">Forgiving <span class="dots">●●●<span class="off">○</span></span></span>
+        <span class="suit">Structured <span class="dots">●●<span class="off">○</span><span class="off">○</span></span></span>
+        <span class="suit">No-bake <span class="dots">●●<span class="off">○</span><span class="off">○</span></span></span>
+      </div>
+      <p class="pp-verdict"><b>The safe default.</b> Cheap, complete, and neutral enough to disappear under cocoa or fruit — a capable all-rounder that just wants moisture and masking. Nothing it's best at, nothing it's terrible at, which is exactly why it's the fallback.</p>
+      <div class="pp-traits">Thirst <b>high</b> · Heat <b>dries & densifies</b> · Flavor <b>earthy, gritty</b> · Complete <b>yes</b></div>
+    </article>
+
+    <article class="protein">
+      <div class="pp-head"><span class="pp-name">Casein</span><span class="pp-type">dairy · micellar</span></div>
+      <div class="pp-suit">
+        <span class="suit">Forgiving <span class="dots">●●●●</span></span>
+        <span class="suit">Structured <span class="dots">●●●<span class="off">○</span></span></span>
+        <span class="suit">No-bake <span class="dots">●●●●</span></span>
+      </div>
+      <p class="pp-verdict"><b>The baker's champion.</b> It gels and holds water, so bakes stay soft and tender where others dry — and it makes the thickest, best no-bake dough. Drinks the most liquid of any powder, so add extra.</p>
+      <div class="pp-traits">Thirst <b>very high</b> · Heat <b>stays tender</b> · Flavor <b>mild, milky</b> · Complete <b>yes</b></div>
+    </article>
+
+    <article class="protein">
+      <div class="pp-head"><span class="pp-name">Whey concentrate</span><span class="pp-type">dairy</span></div>
+      <div class="pp-suit">
+        <span class="suit">Forgiving <span class="dots">●●●<span class="off">○</span></span></span>
+        <span class="suit">Structured <span class="dots">●●<span class="off">○</span><span class="off">○</span></span></span>
+        <span class="suit">No-bake <span class="dots">●●●●</span></span>
+      </div>
+      <p class="pp-verdict"><b>Best flavor, smoothest no-bake — but it rubberizes.</b> Whey coagulates and turns tough when overbaked, so fast-cooked things (pancakes) love it and long bakes don't. Often comes pre-sweetened, which helps. Underbake.</p>
+      <div class="pp-traits">Thirst <b>medium</b> · Heat <b>rubberizes if overbaked</b> · Flavor <b>mild, often sweet</b> · Complete <b>yes</b></div>
+    </article>
+
+    <article class="protein">
+      <div class="pp-head"><span class="pp-name">Whey isolate</span><span class="pp-type">dairy</span></div>
+      <div class="pp-suit">
+        <span class="suit">Forgiving <span class="dots">●●<span class="off">○</span><span class="off">○</span></span></span>
+        <span class="suit">Structured <span class="dots">●<span class="off">○</span><span class="off">○</span><span class="off">○</span></span></span>
+        <span class="suit">No-bake <span class="dots">●●●<span class="off">○</span></span></span>
+      </div>
+      <p class="pp-verdict"><b>Highest protein, driest result.</b> Stripped of the fat and lactose that keep concentrate moist, it rubberizes faster and adds nothing back. Best kept for shakes and no-bake; worst thing you can put in a long bake.</p>
+      <div class="pp-traits">Thirst <b>med–high</b> · Heat <b>rubberizes, driest</b> · Flavor <b>very mild, clean</b> · Complete <b>yes</b></div>
+    </article>
+
+    <article class="protein">
+      <div class="pp-head"><span class="pp-name">Soy isolate</span><span class="pp-type">plant</span></div>
+      <div class="pp-suit">
+        <span class="suit">Forgiving <span class="dots">●●●<span class="off">○</span></span></span>
+        <span class="suit">Structured <span class="dots">●●<span class="off">○</span><span class="off">○</span></span></span>
+        <span class="suit">No-bake <span class="dots">●●<span class="off">○</span><span class="off">○</span></span></span>
+      </div>
+      <p class="pp-verdict"><b>Pea's near-twin.</b> Swaps in almost one-for-one — slightly smoother and less grassy. The same moisture-and-masking rules carry straight over, so treat any pea recipe here as a soy recipe too.</p>
+      <div class="pp-traits">Thirst <b>high</b> · Heat <b>dries, a bit tender</b> · Flavor <b>mild-beany</b> · Complete <b>yes</b></div>
+    </article>
+
+    <article class="protein">
+      <div class="pp-head"><span class="pp-name">Rice (brown)</span><span class="pp-type">plant</span></div>
+      <div class="pp-suit">
+        <span class="suit">Forgiving <span class="dots">●●<span class="off">○</span><span class="off">○</span></span></span>
+        <span class="suit">Structured <span class="dots">●<span class="off">○</span><span class="off">○</span><span class="off">○</span></span></span>
+        <span class="suit">No-bake <span class="dots">●<span class="off">○</span><span class="off">○</span><span class="off">○</span></span></span>
+      </div>
+      <p class="pp-verdict"><b>The gritty one.</b> Sandy texture and a heavy earthy note that even chocolate struggles to hide. It shines as the other half of a pea-rice blend — the two complete each other's amino gaps — but rarely on its own.</p>
+      <div class="pp-traits">Thirst <b>very high</b> · Heat <b>dry & gritty</b> · Flavor <b>earthy, sandy</b> · Complete <b>no (low lysine)</b></div>
+    </article>
+
+    <article class="protein">
+      <div class="pp-head"><span class="pp-name">Egg white</span><span class="pp-type">egg</span></div>
+      <div class="pp-suit">
+        <span class="suit">Forgiving <span class="dots">●●●<span class="off">○</span></span></span>
+        <span class="suit">Structured <span class="dots">●●<span class="off">○</span><span class="off">○</span></span></span>
+        <span class="suit">No-bake <span class="dots">●<span class="off">○</span><span class="off">○</span><span class="off">○</span></span></span>
+      </div>
+      <p class="pp-verdict"><b>Behaves like extra egg white.</b> Adds structure and lift, so it's good where you want an airy, spongy crumb — but it can toughen and dry if you lean on it, and it goes foamy and awkward in no-bake.</p>
+      <div class="pp-traits">Thirst <b>medium</b> · Heat <b>sets & lifts, can toughen</b> · Flavor <b>neutral, faint egg</b> · Complete <b>yes</b></div>
+    </article>
+
+    <article class="protein">
+      <div class="pp-head"><span class="pp-name">Collagen peptides</span><span class="pp-type">animal · connective</span></div>
+      <div class="pp-suit">
+        <span class="suit">Forgiving <span class="dots">●●●●</span></span>
+        <span class="suit">Structured <span class="dots">●●●<span class="off">○</span></span></span>
+        <span class="suit">No-bake <span class="dots">●<span class="off">○</span><span class="off">○</span><span class="off">○</span></span></span>
+      </div>
+      <p class="pp-verdict"><b>The stealth add-in.</b> Dissolves to nothing, never rubberizes, never dries — but never builds structure either. Stir a scoop into any batter for free protein; just don't try to make a bar from it. The high bake scores mean "won't hurt," not "muscle food" — it's an incomplete protein.</p>
+      <div class="pp-traits">Thirst <b>very low</b> · Heat <b>inert, dissolves</b> · Flavor <b>flavorless</b> · Complete <b>no (no tryptophan)</b></div>
+    </article>
+
+  </div>
+
+  <div class="nb-rules" style="margin-top:22px;margin-bottom:0">
+    <div class="nb-title">The swap, in a sentence</div>
+    <div class="nb-line"><span class="nb-mark">→</span><span>Bakes coming out <b>dry or rubbery?</b> Switch to casein — it's the one powder that stays moist through the oven.</span></div>
+    <div class="nb-line"><span class="nb-mark">→</span><span>Want <b>free protein at zero texture cost?</b> Stir in collagen; it disappears into anything.</span></div>
+    <div class="nb-line"><span class="nb-mark">→</span><span><b>Whey</b> is best in shakes and no-bake, riskiest in a long bake — it's the one that turns tough. Plant-wise, <b>soy</b> is the cleanest pea substitute; rice is the grittiest.</span></div>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <div class="sec-head">
+    <span class="eyebrow">The whole board</span>
+    <h2>Every other way to prep it</h2>
+    <p>Box mixes and no-bake bars got their deep dives above; this is everything else you can prep and pack. Baked from scratch, chilled and set, bound in eggs, whipped from dairy, spooned from a jar, or cooked as whole food with no powder at all. Each card is a starting build, not a rulebook — protein figures are rough and depend on your scoop.</p>
+  </div>
+  <div id="formats"></div>
+</section>
+
+<script>
+(function(){
+  function dots(n){var s='';for(var i=0;i<4;i++){s+=(i<n)?'●':'<span class="off">○</span>';}return s;}
+
+  var FORMATS = [
+    // ---- From scratch, baked ----
+    { cat:'From scratch, baked', name:'Protein Mug Cake', tag:'60-sec microwave',
+      blurb:'Single-serve cake you make at your desk in a mug — the fastest hot protein there is.',
+      protein:'~25 g', keeps:'eat fresh', travel:'made at your desk',
+      build:'4 tbsp oat flour + 1 scoop powder + 1 egg + 3 tbsp milk + ½ tsp baking powder → mug, microwave 60–90s',
+      powder:'casein or a whey-casein blend stays moist; whey alone rubberizes in the microwave — go easy' },
+    { cat:'From scratch, baked', name:'Baked Protein Oats', tag:'baked, cut',
+      blurb:'Blended oats set into a sliceable tray bake — sturdier than oatmeal, softer than a bar.',
+      protein:'~15 g / square', keeps:'5 days fridge · freezes', travel:4,
+      build:'2 cups oats + 2 scoops powder + 2 eggs + 1 mashed banana + 1 cup milk + baking powder → 8×8, 350°F ~25 min, cut',
+      powder:'casein keeps them moist; any works · collagen is a free bump' },
+    { cat:'From scratch, baked', name:'High-Protein Bread', tag:'real loaf',
+      blurb:'Vital wheat gluten does the lifting, not powder — an actual sliceable, toastable loaf at 2–3× the protein.',
+      protein:'~12 g / slice', keeps:'days · freezes · toasts', travel:3,
+      build:'vital wheat gluten + bread flour + yeast + water + salt → knead, proof, bake like bread',
+      powder:'gluten is the backbone here — a scoop of whey can go in the dough for a little extra' },
+    { cat:'From scratch, baked', name:'Protein Crepes', tag:'rollable',
+      blurb:'Thin, eggy, foldable wraps — cooked fast, so the protein never toughens. Roll around anything.',
+      protein:'~30 g / stack', keeps:'3 days fridge', travel:3,
+      build:'2 scoops powder + 3 eggs + ¾ cup milk → thin batter, swirl in a hot pan, flip',
+      powder:'whey or egg-white are fine — cooked too fast to rubberize' },
+
+    // ---- No-bake & chilled ----
+    { cat:'No-bake & chilled', name:'Edible Cookie Dough', tag:'no-bake, spoonable',
+      blurb:'Safe-to-eat dough you scoop straight from the tub — no egg, no baking, all the payoff.',
+      protein:'~15 g / scoop', keeps:'1 wk fridge · freezes', travel:2,
+      build:'oat flour + 1 scoop powder + ¼ cup nut butter + 2 tbsp maple + splash milk + chocolate chips → mix, chill',
+      powder:'casein makes the doughiest texture; whey works · collagen can\u2019t bind alone' },
+    { cat:'No-bake & chilled', name:'Protein Crispy Treats', tag:'no-bake, pressed',
+      blurb:'Rice-crispy squares glued with marshmallow or nut-butter-and-syrup, spiked with protein.',
+      protein:'~10 g / bar', keeps:'room-temp for days', travel:4,
+      build:'3 cups crisp rice + 1 scoop powder + melted marshmallow (or ⅓ cup nut butter + ⅓ cup syrup) → press, cut',
+      powder:'whey or a casein blend go in smoothly; keep powder ≤1 scoop or they turn dusty' },
+    { cat:'No-bake & chilled', name:'Protein Fudge', tag:'no-bake, set',
+      blurb:'Nut-butter fudge that sets firm in the fridge — dense, rich, high-fat protein in a small square.',
+      protein:'~8 g / piece', keeps:'fridge · softens warm', travel:2,
+      build:'½ cup nut butter + 2 scoops powder + 3 tbsp coconut oil + cocoa + sweetener → chill in a lined pan, cut',
+      powder:'casein or whey both set; add a splash of milk if the mix seizes' },
+
+    // ---- Egg-bound ----
+    { cat:'Egg-bound', name:'Egg Bites / Muffins', tag:'meal-prep staple', wf:true,
+      blurb:'Baked eggs with cheese, veg, or meat in a muffin tin — the classic grab-and-go breakfast.',
+      protein:'~7 g each', keeps:'4 days fridge · freezes', travel:3,
+      build:'6 eggs + ½ cup cottage cheese + fillings → muffin tin, 350°F ~20 min',
+      powder:'no powder — eggs and cottage cheese are the protein; blended cottage cheese makes them silky' },
+    { cat:'Egg-bound', name:'Frittata / Quiche', tag:'cut into wedges', wf:true,
+      blurb:'One big crustless egg bake, sliced into wedges — same idea as egg bites, less fiddly.',
+      protein:'~12 g / wedge', keeps:'4 days · freezes', travel:3,
+      build:'8 eggs + cheese + cooked veg or meat → oven-safe pan, 375°F until set, slice',
+      powder:'no powder — eggs plus cheese or meat carry it' },
+    { cat:'Egg-bound', name:'Hard-Boiled / Jammy Eggs', tag:'zero effort', wf:true,
+      blurb:'The original prepped protein. Boil a dozen on Sunday, grab two a day.',
+      protein:'~6 g each', keeps:'1 wk fridge, shell on', travel:4,
+      build:'eggs → boiling water 7 min (jammy) or 10 min (firm), ice bath, store',
+      powder:'no powder needed — this is as pure as protein prep gets' },
+
+    // ---- Dairy-set ----
+    { cat:'Dairy-set', name:'Greek Yogurt Bark', tag:'frozen shards',
+      blurb:'Greek yogurt spread thin, topped, and frozen into snappable shards — like a protein candy bar.',
+      protein:'~10 g / piece', keeps:'freezer only — melts', travel:1,
+      build:'2 cups Greek yogurt + honey + berries or chocolate → spread on a sheet, freeze, break',
+      powder:'yogurt is the protein; whisk in a scoop of casein or vanilla whey to push it higher' },
+    { cat:'Dairy-set', name:'Baked Cottage Cheese', tag:'savory bake / chips', wf:true,
+      blurb:'Cottage cheese baked with egg and seasoning into a savory slab or crisp chips — the viral snack.',
+      protein:'~20 g / serving', keeps:'4 days fridge', travel:2,
+      build:'1 cup cottage cheese + 1 egg + seasoning (+ cheese) → bake at 350°F until set or crisp',
+      powder:'no powder — cottage cheese does it; egg holds the shape' },
+    { cat:'Dairy-set', name:'Protein Pudding / Mousse', tag:'sets in the fridge',
+      blurb:'Instant pudding, milk, and powder whisked and chilled into a thick, spoonable set.',
+      protein:'~20 g / cup', keeps:'3 days fridge', travel:2,
+      build:'1 box instant pudding + 2 cups milk + 2 scoops powder → whisk, chill 15 min',
+      powder:'casein is ideal — it thickens and sets; whey stays runny, so let the pudding do the structure' },
+    { cat:'Dairy-set', name:'Protein Cheesecake', tag:'sliced, set',
+      blurb:'Cottage cheese or Greek yogurt blended with powder into a baked or no-bake cheesecake, cut into slices.',
+      protein:'~15 g / slice', keeps:'5 days · freezes', travel:2,
+      build:'1½ cups cottage cheese + 2 eggs + 2 scoops powder + sweetener → blend, bake 325°F ~35 min, chill',
+      powder:'casein or whey both set well; the baked version leans on the eggs' },
+    { cat:'Dairy-set', name:'Cottage Cheese Ice Cream', tag:'blend & freeze',
+      blurb:'Cottage cheese blended smooth with powder and sweetener, frozen, then re-spun into a soft-serve.',
+      protein:'~30 g / bowl', keeps:'freezer — re-blend to serve', travel:1,
+      build:'1 cup cottage cheese + 1 scoop powder + sweetener + splash milk → blend, freeze, blend again',
+      powder:'casein blends the smoothest; any flavored powder carries it' },
+
+    // ---- Spoonable ----
+    { cat:'Spoonable — the soft edge', name:'Overnight Oats', tag:'jar prep',
+      blurb:'Oats soaked overnight with milk, yogurt, and powder — the definitive make-ahead breakfast in a jar.',
+      protein:'~25 g / jar', keeps:'4 days fridge', travel:3,
+      build:'½ cup oats + ¾ cup milk + ¼ cup Greek yogurt + 1 scoop powder → jar, fridge overnight',
+      powder:'casein thickens it beautifully; whey can go slimy overnight — stir it in come morning instead' },
+    { cat:'Spoonable — the soft edge', name:'Chia Pudding', tag:'gels overnight',
+      blurb:'Chia seeds set milk into a tapioca-like pudding — add powder for a protein jump.',
+      protein:'~15 g / jar', keeps:'5 days fridge', travel:3,
+      build:'3 tbsp chia + 1 cup milk + 1 scoop powder + sweetener → whisk, fridge overnight',
+      powder:'any works; casein adds body, collagen disappears into it' },
+    { cat:'Spoonable — the soft edge', name:'Protein Fluff', tag:'whipped mousse',
+      blurb:'Casein whipped with a little liquid and frozen fruit into an airy, ice-cream-like mousse. Eat soon after.',
+      protein:'~25 g / bowl', keeps:'eat fresh', travel:'made fresh',
+      build:'1–2 scoops casein + splash milk + frozen berries → whip with a mixer until it triples in volume',
+      powder:'casein only — it\u2019s the one that fluffs; whey and plant powders won\u2019t hold air' },
+
+    // ---- Whole-food, no powder ----
+    { cat:'Whole-food, no powder', name:'Batch-Cooked Meat', tag:'whole food', wf:true,
+      blurb:'Chicken, turkey, or beef cooked in bulk and portioned — the bedrock of every meal-prep.',
+      protein:'~25–30 g / portion', keeps:'4 days fridge · freezes', travel:3,
+      build:'season → roast, grill, or slow-cook a big batch → portion into containers',
+      powder:'no powder — this is the protein' },
+    { cat:'Whole-food, no powder', name:'Baked Tofu & Tempeh', tag:'whole food · plant', wf:true,
+      blurb:'Pressed and marinated, baked into firm, seasoned cubes — solid plant protein that holds all week.',
+      protein:'~15–20 g / serving', keeps:'5 days fridge', travel:3,
+      build:'press tofu → marinate → bake at 400°F until firm and browned',
+      powder:'no powder — soy protein, whole and complete' },
+    { cat:'Whole-food, no powder', name:'Roasted Chickpeas & Edamame', tag:'whole food · crunch', wf:true,
+      blurb:'Crunchy, seasoned legumes — protein and fiber in a snackable, drawer-stable handful.',
+      protein:'~12–18 g / cup', keeps:'room-temp / fridge', travel:4,
+      build:'chickpeas: dry, oil, season → roast 400°F until crisp · edamame: steam, salt',
+      powder:'no powder — legume protein and fiber' },
+    { cat:'Whole-food, no powder', name:'Jerky / Biltong', tag:'whole food · shelf-stable', wf:true,
+      blurb:'Dried, seasoned meat — the most portable, longest-lasting protein you can carry. No fridge, ever.',
+      protein:'~9–12 g / oz', keeps:'weeks, shelf-stable', travel:4,
+      build:'thin-slice lean meat → marinate → dehydrate low and slow until dry',
+      powder:'no powder — dense whole-food protein by design' },
+  ];
+
+  function fmtCard(f){
+    var wf = f.wf ? ' wf' : '';
+    var trav = (typeof f.travel === 'number') ? '<span class="dots">'+dots(f.travel)+'</span>' : f.travel;
+    return '<article class="fmt">'+
+      '<div class="fmt-top"><span class="fmt-name">'+f.name+'</span><span class="fmt-tag'+wf+'">'+f.tag+'</span></div>'+
+      '<p class="fmt-blurb">'+f.blurb+'</p>'+
+      '<div class="fmt-stats"><span><b>'+f.protein+'</b> protein</span><span>Keeps <b>'+f.keeps+'</b></span><span>Travel '+trav+'</span></div>'+
+      '<div class="fmt-build"><span class="fb-mark">▸</span>'+f.build+'</div>'+
+      '<div class="fmt-swap"><span class="sw">⇄</span>'+f.powder+'</div>'+
+    '</article>';
+  }
+
+  var CATS = ['From scratch, baked','No-bake & chilled','Egg-bound','Dairy-set','Spoonable — the soft edge','Whole-food, no powder'];
+  var NOTES = {
+    'From scratch, baked':'oven or microwave, built by hand',
+    'No-bake & chilled':'no oven — bind, press, chill',
+    'Egg-bound':'no powder — eggs do the work',
+    'Dairy-set':'yogurt & cottage cheese as the base',
+    'Spoonable — the soft edge':'semi-solid, jar-and-spoon',
+    'Whole-food, no powder':'the original protein prep',
+  };
+
+  var root = document.getElementById('formats');
+  var html = '';
+  for (var i=0; i<CATS.length; i++){
+    var c = CATS[i];
+    var group = FORMATS.filter(function(f){ return f.cat === c; });
+    html += '<div class="fmt-cat"><span class="fmt-cat-name">'+c+'</span><span class="fmt-cat-note">'+NOTES[c]+'</span></div>';
+    html += '<div class="fmts">'+group.map(fmtCard).join('')+'</div>';
+  }
+  root.innerHTML = html;
+})();
+</script>
+
+<section class="outro wrap">
+  <span class="eyebrow">If you remember nothing else</span>
+  <p class="rule">Keep the batter <em>wetter</em> than the box wants, and pull it — from the oven <em>and</em> the microwave — <em>before</em> you think it's done.</p>
+  <p class="fineprint">That's the baking half. The rest of the board doesn't bake at all — set it in the fridge, bind it in eggs, whip it from dairy, or skip powder entirely and cook whole food. Pick the format that survives your commute and your microwave; the recipes are just starting points to bend.</p>
+  <div class="desk">
+    <div class="desk-line"><span class="desk-tag good">Best at your desk</span>Brownies &amp; blondies — ten seconds and done. Muffins &amp; quick bread — damp towel and go.</div>
+    <div class="desk-line"><span class="desk-tag bad">Eat cold or leave home</span>Biscuits, scones, and waffles. The office microwave is their enemy.</div>
+    <div class="desk-line"><span class="desk-tag good">No oven, no microwave</span>Date bars &amp; no-bake balls — build, chill, and they ride in your bag all week.</div>
+    <div class="desk-line"><span class="desk-tag good">No powder at all</span>Hard-boiled eggs, batch chicken, roasted chickpeas, jerky. The original protein prep — still the most portable.</div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span class="eyebrow">Prep once · pack all week · powder optional</span>
+</footer>
+
+<script>
+const MIXES = [
+  { tier:'S', name:'Pancakes & Waffles', tol:100, load:'¾ cup / batch', mask:0, maskWord:'neutral', mine:false,
+    freez:4, mwr:2,
+    fzTip:'freeze flat in a stack, wax paper between layers',
+    mwTip:'20–30s warms them (no crisp) · a waffle wants a toaster if there is one',
+    why:'Cooked through in three minutes on a griddle, so almost nothing dries out — the easiest, highest-protein use there is.',
+    f:[['+','¾ cup pea protein','per ~2 cups dry mix'],
+       ['+','⅓–½ cup extra milk or kefir + 1 egg',''],
+       ['→','pourable batter · rest 5 min · cook a little low & slow','',true]] },
+
+  { tier:'S', name:'Quick Bread — banana / pumpkin / zucchini', tol:92, load:'¾ cup / loaf', mask:3, maskWord:'strong', mine:true, mineLabel:'your banana walnut',
+    freez:4, mwr:3,
+    fzTip:'slice first, then wrap singles',
+    mwTip:'15–20s under a damp paper towel',
+    why:'Fruit purée is a cheat code — moisture, binding, and flavor cover all in one. Bake it as muffins to cook faster and portion cleanly.',
+    f:[['+','½–¾ cup pea protein','per loaf'],
+       ['+','1 cup mashed banana/pumpkin + ½ cup Greek yogurt + 1 egg · cut the box water',''],
+       ['→','rest · 350°F · foil-tent — or bake as muffins (~20 min)','',true]] },
+
+  { tier:'A', name:'Muffins', tol:85, load:'1 cup / 24', mask:2, maskWord:'good', mine:true, mineLabel:'your oatmeal choc chip',
+    freez:4, mwr:3,
+    fzTip:'wrap individually',
+    mwTip:'15–20s, damp towel · thaw first for the best crumb',
+    why:'A loose, forgiving batter that oats keep moist. Yogurt and an extra egg will carry a full cup of powder without complaint.',
+    f:[['+','½–1 cup pea protein','per 24'],
+       ['+','¾ cup Greek yogurt + 1 egg · kefir/coconut to loosen · keep the fat',''],
+       ['→','rest · keep the batter slightly loose · underbake','',true]] },
+
+  { tier:'A', name:'Cake — chocolate / spice / carrot', tol:78, load:'¾ cup / box', mask:3, maskWord:'strong', mine:false,
+    freez:3, mwr:3,
+    fzTip:'freeze unfrosted, wrap slices',
+    mwTip:'15–20s, damp towel',
+    why:'Add a box of instant pudding and it stays tender under the load. Chocolate and spice hide the powder; plain vanilla exposes it.',
+    f:[['+','½–¾ cup pea protein','per box'],
+       ['+','1 box instant pudding OR ½ cup yogurt + 1 egg · milk instead of water',''],
+       ['→','don\u2019t overmix · underbake · tent if it browns early','',true]] },
+
+  { tier:'A', name:'Cornbread', tol:72, load:'½ cup / box', mask:0, maskWord:'savory', mine:false,
+    freez:2, mwr:2,
+    fzTip:'wrap tight — it dries easily',
+    mwTip:'15–20s with a damp towel + a pat of butter',
+    why:'Moist and savory — pea\u2019s earthiness actually fits here. Keep it wet with creamed corn or yogurt and don\u2019t let it dry out.',
+    f:[['+','⅓–½ cup pea protein','per box'],
+       ['+','½ cup creamed corn or yogurt + 1 egg · keep the butter',''],
+       ['→','looser batter · underbake · a drizzle of honey','',true]] },
+
+  { tier:'B', name:'Coffee Cake', tol:62, load:'½ cup / box', mask:2, maskWord:'good', mine:false,
+    freez:3, mwr:3,
+    fzTip:'wrap slices',
+    mwTip:'15–20s, damp towel · streusel softens, that\u2019s fine',
+    why:'Sour cream keeps the crumb soft and the cinnamon streusel does the masking. Watch the bake — it dries at the edges first.',
+    f:[['+','½ cup pea protein','per box'],
+       ['+','½ cup sour cream or Greek yogurt + 1 egg',''],
+       ['→','keep the streusel dry · underbake · cinnamon covers it','',true]] },
+
+  { tier:'B', name:'Brownies', tol:58, load:'¼ cup / batch', mask:4, maskWord:'max', mine:true, mineLabel:'your caramel',
+    freez:4, mwr:4,
+    fzTip:'freezes flawlessly, wrap singles',
+    mwTip:'8–12s — just the chill off; overheating turns fudge to rubber',
+    why:'Flavor masking is unbeatable — chocolate and caramel bury the powder completely. Texture is the whole limit: too much and fudgy turns cakey.',
+    f:[['+','¼ cup pea protein','per batch'],
+       ['+','1 egg yolk + 3 tbsp yogurt · keep the full oil',''],
+       ['→','underbake hard for fudgy · moist crumbs, not clean','',true]] },
+
+  { tier:'B', name:'Blondies', tol:52, load:'¼ cup / batch', mask:1, maskWord:'fair', mine:false,
+    freez:4, mwr:4,
+    fzTip:'wrap singles',
+    mwTip:'8–12s, warm not hot',
+    why:'Same fudgy ceiling as brownies, but far less cocoa to hide behind. Lean on brown sugar, vanilla, and a bigger pinch of salt.',
+    f:[['+','¼ cup pea protein','per batch'],
+       ['+','1 egg yolk + 3 tbsp yogurt · keep the full butter · extra pinch of salt',''],
+       ['→','same as brownies · brown sugar & vanilla do the work','',true]] },
+
+  { tier:'C', name:'Cookies', tol:38, load:'¼ cup / batch', mask:2, maskWord:'good', mine:true, mineLabel:'your oatmeal choc chip',
+    freez:3, mwr:2,
+    fzTip:'freeze baked, or as raw dough balls',
+    mwTip:'8–10s to soften — or eat at room temp; over-zapping goes hard then rubbery',
+    why:'A low-moisture dough — protein kills the spread and dries it fast. Expect cakier, softer cookies; nut butter rescues them if you have it.',
+    f:[['+','¼ cup pea protein','⅓ cup max, per batch'],
+       ['+','1 egg yolk + 2 tbsp yogurt to bind · keep the butter · ¼ cup nut butter if you\u2019ve got it',''],
+       ['→','expect cakier, less spread · pull looking underdone','',true]] },
+
+  { tier:'C', name:'Biscuits & Scones', tol:28, load:'3 tbsp / batch', mask:0, maskWord:'savory', mine:false,
+    freez:2, mwr:1,
+    fzTip:'wrap tight',
+    mwTip:'microwave gums them — 10s max, or use a toaster oven',
+    why:'Built on cold fat and flaky layers that protein flattens into bread. Go minimal — or reach for almost any other mix instead.',
+    f:[['+','2–3 tbsp pea protein','that\u2019s the ceiling'],
+       ['+','a splash more buttermilk/kefir · keep the fat cold & high · don\u2019t overwork',''],
+       ['→','minimal touch, or pick a friendlier mix','',true]] },
+
+  { tier:'C', name:'Cinnamon Rolls / Yeast Dough', tol:25, load:'3 tbsp / batch', mask:2, maskWord:'good', mine:false,
+    freez:3, mwr:3,
+    fzTip:'wrap tight',
+    mwTip:'20–25s with a damp towel — steam brings them back',
+    why:'Protein blocks gluten and slows the rise, so rolls come out dense. Tolerable with a longer proof — but not the place to load up.',
+    f:[['+','2–3 tbsp pea protein','swapped for a little flour'],
+       ['+','a bit more liquid · a longer proof',''],
+       ['→','denser rolls · tolerable, not recommended','',true]] },
+];
+
+const SWAPS = {
+  'Pancakes & Waffles':'whey & casein both excel here — cooked too fast to rubberize; any powder works',
+  'Quick Bread — banana / pumpkin / zucchini':'casein for max moisture · whey ok if you underbake · collagen is an invisible bump',
+  'Muffins':'casein makes them moister · soy swaps 1:1 for pea · whey isolate dries them',
+  'Cake — chocolate / spice / carrot':'casein + pudding = bakery-soft · collagen adds protein without touching the crumb · whey watch the bake',
+  'Cornbread':'casein keeps it from drying · soy 1:1 · skip whey isolate, it\u2019s already dry',
+  'Coffee Cake':'casein for a softer crumb · whey trends rubbery · sour cream covers most swaps',
+  'Brownies':'the worst place for whey — it rubberizes fudge fast; casein or collagen stay dense, or underbake hard',
+  'Blondies':'casein or collagen keep them chewy · whey toughens, and less cocoa means its dryness shows',
+  'Cookies':'casein makes a soft, doughy cookie · whey turns them rubbery-hard · collagen = a safe small bump',
+  'Biscuits & Scones':'collagen is the least disruptive to the flake · casein least-bad among the rest · whey is worst',
+  'Cinnamon Rolls / Yeast Dough':'collagen is kindest to the rise · whey & casein interfere most · keep any of them minimal',
+};
+
+const TIERS = {
+  S:{ title:'Drinks it up',      sub:'Add the powder, add a little liquid, done',  color:'#d0602e' },
+  A:{ title:'Takes it well',     sub:'A forgiving batter — lean on yogurt & eggs', color:'#bd7c47' },
+  B:{ title:'There\u2019s a ceiling', sub:'Flavor hides fine; texture is the limit',    color:'#8f8067' },
+  C:{ title:'Fights back',       sub:'Structured or leavened — go light, or don\u2019t',color:'#5f574a' },
+};
+
+function dots(n){
+  let s='';
+  for(let i=0;i<4;i++){ s += (i<n) ? '●' : '<span class="off">○</span>'; }
+  return s;
+}
+
+function fLine(l){
+  const go = l[3] ? ' go' : '';
+  const note = l[2] ? '<span class="f-note">'+l[2]+'</span>' : '';
+  return '<div class="f-line'+go+'"><span class="f-mark">'+l[0]+'</span><span class="f-main">'+l[1]+'</span>'+note+'</div>';
+}
+
+function card(m){
+  const badge = m.mine ? '<span class="badge">◆ '+(m.mineLabel||'in your kitchen')+'</span>' : '';
+  const mask = m.mask===0 ? '<span class="mask-word">'+m.maskWord+'</span>' : '<span class="dots">'+dots(m.mask)+'</span>';
+  return ''+
+  '<article class="mix'+(m.mine?' mine':'')+'">'+
+    '<div class="mix-top">'+
+      '<span class="mix-name">'+m.name+'</span>'+badge+
+    '</div>'+
+    '<div class="meta">'+
+      '<div class="meter-block">'+
+        '<div class="meter-label"><span>Tolerance</span><span class="load">'+m.load+'</span></div>'+
+        '<div class="track"><div class="fill" data-tol="'+m.tol+'"></div></div>'+
+      '</div>'+
+      '<div class="stat-row">'+
+        '<div class="stat"><span class="stat-cap">Masking</span>'+mask+'</div>'+
+        '<div class="stat"><span class="stat-cap">Freezer</span><span class="dots">'+dots(m.freez)+'</span></div>'+
+        '<div class="stat"><span class="stat-cap">Microwave</span><span class="dots">'+dots(m.mwr)+'</span></div>'+
+      '</div>'+
+    '</div>'+
+    '<p class="why">'+m.why+'</p>'+
+    '<div class="formula">'+m.f.map(fLine).join('')+'</div>'+
+    '<div class="prep">'+
+      '<div class="p-line"><span class="p-mark fz">❄</span><span class="p-cap">Freeze</span><span class="p-txt">'+m.fzTip+'</span></div>'+
+      '<div class="p-line"><span class="p-mark hot">♨</span><span class="p-cap">Reheat</span><span class="p-txt">'+m.mwTip+'</span></div>'+
+      '<div class="p-line"><span class="p-mark swap">⇄</span><span class="p-cap">Swap</span><span class="p-txt">'+(SWAPS[m.name]||'')+'</span></div>'+
+    '</div>'+
+  '</article>';
+}
+
+function build(){
+  const root = document.getElementById('ranking');
+  let html = '';
+  for(const t of ['S','A','B','C']){
+    const info = TIERS[t];
+    const group = MIXES.filter(m=>m.tier===t);
+    html += ''+
+    '<div class="tier">'+
+      '<div class="tier-head">'+
+        '<span class="tier-letter" style="color:'+info.color+'">'+t+'</span>'+
+        '<div class="tier-meta">'+
+          '<div class="tier-title">'+info.title+'</div>'+
+          '<div class="tier-sub">'+info.sub+'</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="cards">'+group.map(card).join('')+'</div>'+
+    '</div>';
+  }
+  root.innerHTML = html;
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){
+    document.querySelectorAll('.fill').forEach(function(f){ f.style.width = f.dataset.tol + '%'; });
+  });});
+}
+
+build();
+</script>
+</body>
+</html>

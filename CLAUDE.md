@@ -9,6 +9,9 @@ DAGs. See README.md for architecture.
 - `npm test` — scheduler/runtime/DAG-validation tests
 - `npm run extract && node scripts/mergeDags.mjs` — regenerate `public/data/`
   after recipe changes
+- `npm run deploy` — build with base `/Mise/` and push to the `gh-pages`
+  branch (public site: https://adervec.github.io/Mise/). Deploys are manual;
+  pushing `main` alone does not update the site.
 
 ## Progress reports
 

@@ -3,6 +3,8 @@ import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
+  // "/" locally (Mise.cmd, installed PWA); CI sets GHPAGES_BASE=/Mise/ for Pages
+  base: process.env.GHPAGES_BASE || "/",
   plugins: [
     react(),
     VitePWA({
@@ -16,10 +18,11 @@ export default defineConfig({
         theme_color: "#0c0a09",
         background_color: "#0c0a09",
         display: "standalone",
-        start_url: "/",
+        // relative so the manifest works at "/" locally and "/Mise/" on Pages
+        start_url: ".",
         icons: [
-          { src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" },
-          { src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "maskable" },
+          { src: "icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" },
+          { src: "icon.svg", sizes: "any", type: "image/svg+xml", purpose: "maskable" },
         ],
       },
       workbox: {

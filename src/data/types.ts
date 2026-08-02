@@ -66,6 +66,7 @@ export interface Guide {
   summary: string;
   style: string;
   body: string; // HTML
+  script?: string; // JS for script-driven guides, re-injected in the frame
 }
 
 export interface DietMeta {

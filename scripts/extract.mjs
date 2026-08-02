@@ -47,6 +47,9 @@ const GUIDE_FILES = [
   { id: "coffee", file: "coffee-guide.html" },
   { id: "tea", file: "tea-guide.html" },
   { id: "alcohol", file: "alcohol-guide.html" },
+  // script-driven pages: their DOM is built/interactive via JS, so keep scripts
+  { id: "protein", file: "solid-protein-prep-guide.html", scripts: true },
+  { id: "protein-calculator", file: "protein-mix-calculator.html", scripts: true },
 ];
 
 function inner(html, tag) {
@@ -61,16 +64,21 @@ function firstText(html, re) {
 }
 
 function extractGuides() {
-  const guides = GUIDE_FILES.map(({ id, file }) => {
+  const guides = GUIDE_FILES.map(({ id, file, scripts }) => {
     const html = read(file);
     const title = firstText(html, /<title>([\s\S]*?)<\/title>/i);
     const style = inner(html, "style");
-    // body minus any trailing <script> blocks
-    let body = inner(html, "body").replace(/<script[\s\S]*?<\/script>/gi, "").trim();
+    const rawBody = inner(html, "body");
+    // script-driven guides keep their JS (re-injected at the end of the frame body)
+    const script = scripts
+      ? [...rawBody.matchAll(/<script>([\s\S]*?)<\/script>/gi)].map((m) => m[1]).join("\n")
+      : undefined;
+    // body minus any <script> blocks
+    let body = rawBody.replace(/<script[\s\S]*?<\/script>/gi, "").trim();
     const summary =
       firstText(html, /<p class="lede"[^>]*>([\s\S]*?)<\/p>/i) ||
       firstText(html, /<p[^>]*>([\s\S]*?)<\/p>/i);
-    return { id, title, summary, style, body };
+    return { id, title, summary, style, body, ...(script ? { script } : {}) };
   });
   writeFileSync(resolve(dataDir, "guides.json"), JSON.stringify(guides));
   console.log(

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protein Box-Mix Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --soot:#16130d; --soot-raised:#1f1a12; --soot-sunk:#100d08;
+    --line:#33291d; --line-soft:#261f16;
+    --bone:#ece5d6; --bone-dim:#b3a893; --ash:#7d735f;
+    --ember:#d0602e; --ember-soft:#e5924f; --ember-deep:#8f3d1c;
+    --font-display:'Fraunces',Georgia,serif;
+    --font-body:'Newsreader',Georgia,serif;
+    --font-mono:'JetBrains Mono','SF Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--soot);color:var(--bone);font-family:var(--font-body);
+    font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;font-optical-sizing:auto;
+    background-image:radial-gradient(120% 80% at 50% -10%, #1d1810 0%, var(--soot) 60%);
+  }
+  .wrap{max-width:700px;margin:0 auto;padding:0 22px}
+  .eyebrow{font-family:var(--font-mono);font-size:.82rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ember-soft);font-weight:500}
+
+  header{padding:64px 0 30px}
+  header h1{font-family:var(--font-display);font-weight:900;font-size:clamp(2.3rem,6vw,3.4rem);line-height:1;letter-spacing:-.025em;margin:18px 0 20px}
+  header h1 em{font-style:italic;color:var(--ember-soft);font-weight:600}
+  .lede{font-size:1.12rem;color:var(--bone-dim);line-height:1.5;max-width:54ch}
+  .lede strong{color:var(--bone);font-weight:600}
+
+  .panel{background:var(--soot-raised);border:1px solid var(--line);border-radius:14px;padding:20px 22px 24px;margin-bottom:20px}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .tab{
+    flex:1 1 140px;font-family:var(--font-display);font-weight:600;font-size:1.02rem;
+    background:var(--soot-sunk);color:var(--bone-dim);border:1px solid var(--line-soft);
+    border-radius:9px;padding:12px 10px;cursor:pointer;transition:all .18s ease;line-height:1.15;
+  }
+  .tab:hover{color:var(--bone);border-color:var(--line)}
+  .tab.active{background:linear-gradient(180deg,#3a2415,#2a1c10);color:var(--bone);border-color:var(--ember-deep);box-shadow:inset 0 0 0 1px rgba(208,96,46,.25)}
+
+  .slider-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+  .slider-label{font-family:var(--font-mono);font-size:.84rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim)}
+  .slider-val{font-family:var(--font-display);font-weight:600;font-size:1.55rem;color:var(--ember-soft);letter-spacing:-.01em}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:5px;background:var(--soot-sunk);outline:none;margin:2px 0}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:28px;height:28px;border-radius:50%;background:var(--ember);cursor:pointer;border:4px solid var(--soot-raised);box-shadow:0 2px 7px rgba(0,0,0,.55)}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--ember);cursor:pointer;border:4px solid var(--soot-raised);box-shadow:0 2px 7px rgba(0,0,0,.55)}
+  .ticks{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:.84rem;color:var(--ash);margin-top:8px;padding:0 2px}
+  .slider-yield{font-family:var(--font-mono);font-size:.92rem;color:var(--bone-dim);margin-top:14px;letter-spacing:.01em;line-height:1.5}
+  .slider-yield b{color:var(--ember-soft);font-weight:500}
+
+  .sheet{background:var(--soot-raised);border:1px solid var(--line);border-radius:14px;padding:22px 24px 12px;margin-bottom:16px}
+  .sheet-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;padding-bottom:16px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  .sheet-title{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ember)}
+  .sheet-sub{font-family:var(--font-mono);font-size:.84rem;color:var(--ash)}
+
+  .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 16px;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+  .row:last-child{border-bottom:none}
+  .row-l{flex:1 1 140px}
+  .row-name{font-size:1.06rem;color:var(--bone);line-height:1.25}
+  .row-note{font-family:var(--font-mono);font-size:.86rem;color:var(--ash);line-height:1.45;margin-top:4px}
+  .row-note.add{color:var(--ember-soft);opacity:.9}
+  .row-amt{font-family:var(--font-mono);font-size:1rem;color:var(--bone-dim);text-align:right;white-space:nowrap;flex:0 0 auto;margin-left:auto}
+  .row-amt b{color:var(--bone);font-weight:700;font-size:1.08rem}
+  .approx{display:block;font-size:.92rem;color:var(--bone-dim);margin-top:3px;font-weight:400}
+
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+  .meta-card{background:var(--soot-raised);border:1px solid var(--line-soft);border-radius:12px;padding:18px 20px}
+  .meta-cap{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);margin-bottom:10px}
+  .meta-big{font-family:var(--font-display);font-weight:600;font-size:1.55rem;color:var(--bone);letter-spacing:-.01em;line-height:1.1}
+  .meta-big em{font-style:normal;color:var(--ember-soft)}
+  .meta-line{font-family:var(--font-mono);font-size:.9rem;color:var(--bone-dim);line-height:1.6;margin-top:8px}
+  .meta-line b{color:var(--bone)}
+
+  .src-link{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    background:var(--soot-sunk);border:1px solid var(--line);border-radius:11px;
+    padding:16px 18px;text-decoration:none;margin-bottom:18px;transition:border-color .2s ease,background .2s ease;
+  }
+  .src-link:hover{border-color:var(--ember-deep);background:#1a140d}
+  .src-l{min-width:0}
+  .src-cap{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);margin-bottom:5px}
+  .src-name{font-family:var(--font-body);font-size:1.02rem;color:var(--bone);line-height:1.25}
+  .src-arrow{color:var(--ember-soft);font-size:1.3rem;flex:0 0 auto}
+
+  .method{font-size:1rem;color:var(--bone-dim);line-height:1.55;padding:0 2px 12px}
+  .method b{color:var(--bone);font-weight:600}
+
+  footer{padding:30px 0 64px}
+  footer .fnote{font-family:var(--font-mono);font-size:.86rem;color:var(--ash);line-height:1.7;max-width:60ch}
+
+  @media(max-width:540px){
+    body{font-size:17px}
+    .meta-grid{grid-template-columns:1fr}
+    header{padding:48px 0 26px}
+  }
+  :focus-visible{outline:2px solid var(--ember-soft);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <span class="eyebrow">Protein Box-Mix Calculator</span>
+  <h1>How much of everything, <em>exactly</em>.</h1>
+  <p class="lede">Pick a mix, set how many boxes, and get the <strong>full totals</strong> — the box's own water, oil, and eggs plus the protein add-ins, already summed. No more "the box wants one egg, I add one more." Each line notes the box's own baseline, and the box weight is right there on the mix line.</p>
+</header>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="tabs">
+      <button class="tab active" data-mix="brownie">Caramel Brownies</button>
+      <button class="tab" data-mix="banana">Banana Walnut Bread</button>
+      <button class="tab" data-mix="muffin">Oatmeal Choc-Chip Muffins</button>
+      <button class="tab" data-mix="cookie">Oatmeal Choc-Chip Cookies</button>
+    </div>
+    <div class="slider-top">
+      <span class="slider-label">How much mix?</span>
+      <span class="slider-val" id="sval">1 box</span>
+    </div>
+    <input type="range" id="slider" min="0.5" max="4" step="0.5" value="1" aria-label="Number of boxes">
+    <div class="ticks"><span>&frac12;</span><span>1</span><span>2</span><span>3</span><span>4 boxes</span></div>
+    <div class="slider-yield" id="syield"></div>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-head">
+      <span class="sheet-title">The full recipe &mdash; totals, not extras</span>
+      <span class="sheet-sub" id="sheetsub"></span>
+    </div>
+    <div id="rows"></div>
+  </div>
+
+  <div class="meta-grid">
+    <div class="meta-card" id="bakecard"></div>
+    <div class="meta-card" id="protcard"></div>
+  </div>
+
+  <a class="src-link" id="srclink" href="#" target="_blank" rel="noopener">
+    <span class="src-l">
+      <span class="src-cap">Underlying base recipe</span>
+      <span class="src-name" id="srcname"></span>
+    </span>
+    <span class="src-arrow">&#8599;</span>
+  </a>
+
+  <p class="method" id="method"></p>
+</div>
+
+<footer class="wrap">
+  <p class="fnote">Liquids show in millilitres (your box's own units) with a cup amount beside them; small add-ins show in tablespoons. Box weights and base recipes are from Quaker and Betty Crocker's own pages. Protein figures are approximate and depend on your scoop. For half-boxes, round the eggs however's easiest.</p>
+</footer>
+
+<script>
+const MIXES = {
+  brownie: {
+    label:'Caramel Brownies',
+    boxName:'Betty Crocker Salted Caramel Brownie mix',
+    link:'https://www.bettycrocker.com/products/betty-crocker-brownies-and-dessert-bars/salted-caramel',
+    weight:'520 g \u00b7 18.4 oz',
+    yieldPerBox:16, yieldUnit:'brownies', servingName:'brownie',
+    proteinPerBox:45,
+    temp:'325\u00b0F (160\u00b0C)',
+    pan:'one 8\u00d78" pan (or 9\u00d79" for thinner)',
+    time:'40\u201345 min at 8\u00d78" \u00b7 35\u201338 at 9\u00d79"',
+    method:'<b>Stir everything but the caramel</b> until well blended \u2014 the batter runs thick, so loosen with a splash of water if it won\u2019t spread. Spread it, squeeze the caramel on top and swirl, then bake and pull them a few minutes early. Underbaked is what keeps them fudgy instead of cakey.',
+    ingredients:[
+      { name:'Caramel brownie mix', kind:'count', per:1, unit:'box', note:'the box itself' },
+      { name:'Water', kind:'liquid', ml:50, cups:0.25, note:'as the box calls for' },
+      { name:'Vegetable oil', kind:'liquid', ml:75, cups:0.3333, note:'keep the full amount \u2014 fat is what keeps them fudgy' },
+      { name:'Eggs', kind:'count', per:1, unit:'', note:'the box asks for 1' },
+      { name:'Egg yolk, extra', kind:'count', per:1, unit:'', note:'added \u2014 richness without turning them cakey', add:true },
+      { name:'Pea protein', kind:'dry', cups:0.25, note:'added \u2014 the protein', add:true },
+      { name:'Greek yogurt', kind:'dry', cups:0.1875, note:'added \u2014 moisture to offset the powder', add:true },
+      { name:'Caramel pouch', kind:'count', per:1, unit:'', note:'swirl on top \u2014 comes in the box' },
+    ],
+  },
+  banana: {
+    label:'Banana Walnut Bread',
+    boxName:'Betty Crocker Banana Nut / Banana Bread mix',
+    link:'https://www.bettycrocker.com/products/muffin-mixes/banana-nut',
+    weight:'348 g \u00b7 12.3 oz',
+    yieldPerBox:12, yieldUnit:'slices', servingName:'slice',
+    proteinPerBox:90,
+    temp:'375\u00b0F (190\u00b0C), or 350\u00b0F gentler',
+    pan:'one loaf pan (or 12 muffin cups)',
+    time:'50\u201365 min for a loaf \u00b7 ~20 min for muffins',
+    method:'<b>Mash the banana</b>, whisk it with the wet ingredients, then stir in the mix and pea protein just until combined. Rest the batter 8 minutes so the protein hydrates, then bake \u2014 as muffins it cooks faster and dries out less than a full loaf.',
+    ingredients:[
+      { name:'Banana walnut bread mix', kind:'count', per:1, unit:'box', note:'the box itself' },
+      { name:'Water', kind:'liquid', ml:50, cups:0.25, note:'box calls for \u00bd cup \u2014 cut back, since banana & yogurt add moisture' },
+      { name:'Vegetable oil or melted butter', kind:'liquid', ml:50, cups:0.25, note:'as the box calls for' },
+      { name:'Eggs', kind:'count', per:3, unit:'', note:'box asks for 2 \u2014 +1 for protein & structure' },
+      { name:'Ripe banana, mashed', kind:'banana', cups:1.0, note:'box uses \u00bd cup \u2014 doubled for moisture & to mask the powder' },
+      { name:'Pea protein', kind:'dry', cups:0.5, note:'added \u2014 the protein', add:true },
+      { name:'Greek yogurt', kind:'dry', cups:0.5, note:'added \u2014 keeps it moist', add:true },
+    ],
+  },
+  muffin: {
+    label:'Oatmeal Choc-Chip Muffins',
+    boxName:'Quaker Oatmeal Chocolate Chip Muffin mix',
+    link:'https://www.tastyrewards.com/en-ca/brands/quaker/products/quakerr-oatmeal-chocolate-chip-muffin-mix',
+    weight:'900 g \u00b7 31.7 oz',
+    yieldPerBox:24, yieldUnit:'muffins', servingName:'muffin',
+    proteinPerBox:135,
+    temp:'400\u00b0F (200\u00b0C), or 375\u00b0F gentler',
+    pan:'two 12-cup muffin tins',
+    time:'18\u201322 min',
+    method:'<b>Whisk the eggs, yogurt, kefir and melted butter</b>, then stir in the mix and pea protein just until combined. This mix has no oil of its own, so the butter matters. Rest 8 min, keep the batter slightly loose (add a splash of water if stiff), and pull them a touch early.',
+    ingredients:[
+      { name:'Oatmeal choc-chip muffin mix', kind:'count', per:1, unit:'box', note:'the box itself' },
+      { name:'Eggs', kind:'count', per:3, unit:'', note:'box asks for 2 \u2014 +1 for protein & structure' },
+      { name:'Greek yogurt', kind:'dry', cups:0.75, note:'added \u2014 protein & moisture', add:true },
+      { name:'Kefir or coconut milk', kind:'liquid', ml:120, cups:0.5, note:'added \u2014 loosens the batter', add:true },
+      { name:'Melted butter', kind:'dry', cups:0.25, note:'added \u2014 this mix has no oil; fat keeps them from drying', add:true },
+      { name:'Water', kind:'liquid', ml:60, cups:0.25, note:'box uses 1\u00bd cups \u2014 cut way back; yogurt, kefir & butter replace it' },
+      { name:'Pea protein', kind:'dry', cups:0.5, note:'added \u2014 the protein', add:true },
+    ],
+  },
+  cookie: {
+    label:'Oatmeal Choc-Chip Cookies',
+    boxName:'Betty Crocker Oatmeal Chocolate Chip Cookie mix',
+    link:'https://www.bettycrocker.com/products/cookiemix/oatmealchocolatechip',
+    weight:'496 g \u00b7 17.5 oz',
+    yieldPerBox:24, yieldUnit:'cookies', servingName:'cookie',
+    proteinPerBox:55,
+    temp:'375\u00b0F (190\u00b0C)',
+    pan:'ungreased cookie sheets',
+    time:'11\u201313 min (rounded-tbsp cookies)',
+    method:'<b>Beat the softened butter, egg and extra yolk</b>, then mix in the cookie mix and pea protein until a dough forms. If it\u2019s dry and crumbly, work in the yogurt a little at a time. Expect softer, cakier cookies \u2014 pull them looking underdone.',
+    ingredients:[
+      { name:'Oatmeal choc-chip cookie mix', kind:'count', per:1, unit:'box', note:'the box itself' },
+      { name:'Butter, softened', kind:'dry', cups:0.5, note:'as the box calls for (1 stick)' },
+      { name:'Eggs', kind:'count', per:1, unit:'', note:'the box asks for 1' },
+      { name:'Egg yolk, extra', kind:'count', per:1, unit:'', note:'added \u2014 keeps them soft, not chalky', add:true },
+      { name:'Pea protein', kind:'dry', cups:0.25, note:'added \u2014 \u2153 cup max, or they crumble', add:true },
+      { name:'Greek yogurt', kind:'dry', cups:0.125, note:'added \u2014 binds the drier dough', add:true },
+    ],
+  },
+};
+
+var CUP_FR = [[0,''],[1/8,'\u215b'],[1/6,'\u2159'],[1/4,'\u00bc'],[1/3,'\u2153'],[3/8,'\u215c'],[1/2,'\u00bd'],[5/8,'\u215d'],[2/3,'\u2154'],[3/4,'\u00be'],[5/6,'\u215a'],[7/8,'\u215e'],[1,'']];
+function fmtCups(c){
+  if(c < 0.0001) return '0';
+  var whole = Math.floor(c + 1e-6), frac = c - whole, best=null, bd=1;
+  for(var i=0;i<CUP_FR.length;i++){ var d=Math.abs(frac-CUP_FR[i][0]); if(d<bd){bd=d;best=CUP_FR[i];} }
+  if(bd <= 0.017){
+    var carry = (best[0]===1)?1:0, w = whole+carry, s = carry?'':best[1];
+    if(w>0 && s) return w+s+' cups';
+    if(w>0) return w+' cup'+(w>1?'s':'');
+    if(s) return s+' cup';
+    return '0';
+  }
+  var tbsp = c*16, rt = Math.round(tbsp*2)/2;
+  if(rt >= 1) return rt+' tbsp';
+  return (Math.round(c*48*2)/2)+' tsp';
+}
+var CT_FR = [[0,''],[1/4,'\u00bc'],[1/3,'\u2153'],[1/2,'\u00bd'],[2/3,'\u2154'],[3/4,'\u00be']];
+function fmtCount(n){
+  var whole = Math.floor(n + 1e-6), frac = n - whole, best=null, bd=1;
+  for(var i=0;i<CT_FR.length;i++){ var d=Math.abs(frac-CT_FR[i][0]); if(d<bd){bd=d;best=CT_FR[i];} }
+  if(bd > 0.04){ return (Math.round(n*10)/10)+''; }
+  var w = whole, s = best[1];
+  if(w>0 && s) return w+s;
+  if(w>0) return ''+w;
+  if(s) return s;
+  return '0';
+}
+
+var curWeight = '';
+function amount(ing, m){
+  if(ing.kind==='count'){
+    var base = '<b>'+fmtCount(ing.per*m)+'</b>'+(ing.unit?' '+ing.unit+(ing.per*m>1&&ing.unit==='box'?'es':''):'');
+    if(ing.unit==='box' && curWeight){ base += '<span class="approx">'+curWeight+' per box</span>'; }
+    return base;
+  }
+  if(ing.kind==='liquid'){
+    return '<b>'+Math.round(ing.ml*m)+' mL</b><span class="approx">'+fmtCups(ing.cups*m)+'</span>';
+  }
+  if(ing.kind==='dry'){
+    var cups = ing.cups*m;
+    if(cups < 0.245){ return '<b>'+(Math.round(cups*16*2)/2)+' tbsp</b>'; }
+    return '<b>'+fmtCups(cups)+'</b>';
+  }
+  if(ing.kind==='banana'){
+    var med = Math.round(ing.cups*m/0.5);
+    return '<b>'+fmtCups(ing.cups*m)+' mashed</b><span class="approx">about '+med+' medium</span>';
+  }
+  return '';
+}
+
+var state = { mix:'brownie', mult:1 };
+var slider = document.getElementById('slider');
+function boxWord(m){ return fmtCount(m) + ' box' + (m>1?'es':''); }
+
+function render(){
+  var mx = MIXES[state.mix], m = state.mult;
+  curWeight = mx.weight;
+
+  document.getElementById('sval').textContent = boxWord(m);
+  var yld = Math.round(mx.yieldPerBox * m);
+  var scaleNote = (m>1) ? ' <b>(scale the pans, keep the time)</b>' : '';
+  document.getElementById('syield').innerHTML = '\u2192 makes about <b>'+yld+' '+mx.yieldUnit+'</b>'+scaleNote;
+  document.getElementById('sheetsub').textContent = mx.label + ' \u00b7 ' + boxWord(m);
+
+  document.getElementById('rows').innerHTML = mx.ingredients.map(function(ing){
+    return '<div class="row"><div class="row-l"><div class="row-name">'+ing.name+'</div>'+
+           '<div class="row-note'+(ing.add?' add':'')+'">'+ing.note+'</div></div>'+
+           '<div class="row-amt">'+amount(ing, m)+'</div></div>';
+  }).join('');
+
+  document.getElementById('bakecard').innerHTML =
+    '<div class="meta-cap">Bake it</div>'+
+    '<div class="meta-big">'+mx.temp+'</div>'+
+    '<div class="meta-line"><b>'+mx.pan+'</b><br>'+mx.time+'</div>';
+
+  var total = Math.round(mx.proteinPerBox * m);
+  var per = Math.round(mx.proteinPerBox / mx.yieldPerBox);
+  document.getElementById('protcard').innerHTML =
+    '<div class="meta-cap">Protein (approx)</div>'+
+    '<div class="meta-big"><em>~'+total+' g</em> total</div>'+
+    '<div class="meta-line">about <b>~'+per+' g</b> per '+mx.servingName+'<br>across '+yld+' '+mx.yieldUnit+'</div>';
+
+  document.getElementById('srclink').href = mx.link;
+  document.getElementById('srcname').textContent = mx.boxName;
+  document.getElementById('method').innerHTML = mx.method;
+
+  var pct = ((m - 0.5) / (4 - 0.5)) * 100;
+  slider.style.background = 'linear-gradient(90deg, var(--ember) 0%, var(--ember) '+pct+'%, var(--soot-sunk) '+pct+'%, var(--soot-sunk) 100%)';
+}
+
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('active'); });
+    t.classList.add('active');
+    state.mix = t.dataset.mix;
+    render();
+  });
+});
+slider.addEventListener('input', function(){ state.mult = parseFloat(slider.value); render(); });
+
+render();
+</script>
+</body>
+</html>
