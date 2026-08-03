@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { itemById, CAT_LABELS, DIETS } from "@/data/catalog";
+import { itemById, CAT_LABELS, DIETS, authoredDags } from "@/data/catalog";
 import type { Checklist } from "@/data/types";
+import { stationLabel, ATTENTION_LABEL, ATTENTION_VAR } from "@/execute/model/stations";
+import type { RecipeDag, Step } from "@/execute/model/types";
 
 export default function ItemDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const item = id ? itemById.get(id) : undefined;
-  const [view, setView] = useState<"notes" | "checklist">("notes");
+  const [view, setView] = useState<"notes" | "checklist" | "grid">("notes");
 
   if (!item) {
     return (
@@ -22,6 +24,8 @@ export default function ItemDetail() {
 
   const isRecipe = item.cat === "recipe";
   const dietBadges = item.diet ? DIETS.filter((d) => item.diet![d.key]) : [];
+  const dag = isRecipe ? authoredDags[item.id] : undefined;
+  const hasGrid = !!dag || !!item.checklist;
 
   return (
     <div className="wrap">
@@ -102,7 +106,7 @@ export default function ItemDetail() {
         </div>
       )}
 
-      {item.checklist && (
+      {(item.checklist || hasGrid) && (
         <div className="view-toggle">
           <button
             className={view === "notes" ? "active" : ""}
@@ -110,24 +114,119 @@ export default function ItemDetail() {
           >
             Notes
           </button>
-          <button
-            className={view === "checklist" ? "active" : ""}
-            onClick={() => setView("checklist")}
-          >
-            Checklist
-          </button>
+          {item.checklist && (
+            <button
+              className={view === "checklist" ? "active" : ""}
+              onClick={() => setView("checklist")}
+            >
+              Checklist
+            </button>
+          )}
+          {hasGrid && (
+            <button
+              className={view === "grid" ? "active" : ""}
+              onClick={() => setView("grid")}
+            >
+              Grid
+            </button>
+          )}
         </div>
       )}
 
-      {view === "notes" || !item.checklist ? (
-        <div className="recipe-body" dangerouslySetInnerHTML={{ __html: item.body }} />
-      ) : (
+      {view === "checklist" && item.checklist ? (
         <ChecklistView checklist={item.checklist} />
+      ) : view === "grid" && hasGrid ? (
+        <StepGridView dag={dag} checklist={item.checklist} />
+      ) : (
+        <div className="recipe-body" dangerouslySetInnerHTML={{ __html: item.body }} />
       )}
 
       <footer>
         <div className="ornament">Mise</div>
       </footer>
+    </div>
+  );
+}
+
+interface GridCard {
+  key: string;
+  label: string;
+  detail?: string;
+  attention?: Step["attention"];
+  station?: Step["station"];
+  durationText?: string;
+  eyebrow?: string; // fallback cards: checklist module title
+}
+
+const GRID_SECTIONS = [
+  { phase: "prep", cls: "prep", title: "Prep" },
+  { phase: "cook", cls: "steps", title: "Cook" },
+  { phase: "cleanup", cls: "cleanup", title: "Cleanup" },
+] as const;
+
+// Read-only glanceable grid of step cards, from the authored DAG when there is
+// one, else plain cards from the checklist.
+function StepGridView({ dag, checklist }: { dag?: RecipeDag; checklist?: Checklist }) {
+  const byPhase: Record<Step["phase"], GridCard[]> = { prep: [], cook: [], cleanup: [] };
+
+  if (dag) {
+    for (const s of dag.steps) {
+      byPhase[s.phase].push({
+        key: s.id,
+        label: s.label,
+        detail: s.detail,
+        attention: s.attention,
+        station: s.station,
+        durationText:
+          s.durationConfidence === "instant"
+            ? undefined
+            : `${s.durationConfidence === "estimated" ? "~" : ""}${s.durationMin} min`,
+      });
+    }
+  } else if (checklist) {
+    checklist.prep?.forEach((line, i) => byPhase.prep.push({ key: `p${i}`, label: line }));
+    checklist.modules?.forEach((mod, mi) =>
+      mod.steps.forEach((line, i) =>
+        byPhase.cook.push({ key: `m${mi}-${i}`, label: line, eyebrow: mod.title })
+      )
+    );
+    checklist.cleanup?.forEach((line, i) => byPhase.cleanup.push({ key: `c${i}`, label: line }));
+  }
+
+  return (
+    <div className="step-grid-body">
+      {GRID_SECTIONS.map(
+        ({ phase, cls, title }) =>
+          byPhase[phase].length > 0 && (
+            <section className={`check-section ${cls}`} key={phase}>
+              <h4>
+                <span className="ph">{title}</span>
+              </h4>
+              <div className="step-grid">
+                {byPhase[phase].map((c) => (
+                  <article
+                    className="step-card"
+                    key={c.key}
+                    style={
+                      c.attention
+                        ? { borderLeftColor: `var(${ATTENTION_VAR[c.attention]})` }
+                        : undefined
+                    }
+                  >
+                    <div className="step-card-meta">
+                      {c.attention && <span>{ATTENTION_LABEL[c.attention]}</span>}
+                      {c.durationText && <span className="step-dur">{c.durationText}</span>}
+                      {c.station && <span className="station-pill">{stationLabel(c.station)}</span>}
+                      {c.eyebrow && <span>{c.eyebrow}</span>}
+                    </div>
+                    <h5>{c.label}</h5>
+                    {c.detail && <p>{c.detail}</p>}
+                  </article>
+                ))}
+              </div>
+            </section>
+          )
+      )}
     </div>
   );
 }

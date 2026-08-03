@@ -228,6 +228,15 @@ footer .ornament { font-family: var(--display); font-style: italic; font-size: 2
 .check-item .num { font-family: var(--mono); font-size: 11px; color: var(--accent); font-weight: 600; flex-shrink: 0; margin-top: 3px; min-width: 18px; }
 .check-item .ctext { font-size: 14.5px; line-height: 1.5; color: var(--ink-muted); }
 
+/* ---- STEP GRID (detail grid view) ---- */
+.step-grid-body { padding: 28px 0 60px; }
+.step-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 10px; }
+.step-card { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--border-strong); border-radius: 12px; padding: 16px 18px; }
+.step-card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 8px; }
+.step-card h5 { font-family: var(--display); font-weight: 600; font-size: 17px; line-height: 1.25; color: var(--ink); margin-bottom: 6px; }
+.step-card p { font-size: 13.5px; line-height: 1.5; color: var(--ink-muted); }
+.step-dur { color: var(--accent-2); }
+
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
