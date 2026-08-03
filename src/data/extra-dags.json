@@ -2,127 +2,3415 @@
   "grilled-chicken-breast": {
     "serves": 2,
     "steps": [
-      { "id": "prep", "label": "Mise en place", "detail": "Measure salt, spices, oil; get a pan ready.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "brine", "label": "Quick brine", "detail": "Submerge the breasts in salted water 15 min, then pat very dry.", "durationMin": 15, "durationConfidence": "explicit", "attention": "wait", "station": "counter", "dependsOn": ["prep"], "timer": true },
-      { "id": "pound", "label": "Pound even", "detail": "Pound the thick end so each breast is an even thickness.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": ["brine"] },
-      { "id": "sear", "label": "Season & sear", "detail": "Rub with oil and spices; sear 3-4 min until golden.", "durationMin": 4, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["pound"] },
-      { "id": "steam", "label": "Flip & steam", "detail": "Flip, cover, low heat 6-8 min to 74C.", "durationMin": 8, "durationConfidence": "explicit", "attention": "passive", "station": "stove", "dependsOn": ["sear"], "timer": true },
-      { "id": "rest", "label": "Rest & slice", "detail": "Rest 5 min, slice against the grain, finish with lemon.", "durationMin": 5, "durationConfidence": "explicit", "attention": "wait", "station": "counter", "dependsOn": ["steam"], "timer": true, "phase": "cleanup" }
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Measure salt, spices, oil; get a pan ready.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "brine",
+        "label": "Quick brine",
+        "detail": "Submerge the breasts in salted water 15 min, then pat very dry.",
+        "durationMin": 15,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "counter",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": true
+      },
+      {
+        "id": "pound",
+        "label": "Pound even",
+        "detail": "Pound the thick end so each breast is an even thickness.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [
+          "brine"
+        ]
+      },
+      {
+        "id": "sear",
+        "label": "Season & sear",
+        "detail": "Rub with oil and spices; sear 3-4 min until golden.",
+        "durationMin": 4,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "pound"
+        ]
+      },
+      {
+        "id": "steam",
+        "label": "Flip & steam",
+        "detail": "Flip, cover, low heat 6-8 min to 74C.",
+        "durationMin": 8,
+        "durationConfidence": "explicit",
+        "attention": "passive",
+        "station": "stove",
+        "dependsOn": [
+          "sear"
+        ],
+        "timer": true
+      },
+      {
+        "id": "rest",
+        "label": "Rest & slice",
+        "detail": "Rest 5 min, slice against the grain, finish with lemon.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "counter",
+        "dependsOn": [
+          "steam"
+        ],
+        "timer": true,
+        "phase": "cleanup"
+      }
     ]
   },
   "garlic-shrimp-greens": {
     "serves": 2,
     "steps": [
-      { "id": "prep", "label": "Mise en place", "detail": "Pat shrimp dry, slice garlic, wash greens.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "garlic", "label": "Bloom garlic", "detail": "Warm oil, garlic, and chili until fragrant, 1 min.", "durationMin": 1, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["prep"] },
-      { "id": "greens", "label": "Wilt greens", "detail": "Add greens with a pinch of salt; toss until just wilted.", "durationMin": 2, "durationConfidence": "estimated", "attention": "passive", "station": "stove", "dependsOn": ["garlic"] },
-      { "id": "shrimp", "label": "Sear shrimp", "detail": "Add shrimp in one layer; 1-2 min per side until opaque.", "durationMin": 3, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["greens"] },
-      { "id": "finish", "label": "Lemon & toss", "detail": "Squeeze lemon, toss together, taste for salt.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["shrimp"], "phase": "cleanup" }
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Pat shrimp dry, slice garlic, wash greens.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "garlic",
+        "label": "Bloom garlic",
+        "detail": "Warm oil, garlic, and chili until fragrant, 1 min.",
+        "durationMin": 1,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "greens",
+        "label": "Wilt greens",
+        "detail": "Add greens with a pinch of salt; toss until just wilted.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "passive",
+        "station": "stove",
+        "dependsOn": [
+          "garlic"
+        ]
+      },
+      {
+        "id": "shrimp",
+        "label": "Sear shrimp",
+        "detail": "Add shrimp in one layer; 1-2 min per side until opaque.",
+        "durationMin": 3,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "greens"
+        ]
+      },
+      {
+        "id": "finish",
+        "label": "Lemon & toss",
+        "detail": "Squeeze lemon, toss together, taste for salt.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "shrimp"
+        ],
+        "phase": "cleanup"
+      }
     ]
   },
   "egg-white-scramble": {
     "serves": 1,
     "steps": [
-      { "id": "prep", "label": "Mise en place", "detail": "Dice pepper, slice mushrooms, measure whites.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "veg", "label": "Soften veg", "detail": "Saute pepper and mushroom 3-4 min; wilt in spinach.", "durationMin": 4, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["prep"] },
-      { "id": "whites", "label": "Add whites", "detail": "Lower heat, pour in seasoned whites, let set 20 sec.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["veg"] },
-      { "id": "fold", "label": "Fold gently", "detail": "Push edges to center in big folds until just set.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["whites"] },
-      { "id": "plate", "label": "Plate", "detail": "Pull while glossy; season and serve.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["fold"], "phase": "cleanup" }
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Dice pepper, slice mushrooms, measure whites.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "veg",
+        "label": "Soften veg",
+        "detail": "Saute pepper and mushroom 3-4 min; wilt in spinach.",
+        "durationMin": 4,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "whites",
+        "label": "Add whites",
+        "detail": "Lower heat, pour in seasoned whites, let set 20 sec.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "veg"
+        ]
+      },
+      {
+        "id": "fold",
+        "label": "Fold gently",
+        "detail": "Push edges to center in big folds until just set.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "whites"
+        ]
+      },
+      {
+        "id": "plate",
+        "label": "Plate",
+        "detail": "Pull while glossy; season and serve.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "fold"
+        ],
+        "phase": "cleanup"
+      }
     ]
   },
   "baked-cod-tomatoes": {
     "serves": 2,
     "steps": [
-      { "id": "preheat", "label": "Preheat oven 220C", "detail": "Get the oven fully hot before the tomatoes go in.", "durationMin": 8, "durationConfidence": "estimated", "attention": "wait", "station": "oven", "dependsOn": [], "timer": true, "phase": "prep" },
-      { "id": "prep", "label": "Mise en place", "detail": "Pat cod dry and season; halve tomatoes, smash garlic.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "roastTom", "label": "Roast tomatoes", "detail": "Toss tomatoes, garlic, oil, chili; roast 12 min until bursting.", "durationMin": 12, "durationConfidence": "explicit", "attention": "wait", "station": "oven", "dependsOn": ["preheat", "prep"], "timer": true },
-      { "id": "addCod", "label": "Nestle the cod", "detail": "Season fillets, nestle into the tomatoes, spoon juices over.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["roastTom"] },
-      { "id": "bake", "label": "Bake the fish", "detail": "Roast 10-12 min until the cod flakes at 60C.", "durationMin": 12, "durationConfidence": "explicit", "attention": "wait", "station": "oven", "dependsOn": ["addCod"], "timer": true },
-      { "id": "finish", "label": "Lemon & herbs", "detail": "Squeeze lemon, scatter herbs, serve with pan juices.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["bake"], "phase": "cleanup" }
+      {
+        "id": "preheat",
+        "label": "Preheat oven 220C",
+        "detail": "Get the oven fully hot before the tomatoes go in.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "oven",
+        "dependsOn": [],
+        "timer": true,
+        "phase": "prep"
+      },
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Pat cod dry and season; halve tomatoes, smash garlic.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "roastTom",
+        "label": "Roast tomatoes",
+        "detail": "Toss tomatoes, garlic, oil, chili; roast 12 min until bursting.",
+        "durationMin": 12,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "oven",
+        "dependsOn": [
+          "preheat",
+          "prep"
+        ],
+        "timer": true
+      },
+      {
+        "id": "addCod",
+        "label": "Nestle the cod",
+        "detail": "Season fillets, nestle into the tomatoes, spoon juices over.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "roastTom"
+        ]
+      },
+      {
+        "id": "bake",
+        "label": "Bake the fish",
+        "detail": "Roast 10-12 min until the cod flakes at 60C.",
+        "durationMin": 12,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "oven",
+        "dependsOn": [
+          "addCod"
+        ],
+        "timer": true
+      },
+      {
+        "id": "finish",
+        "label": "Lemon & herbs",
+        "detail": "Squeeze lemon, scatter herbs, serve with pan juices.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "bake"
+        ],
+        "phase": "cleanup"
+      }
     ]
   },
   "turkey-spinach-meatballs": {
     "serves": 4,
     "steps": [
-      { "id": "preheat", "label": "Preheat oven 200C", "detail": "Heat oven and line a tray (a rack helps).", "durationMin": 10, "durationConfidence": "estimated", "attention": "wait", "station": "oven", "dependsOn": [], "timer": true, "phase": "prep" },
-      { "id": "prep", "label": "Mise en place", "detail": "Finely chop spinach, mince garlic, measure seasoning.", "durationMin": 5, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "mix", "label": "Mix the meat", "detail": "Combine turkey, egg, spinach, garlic, oats, seasoning; don't overwork.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["prep"] },
-      { "id": "roll", "label": "Roll balls", "detail": "Form ~16 even balls with damp hands.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": ["mix"] },
-      { "id": "bake", "label": "Bake", "detail": "Bake 18-20 min until 74C and golden.", "durationMin": 20, "durationConfidence": "explicit", "attention": "wait", "station": "oven", "dependsOn": ["preheat", "roll"], "timer": true },
-      { "id": "serve", "label": "Rest & serve", "detail": "Rest 2 min; serve with marinara, greens, or grains.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["bake"], "phase": "cleanup" }
+      {
+        "id": "preheat",
+        "label": "Preheat oven 200C",
+        "detail": "Heat oven and line a tray (a rack helps).",
+        "durationMin": 10,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "oven",
+        "dependsOn": [],
+        "timer": true,
+        "phase": "prep"
+      },
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Finely chop spinach, mince garlic, measure seasoning.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "mix",
+        "label": "Mix the meat",
+        "detail": "Combine turkey, egg, spinach, garlic, oats, seasoning; don't overwork.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "roll",
+        "label": "Roll balls",
+        "detail": "Form ~16 even balls with damp hands.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [
+          "mix"
+        ]
+      },
+      {
+        "id": "bake",
+        "label": "Bake",
+        "detail": "Bake 18-20 min until 74C and golden.",
+        "durationMin": 20,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "oven",
+        "dependsOn": [
+          "preheat",
+          "roll"
+        ],
+        "timer": true
+      },
+      {
+        "id": "serve",
+        "label": "Rest & serve",
+        "detail": "Rest 2 min; serve with marinara, greens, or grains.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "bake"
+        ],
+        "phase": "cleanup"
+      }
     ]
   },
   "tuna-white-bean-salad": {
     "serves": 2,
     "steps": [
-      { "id": "prep", "label": "Mise en place", "detail": "Drain tuna, rinse beans, dice onion, chop parsley.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "dress", "label": "Whisk dressing", "detail": "Whisk lemon, oil, salt, pepper in a bowl.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["prep"] },
-      { "id": "onion", "label": "Mellow onion", "detail": "Stir diced onion into the dressing; let it mellow 5 min.", "durationMin": 5, "durationConfidence": "explicit", "attention": "wait", "station": "counter", "dependsOn": ["dress"], "timer": true },
-      { "id": "combine", "label": "Fold it together", "detail": "Fold in beans, flaked tuna, and parsley.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["onion"] },
-      { "id": "serve", "label": "Taste & serve", "detail": "Adjust lemon and salt; eat as-is or over greens.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["combine"], "phase": "cleanup" }
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Drain tuna, rinse beans, dice onion, chop parsley.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "dress",
+        "label": "Whisk dressing",
+        "detail": "Whisk lemon, oil, salt, pepper in a bowl.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "onion",
+        "label": "Mellow onion",
+        "detail": "Stir diced onion into the dressing; let it mellow 5 min.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "counter",
+        "dependsOn": [
+          "dress"
+        ],
+        "timer": true
+      },
+      {
+        "id": "combine",
+        "label": "Fold it together",
+        "detail": "Fold in beans, flaked tuna, and parsley.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "onion"
+        ]
+      },
+      {
+        "id": "serve",
+        "label": "Taste & serve",
+        "detail": "Adjust lemon and salt; eat as-is or over greens.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "combine"
+        ],
+        "phase": "cleanup"
+      }
     ]
   },
   "chicken-quinoa-bowl": {
     "serves": 2,
     "steps": [
-      { "id": "prep", "label": "Mise en place", "detail": "Rinse quinoa, cube chicken, gather toppings.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "quinoa", "label": "Simmer quinoa", "detail": "Simmer quinoa in water, covered, ~15 min; rest off heat.", "durationMin": 15, "durationConfidence": "explicit", "attention": "wait", "station": "stove", "dependsOn": ["prep"], "timer": true },
-      { "id": "sear", "label": "Sear chicken", "detail": "Toss chicken with cumin and salt; sear 6-8 min to 74C.", "durationMin": 8, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["prep"] },
-      { "id": "veg", "label": "Prep the veg", "detail": "Dice cucumber and halve tomatoes while things cook.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": ["prep"] },
-      { "id": "sauce", "label": "Whisk tahini sauce", "detail": "Stir tahini, lemon, and water into a drizzle.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["prep"] },
-      { "id": "build", "label": "Build the bowls", "detail": "Bowl quinoa, greens, veg, and chicken; drizzle sauce.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["quinoa", "sear", "veg", "sauce"], "phase": "cleanup" }
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Rinse quinoa, cube chicken, gather toppings.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "quinoa",
+        "label": "Simmer quinoa",
+        "detail": "Simmer quinoa in water, covered, ~15 min; rest off heat.",
+        "durationMin": 15,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "stove",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": true
+      },
+      {
+        "id": "sear",
+        "label": "Sear chicken",
+        "detail": "Toss chicken with cumin and salt; sear 6-8 min to 74C.",
+        "durationMin": 8,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "veg",
+        "label": "Prep the veg",
+        "detail": "Dice cucumber and halve tomatoes while things cook.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "sauce",
+        "label": "Whisk tahini sauce",
+        "detail": "Stir tahini, lemon, and water into a drizzle.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "build",
+        "label": "Build the bowls",
+        "detail": "Bowl quinoa, greens, veg, and chicken; drizzle sauce.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "quinoa",
+          "sear",
+          "veg",
+          "sauce"
+        ],
+        "phase": "cleanup"
+      }
     ]
   },
   "tofu-edamame-stirfry": {
     "serves": 2,
     "steps": [
-      { "id": "prep", "label": "Mise en place", "detail": "Press and cube tofu, grate ginger, prep veg.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "saucemix", "label": "Mix the sauce", "detail": "Stir tamari, vinegar, sesame oil, and cornstarch slurry.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["prep"] },
-      { "id": "tofu", "label": "Crisp the tofu", "detail": "Sear cubed tofu until golden on most sides; remove.", "durationMin": 6, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["prep"] },
-      { "id": "veg", "label": "Stir-fry veg", "detail": "Toss veg and edamame over high heat 3-4 min.", "durationMin": 4, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["tofu"] },
-      { "id": "sauce", "label": "Add aromatics & sauce", "detail": "Ginger and garlic 30 sec, then the sauce to thicken.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["veg", "saucemix"] },
-      { "id": "combine", "label": "Toss & serve", "detail": "Return tofu; toss until glossy and coated.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["sauce"], "phase": "cleanup" }
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Press and cube tofu, grate ginger, prep veg.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "saucemix",
+        "label": "Mix the sauce",
+        "detail": "Stir tamari, vinegar, sesame oil, and cornstarch slurry.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "tofu",
+        "label": "Crisp the tofu",
+        "detail": "Sear cubed tofu until golden on most sides; remove.",
+        "durationMin": 6,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "veg",
+        "label": "Stir-fry veg",
+        "detail": "Toss veg and edamame over high heat 3-4 min.",
+        "durationMin": 4,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "tofu"
+        ]
+      },
+      {
+        "id": "sauce",
+        "label": "Add aromatics & sauce",
+        "detail": "Ginger and garlic 30 sec, then the sauce to thicken.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "veg",
+          "saucemix"
+        ]
+      },
+      {
+        "id": "combine",
+        "label": "Toss & serve",
+        "detail": "Return tofu; toss until glossy and coated.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "sauce"
+        ],
+        "phase": "cleanup"
+      }
     ]
   },
   "sheet-pan-chicken-asparagus": {
     "serves": 2,
     "steps": [
-      { "id": "preheat", "label": "Preheat oven 220C", "detail": "Get the oven fully hot.", "durationMin": 8, "durationConfidence": "estimated", "attention": "wait", "station": "oven", "dependsOn": [], "timer": true, "phase": "prep" },
-      { "id": "prep", "label": "Mise en place", "detail": "Season chicken, trim asparagus, smash garlic, slice lemon.", "durationMin": 5, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "roastChicken", "label": "Roast chicken", "detail": "Tray the chicken with oil, garlic, paprika; roast 15 min.", "durationMin": 15, "durationConfidence": "explicit", "attention": "wait", "station": "oven", "dependsOn": ["preheat", "prep"], "timer": true },
-      { "id": "addAsp", "label": "Add asparagus", "detail": "Add spears and lemon slices to the tray.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["roastChicken"] },
-      { "id": "roastAsp", "label": "Roast asparagus", "detail": "Roast 8-10 min more until chicken is 74C and spears tender-crisp.", "durationMin": 10, "durationConfidence": "explicit", "attention": "wait", "station": "oven", "dependsOn": ["addAsp"], "timer": true },
-      { "id": "finish", "label": "Squeeze & serve", "detail": "Squeeze the roasted lemon over everything and serve.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["roastAsp"], "phase": "cleanup" }
+      {
+        "id": "preheat",
+        "label": "Preheat oven 220C",
+        "detail": "Get the oven fully hot.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "oven",
+        "dependsOn": [],
+        "timer": true,
+        "phase": "prep"
+      },
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Season chicken, trim asparagus, smash garlic, slice lemon.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "roastChicken",
+        "label": "Roast chicken",
+        "detail": "Tray the chicken with oil, garlic, paprika; roast 15 min.",
+        "durationMin": 15,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "oven",
+        "dependsOn": [
+          "preheat",
+          "prep"
+        ],
+        "timer": true
+      },
+      {
+        "id": "addAsp",
+        "label": "Add asparagus",
+        "detail": "Add spears and lemon slices to the tray.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "roastChicken"
+        ]
+      },
+      {
+        "id": "roastAsp",
+        "label": "Roast asparagus",
+        "detail": "Roast 8-10 min more until chicken is 74C and spears tender-crisp.",
+        "durationMin": 10,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "oven",
+        "dependsOn": [
+          "addAsp"
+        ],
+        "timer": true
+      },
+      {
+        "id": "finish",
+        "label": "Squeeze & serve",
+        "detail": "Squeeze the roasted lemon over everything and serve.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "roastAsp"
+        ],
+        "phase": "cleanup"
+      }
     ]
   },
   "steamed-ginger-fish": {
     "serves": 2,
     "steps": [
-      { "id": "prep", "label": "Mise en place", "detail": "Julienne ginger, slice scallions, set up the steamer plate.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "steamer", "label": "Heat the steamer", "detail": "Bring 2cm water to a simmer with a rack or plate.", "durationMin": 3, "durationConfidence": "estimated", "attention": "passive", "station": "stove", "dependsOn": ["prep"] },
-      { "id": "steam", "label": "Steam the fish", "detail": "Steam fish with half the ginger 7-9 min until it flakes.", "durationMin": 9, "durationConfidence": "explicit", "attention": "wait", "station": "stove", "dependsOn": ["steamer"], "timer": true },
-      { "id": "sauce", "label": "Warm the sauce", "detail": "Warm tamari with sugar and a splash of steaming water; pour over.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["steam"] },
-      { "id": "sizzle", "label": "Sizzle aromatics", "detail": "Top with scallion and ginger; pour over smoking-hot oil.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "stove", "dependsOn": ["sauce"] },
-      { "id": "serve", "label": "Garnish & serve", "detail": "Finish with cilantro and white pepper.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["sizzle"], "phase": "cleanup" }
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Julienne ginger, slice scallions, set up the steamer plate.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "steamer",
+        "label": "Heat the steamer",
+        "detail": "Bring 2cm water to a simmer with a rack or plate.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "passive",
+        "station": "stove",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "steam",
+        "label": "Steam the fish",
+        "detail": "Steam fish with half the ginger 7-9 min until it flakes.",
+        "durationMin": 9,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "stove",
+        "dependsOn": [
+          "steamer"
+        ],
+        "timer": true
+      },
+      {
+        "id": "sauce",
+        "label": "Warm the sauce",
+        "detail": "Warm tamari with sugar and a splash of steaming water; pour over.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "steam"
+        ]
+      },
+      {
+        "id": "sizzle",
+        "label": "Sizzle aromatics",
+        "detail": "Top with scallion and ginger; pour over smoking-hot oil.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "sauce"
+        ]
+      },
+      {
+        "id": "serve",
+        "label": "Garnish & serve",
+        "detail": "Finish with cilantro and white pepper.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "sizzle"
+        ],
+        "phase": "cleanup"
+      }
     ]
   },
   "turkey-taco-lettuce": {
     "serves": 2,
     "steps": [
-      { "id": "prep", "label": "Mise en place", "detail": "Dice onion, mince garlic, separate lettuce, ready toppings.", "durationMin": 4, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "aromatics", "label": "Soften aromatics", "detail": "Cook onion 3 min; add garlic and spices 30 sec.", "durationMin": 3, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["prep"] },
-      { "id": "brown", "label": "Brown the turkey", "detail": "Add turkey; break up and cook until no longer pink.", "durationMin": 5, "durationConfidence": "explicit", "attention": "active", "station": "stove", "dependsOn": ["aromatics"] },
-      { "id": "simmer", "label": "Saucy finish", "detail": "Add a splash of water and salt; simmer 3-4 min until glossy.", "durationMin": 4, "durationConfidence": "explicit", "attention": "passive", "station": "stove", "dependsOn": ["brown"], "timer": true },
-      { "id": "assemble", "label": "Build the cups", "detail": "Spoon into lettuce cups; top with lime, cilantro, salsa.", "durationMin": 3, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["simmer"], "phase": "cleanup" }
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Dice onion, mince garlic, separate lettuce, ready toppings.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "aromatics",
+        "label": "Soften aromatics",
+        "detail": "Cook onion 3 min; add garlic and spices 30 sec.",
+        "durationMin": 3,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "brown",
+        "label": "Brown the turkey",
+        "detail": "Add turkey; break up and cook until no longer pink.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "aromatics"
+        ]
+      },
+      {
+        "id": "simmer",
+        "label": "Saucy finish",
+        "detail": "Add a splash of water and salt; simmer 3-4 min until glossy.",
+        "durationMin": 4,
+        "durationConfidence": "explicit",
+        "attention": "passive",
+        "station": "stove",
+        "dependsOn": [
+          "brown"
+        ],
+        "timer": true
+      },
+      {
+        "id": "assemble",
+        "label": "Build the cups",
+        "detail": "Spoon into lettuce cups; top with lime, cilantro, salsa.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "simmer"
+        ],
+        "phase": "cleanup"
+      }
     ]
   },
   "cottage-cheese-savory-bowl": {
     "serves": 1,
     "steps": [
-      { "id": "prep", "label": "Mise en place", "detail": "Dice cucumber and halve the tomatoes.", "durationMin": 2, "durationConfidence": "estimated", "attention": "active", "station": "board", "dependsOn": [], "phase": "prep" },
-      { "id": "base", "label": "Season the base", "detail": "Spoon cottage cheese into a bowl; season with salt and pepper.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["prep"] },
-      { "id": "top", "label": "Add toppings", "detail": "Pile on cucumber and tomato.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["base"] },
-      { "id": "finish", "label": "Drizzle & serve", "detail": "Drizzle oil and lemon; scatter herbs and chili flakes.", "durationMin": 1, "durationConfidence": "estimated", "attention": "active", "station": "counter", "dependsOn": ["top"], "phase": "cleanup" }
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Dice cucumber and halve the tomatoes.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "phase": "prep"
+      },
+      {
+        "id": "base",
+        "label": "Season the base",
+        "detail": "Spoon cottage cheese into a bowl; season with salt and pepper.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "prep"
+        ]
+      },
+      {
+        "id": "top",
+        "label": "Add toppings",
+        "detail": "Pile on cucumber and tomato.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "base"
+        ]
+      },
+      {
+        "id": "finish",
+        "label": "Drizzle & serve",
+        "detail": "Drizzle oil and lemon; scatter herbs and chili flakes.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "top"
+        ],
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-black-beans": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Sort & rinse the beans",
+        "detail": "Pick out stones on a sheet pan, then rinse until the water runs clear.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "sink",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "saute-base",
+        "label": "Saute onion, garlic & spices",
+        "detail": "Soften the onion in oil 4-5 min, then bloom garlic, cumin, and oregano 30 sec.",
+        "durationMin": 6,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "load",
+        "label": "Add beans, water & salt",
+        "detail": "Stir in beans, 6 cups water, bay leaf, and salt, scraping the bottom clean.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "saute-base"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "Lid sealed, a full pot of cold water takes about 12 min to pressurize.",
+        "durationMin": 12,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "load"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "Pressure cook 30 min",
+        "detail": "High pressure for 30 min, or 35 if you want them soft enough to mash.",
+        "durationMin": 30,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Natural release 20 min",
+        "detail": "Leave the valve alone for 20 min so the bean foam settles.",
+        "durationMin": 20,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "vent",
+        "label": "Vent the rest",
+        "detail": "Release any residual pressure, then open the lid away from you.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "natural-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "season",
+        "label": "Lime, salt & rest",
+        "detail": "Pull the bay leaf, stir in lime, taste for salt, rest 5 min in the liquid.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "vent"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-chickpeas": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Sort & rinse the chickpeas",
+        "detail": "Check for stones and rinse in a colander until the water runs clear.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "sink",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "load",
+        "label": "Load pot with water & soda",
+        "detail": "Chickpeas, 8 cups water, 1 tsp baking soda, salt; keep the level at or below half.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "Eight cups of cold water takes roughly 13 min to reach high pressure.",
+        "durationMin": 13,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "load"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "Pressure cook 45 min",
+        "detail": "High pressure 45 min for hummus-soft chickpeas, 35 min if you want them intact.",
+        "durationMin": 45,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Natural release 20 min",
+        "detail": "No quick release here - soda-foamed chickpea water goes straight out the valve.",
+        "durationMin": 20,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "drain",
+        "label": "Drain & save the aquafaba",
+        "detail": "Drain over a bowl, keeping at least 2 cups of cooking liquid; skim loose skins.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "sink",
+        "dependsOn": [
+          "natural-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "hummus",
+        "label": "Blend the hummus",
+        "detail": "Whip tahini and lemon first, add warm chickpeas, then liquid and an ice cube.",
+        "durationMin": 7,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "mixer",
+        "dependsOn": [
+          "drain"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-white-rice": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Rinse & drain the rice",
+        "detail": "Three or four changes of cold water until clear, then drain hard.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "sink",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "load",
+        "label": "Load 1:1 rice and water",
+        "detail": "Rice, 2 cups water, salt, optional oil; shake the pot flat to level it.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "This volume pressurizes in about 7 min before the cook timer starts.",
+        "durationMin": 7,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "load"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "Pressure cook 4 min",
+        "detail": "High pressure: 3 min for basmati, 4 for jasmine, 5 for stickier grains.",
+        "durationMin": 4,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Natural release 10 min",
+        "detail": "Walk away for 10 min; venting early tears the grains open.",
+        "durationMin": 10,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "vent",
+        "label": "Quick release the rest",
+        "detail": "Flip the valve to release residual pressure and open the lid.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "natural-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "fluff",
+        "label": "Fluff & rest uncovered",
+        "detail": "Fork from the edges inward, then leave the lid off 3 min to steam off.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "vent"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-brown-rice": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Rinse & drain the rice",
+        "detail": "Two changes of cold water, then drain thoroughly so the ratio holds.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "sink",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "load",
+        "label": "Load 2 cups rice, 2.5 water",
+        "detail": "Add salt and optional oil, stir once, and shake the bed flat.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "About 8 min to pressurize; the 22-minute display starts after that.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "load"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "Pressure cook 22 min",
+        "detail": "High pressure: 20 min for brown basmati, 24 for short-grain brown.",
+        "durationMin": 22,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Natural release 10 min",
+        "detail": "Bran foams hard, so give it a full 10 min untouched.",
+        "durationMin": 10,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "vent",
+        "label": "Quick release the rest",
+        "detail": "Vent residual pressure through the valve and open the lid.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "natural-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "fluff",
+        "label": "Fluff with a fork",
+        "detail": "Lift from the edges toward the center instead of stirring.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "vent"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "rest",
+        "label": "Rest uncovered 3 min",
+        "detail": "Lid off so surface moisture steams away and the grains firm up.",
+        "durationMin": 3,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "counter",
+        "dependsOn": [
+          "fluff"
+        ],
+        "timer": true,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-steel-cut-oats": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Measure oats, water & salt",
+        "detail": "Get 2 cups oats, 6 cups water, oil, salt, and cinnamon on the counter.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "toast",
+        "label": "Toast the oats in fat",
+        "detail": "On Saute, stir the dry oats in melted oil 3-4 min until they smell nutty.",
+        "durationMin": 4,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "add-liquid",
+        "label": "Add water & scrape the base",
+        "detail": "Pour in 6 cups water, scrape up every toasted bit, add salt and cinnamon.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "toast"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "Eight cups of volume takes about 10 min to reach high pressure.",
+        "durationMin": 10,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "add-liquid"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "Pressure cook 4 min",
+        "detail": "High pressure: 3 min for chewy oats, 6 min for soft porridge.",
+        "durationMin": 4,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Natural release 15 min",
+        "detail": "Never vent oats early - the foam sprays hot starch out of the valve.",
+        "durationMin": 15,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "vent",
+        "label": "Release any residual pressure",
+        "detail": "Flip the valve, wait for the float to drop, and open the lid.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "natural-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "stir",
+        "label": "Stir it together",
+        "detail": "It looks watery on top; 30 sec of stirring pulls it into porridge.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "vent"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "portion",
+        "label": "Portion into six containers",
+        "detail": "Divide while hot and leave the toppings off until serving.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "stir"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-pulled-pork": {
+    "serves": 8,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Mise en place & rub",
+        "detail": "Cut the shoulder into 4 chunks and press the spice rub onto every face.",
+        "durationMin": 12,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "sear",
+        "label": "Sear the pork in batches",
+        "detail": "Saute High, two chunks at a time, 3-4 min a side until deeply browned.",
+        "durationMin": 12,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "deglaze",
+        "label": "Onion & deglaze the base",
+        "detail": "Soften the onion, add broth and vinegar, and scrape the base completely clean.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "sear"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "A full pot of meat and liquid takes roughly 15 min before the cook timer starts.",
+        "durationMin": 15,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "deglaze"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "Pressure cook 55 min",
+        "detail": "High Pressure 55 min turns the collagen in the shoulder chunks to gelatin.",
+        "durationMin": 55,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Natural release 20 min",
+        "detail": "Leave the valve alone for 20 min so the meat re-absorbs its juices instead of seizing.",
+        "durationMin": 20,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "quick-release",
+        "label": "Quick release the remainder",
+        "detail": "Flip the valve to vent whatever pressure is left, then open the lid away from you.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "natural-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "shred",
+        "label": "Shred the pork",
+        "detail": "Pull the chunks apart with two forks, discarding the thick fat seams.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "quick-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "reduce",
+        "label": "Reduce the cooking liquid",
+        "detail": "Saute High and boil the liquid down by about half, 8-10 min.",
+        "durationMin": 10,
+        "durationConfidence": "explicit",
+        "attention": "passive",
+        "station": "pressure",
+        "dependsOn": [
+          "quick-release"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "dress",
+        "label": "Skim & dress the pork",
+        "detail": "Skim the fat, then pour 1 to 1 1/2 cups of the reduced liquid back over the shreds.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "shred",
+          "reduce"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-pot-roast": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Cut the chuck into 3 pieces, halve the potatoes, cut the carrots, slice the onion.",
+        "durationMin": 10,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "sear",
+        "label": "Sear the chuck",
+        "detail": "Saute High, one or two pieces at a time, about 4 min a side until dark.",
+        "durationMin": 10,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "deglaze",
+        "label": "Aromatics & deglaze",
+        "detail": "Soften onion and garlic 3 min, add broth and tamari, scrape the base clean.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "sear"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "About 13 min with 3 lb of beef and 2 cups of liquid in the pot.",
+        "durationMin": 13,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "deglaze"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "cook-beef",
+        "label": "Pressure cook the beef 45 min",
+        "detail": "High Pressure 45 min for chuck cut into three thick pieces.",
+        "durationMin": 45,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Natural release 15 min",
+        "detail": "Let the pressure fall on its own, then vent the remainder.",
+        "durationMin": 15,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "cook-beef"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "add-veg",
+        "label": "Add potatoes & carrots",
+        "detail": "Tuck the vegetables into the liquid around the beef; stay under the 2/3 line.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "natural-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure-2",
+        "label": "Come back to pressure",
+        "detail": "About 8 min the second time, since the liquid is already hot.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "add-veg"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "cook-veg",
+        "label": "Pressure cook the vegetables 5 min",
+        "detail": "High Pressure 5 min, then quick release immediately or they turn to mush.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure-2"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "gravy",
+        "label": "Quick release & thicken the gravy",
+        "detail": "Vent, lift everything out, skim, then Saute and whisk in the cornstarch slurry.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "cook-veg"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-whole-chicken": {
+    "serves": 4,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Dry, season & truss",
+        "detail": "Pat the bird bone-dry, rub it inside and out, stuff the lemon and garlic, tie the legs.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "sear",
+        "label": "Sear breast-side down",
+        "detail": "Saute High, breast down and undisturbed 5-6 min, then 2 min on the back.",
+        "durationMin": 8,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "deglaze",
+        "label": "Deglaze & set the trivet",
+        "detail": "Broth in, scrape the base clean, then trivet in and the chicken breast-side up on it.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "sear"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "Roughly 12 min with a whole bird and 1 cup of broth in the pot.",
+        "durationMin": 12,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "deglaze"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "Pressure cook 25 min (6 min per pound)",
+        "detail": "High Pressure 25 min for a 4 lb bird, 30 min for 5 lb.",
+        "durationMin": 25,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Natural release 15 min",
+        "detail": "A quick release here squeezes juice straight out of the breast; wait it out.",
+        "durationMin": 15,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "temp-check",
+        "label": "Lift out & check 74C",
+        "detail": "Thickest part of the thigh should read 74C; 5 more min at pressure if not.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "natural-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "broil",
+        "label": "Broil to crisp the skin",
+        "detail": "5-7 min under a hot broiler until the skin browns and tightens.",
+        "durationMin": 6,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "oven",
+        "dependsOn": [
+          "temp-check"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "rest",
+        "label": "Rest 10 min",
+        "detail": "Rest the bird on the tray before carving so the juices settle.",
+        "durationMin": 10,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "counter",
+        "dependsOn": [
+          "broil"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "carve",
+        "label": "Carve & strain the jus",
+        "detail": "Carve the bird and strain the pot liquid for a light jus or stock.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [
+          "rest"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-shredded-chicken": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Measure the spices and broth; separate the breasts if they are frozen together.",
+        "durationMin": 6,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "bloom",
+        "label": "Bloom the spices on Saute",
+        "detail": "Oil in, then cumin, paprika and garlic powder for 45 sec until toasted.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "deglaze",
+        "label": "Broth in, scrape the base",
+        "detail": "Pour the broth in fast and scrape before the spices scorch onto the base.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "bloom"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "About 10 min, and longer if the chicken went in frozen.",
+        "durationMin": 10,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "deglaze"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "Pressure cook: 10 min fresh, 15 min frozen",
+        "detail": "High Pressure; add 5 min for thighs instead of breasts.",
+        "durationMin": 15,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Natural release 10 min",
+        "detail": "Lean breast turns stringy on a fast release, so give it the full 10 min.",
+        "durationMin": 10,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "quick-release",
+        "label": "Quick release",
+        "detail": "Vent the remaining pressure and open the lid away from you.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "natural-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "shred",
+        "label": "Check 74C & shred",
+        "detail": "Confirm the thickest breast reads 74C, then shred with two forks.",
+        "durationMin": 7,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "quick-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "moisten",
+        "label": "Reduce & moisten the shreds",
+        "detail": "Saute the liquid down to about 1 cup, then stir it back through with the lime.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "shred"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-baby-back-ribs": {
+    "serves": 4,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Membrane off, rub on",
+        "detail": "Peel the silverskin off the bone side, rub both faces, cut the rack in half.",
+        "durationMin": 12,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "load",
+        "label": "Liquid, trivet, ribs on edge",
+        "detail": "Water and vinegar under the trivet, then stand the rib halves curled around the wall.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "About 12 min with a full rack and 1 cup of liquid.",
+        "durationMin": 12,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "load"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "Pressure cook 25 min",
+        "detail": "High Pressure 25 min for fall-off-the-bone, 20 min if you want some chew.",
+        "durationMin": 25,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Natural release 15 min",
+        "detail": "Full natural release stops the meat tightening back onto the bones.",
+        "durationMin": 15,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "preheat-broiler",
+        "label": "Preheat the broiler",
+        "detail": "Start the broiler while the pot is releasing so it is hot when the ribs come out.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "oven",
+        "dependsOn": [],
+        "timer": true,
+        "phase": "prep"
+      },
+      {
+        "id": "quick-release",
+        "label": "Quick release",
+        "detail": "Vent the remaining pressure and lift the racks out carefully; they are fragile.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "natural-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "sauce",
+        "label": "Sauce the racks",
+        "detail": "Ribs meat side up on a foil-lined tray, brushed with a thick coat of sauce.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "quick-release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "broil",
+        "label": "Broil 5-7 min to set the glaze",
+        "detail": "6 inches from the element until the sauce bubbles and darkens; do not walk away.",
+        "durationMin": 7,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "oven",
+        "dependsOn": [
+          "sauce",
+          "preheat-broiler"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "rest",
+        "label": "Rest & cut between the bones",
+        "detail": "Rest 5 min, then cut meat side down so you can see the bones.",
+        "durationMin": 6,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [
+          "broil"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-chili": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Dice onion and pepper, mince garlic, rinse the beans, measure the spices.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "brown-beef",
+        "label": "Brown the beef on Saute",
+        "detail": "Break the beef into the hot dry pot and brown 8 min, then pour off most of the fat.",
+        "durationMin": 8,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "aromatics",
+        "label": "Onion, pepper, spices, tomato paste",
+        "detail": "Cook the vegetables 4 min, then toast garlic, spices, and paste 1 min.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "brown-beef"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "deglaze",
+        "label": "Deglaze until the bottom is clean",
+        "detail": "Add the broth and scrape every stuck patch loose or you will get a burn notice.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "aromatics"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "layer",
+        "label": "Layer beans and tomatoes, do not stir",
+        "detail": "Scatter the beans over the meat and float the crushed tomatoes on top unstirred.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "deglaze"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "Lid on and sealed; a full pot takes about 12 min before the timer starts.",
+        "durationMin": 12,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "layer"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "High Pressure 15 min",
+        "detail": "Cook at high pressure for 15 minutes.",
+        "durationMin": 15,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "release",
+        "label": "Natural release 10 min, then vent",
+        "detail": "Let it drop on its own 10 min so the chili does not spit through the valve.",
+        "durationMin": 12,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "thicken",
+        "label": "Stir and thicken on Saute",
+        "detail": "Stir it together, simmer 5 min uncovered if loose, then season with salt and acid.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "passive",
+        "station": "pressure",
+        "dependsOn": [
+          "release"
+        ],
+        "timer": true,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-dal": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Rinse lentils and prep aromatics",
+        "detail": "Rinse the lentils until the water runs clear; dice onion, grate ginger, mince garlic.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "saute-aromatics",
+        "label": "Saute onion, ginger, garlic, spices",
+        "detail": "Onion 4 min, then ginger and garlic 1 min, then turmeric and coriander 30 sec.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "tomatoes-deglaze",
+        "label": "Tomatoes, then deglaze the base",
+        "detail": "Break the tomatoes down with a splash of water while scraping the pot clean.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "saute-aromatics"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "load",
+        "label": "Add lentils, water, salt",
+        "detail": "Stir once so nothing sits dry on the bottom, then lid on and valve sealed.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "tomatoes-deglaze"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "Roughly 10 min for four cups of water plus lentils to build pressure.",
+        "durationMin": 10,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "load"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "High Pressure 5 min",
+        "detail": "Cook at high pressure for 5 minutes.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Full natural release 15 min",
+        "detail": "Do not touch the valve; foaming dal sprays starch through a quick release.",
+        "durationMin": 15,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "tadka",
+        "label": "Fry the tadka",
+        "detail": "Pop cumin seeds in hot oil, add chilies and asafoetida, chili powder off the heat.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "stove",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "finish",
+        "label": "Whisk smooth and pour the tadka over",
+        "detail": "Thin with hot water, add the tadka, lemon, and cilantro, then taste for salt.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "natural-release",
+          "tadka"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-chicken-stock": {
+    "serves": 10,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Break down bones, chunk the vegetables",
+        "detail": "Pack the bones flat and cut onion, carrot, and celery into big pieces.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "brown-bones",
+        "label": "Brown the bones on Saute",
+        "detail": "Two batches, 4 min each, until the bones take real color.",
+        "durationMin": 8,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "deglaze",
+        "label": "Deglaze the fond",
+        "detail": "Add a cup of water and scrape the base completely clean, then cancel Saute.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "brown-bones"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "fill",
+        "label": "Fill to the 2/3 line, no further",
+        "detail": "Add vegetables and aromatics, then cold water only up to the 2/3 max line.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "deglaze"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "About 15 min for a pot this full of cold water to seal and build pressure.",
+        "durationMin": 15,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "fill"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "High Pressure 45 min",
+        "detail": "Cook at high pressure for 45 minutes.",
+        "durationMin": 45,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural-release",
+        "label": "Full natural release 20 min",
+        "detail": "Never vent hot fatty stock; wait for the float valve to drop by itself.",
+        "durationMin": 20,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "strain",
+        "label": "Strain through a lined sieve",
+        "detail": "Ladle through damp cloth and let it drip; pressing the solids clouds the stock.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "sink",
+        "dependsOn": [
+          "natural-release"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      },
+      {
+        "id": "cool",
+        "label": "Cool fast in shallow containers",
+        "detail": "Ice bath or shallow trays to get it under 5C, then chill and lift off the fat cap.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "strain"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-chicken-soup": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Dice the mirepoix, mince garlic, pat the thighs dry, measure the stock.",
+        "durationMin": 10,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "brown-thighs",
+        "label": "Brown thighs skin-side down",
+        "detail": "Six minutes undisturbed on Saute High until the skin releases, then remove.",
+        "durationMin": 6,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "mirepoix",
+        "label": "Sweat onion, carrot, celery",
+        "detail": "Five minutes in the rendered fat, then garlic and thyme for 30 sec.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "brown-thighs"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "deglaze",
+        "label": "Deglaze with a cup of stock",
+        "detail": "Scrape the fond loose until the spoon glides, then cancel Saute.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "mirepoix"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "Two liters of cold liquid takes about 12 min to reach high pressure.",
+        "durationMin": 12,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "deglaze"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "High Pressure 12 min",
+        "detail": "Cook the thighs at high pressure for 12 minutes.",
+        "durationMin": 12,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "release",
+        "label": "Natural release 10 min, then vent",
+        "detail": "A pot this full sputters broth if you crack the valve hot.",
+        "durationMin": 12,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "shred",
+        "label": "Shred the chicken",
+        "detail": "Pull the thighs out, shred with two forks, discard bones, skin, and bay.",
+        "durationMin": 6,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [
+          "release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "noodles",
+        "label": "Noodles on Saute 6-8 min",
+        "detail": "Simmer the noodles in the broth to just short of tender; they keep softening.",
+        "durationMin": 8,
+        "durationConfidence": "explicit",
+        "attention": "passive",
+        "station": "pressure",
+        "dependsOn": [
+          "release"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "finish",
+        "label": "Return chicken, lemon and dill",
+        "detail": "Off the heat, stir the chicken back in and salt harder than feels right.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "shred",
+          "noodles"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-risotto": {
+    "serves": 4,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Mince shallot, grate cheese, heat stock",
+        "detail": "Everything ready before you start; the finish is under five minutes.",
+        "durationMin": 6,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "sweat-shallot",
+        "label": "Sweat the shallot on Saute",
+        "detail": "Three minutes in oil and butter until soft with no color.",
+        "durationMin": 4,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "toast-rice",
+        "label": "Toast the rice",
+        "detail": "Stir the dry rice 2-3 min until the edges go translucent and it smells nutty.",
+        "durationMin": 3,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "sweat-shallot"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "deglaze-wine",
+        "label": "Deglaze with white wine",
+        "detail": "Stir until nearly evaporated, scraping the base clean so rice cannot scorch.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "toast-rice"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "add-stock",
+        "label": "Add hot stock and level the rice",
+        "detail": "Stir once, level it so no grains sit above the liquid, lid on and sealed.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "deglaze-wine"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "come-to-pressure",
+        "label": "Come to pressure",
+        "detail": "Hot stock and a small volume bring it up in roughly 8 min.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "add-stock"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressure-cook",
+        "label": "High Pressure 6 min",
+        "detail": "Exactly 6 minutes at high pressure; longer turns it to porridge.",
+        "durationMin": 6,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "come-to-pressure"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "quick-release",
+        "label": "Quick release immediately",
+        "detail": "Vent the moment the timer sounds, standing clear of the valve.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "passive",
+        "station": "pressure",
+        "dependsOn": [
+          "pressure-cook"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "mantecare",
+        "label": "Beat in butter and Parmigiano",
+        "detail": "Off the heat, beat hard for a full minute until it turns glossy, then serve.",
+        "durationMin": 3,
+        "durationConfidence": "explicit",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "quick-release"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-hard-boiled-eggs": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Get out 12 cold eggs, the trivet, and a large bowl for the ice bath.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "load",
+        "label": "Load water, trivet, eggs",
+        "detail": "Pour in 1 cup cold water, set the trivet, stack the eggs on top.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "icebath",
+        "label": "Build the ice bath",
+        "detail": "Fill a large bowl with ice and cold water and set it beside the pot.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "sink",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "pressurize",
+        "label": "Come to pressure",
+        "detail": "Lid on, valve Sealing; the pot needs about 6 min to seal and pressurize.",
+        "durationMin": 6,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "load"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "cook",
+        "label": "High pressure 5 min",
+        "detail": "Cook the eggs 5 min at high pressure.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressurize"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural",
+        "label": "Natural release 5 min",
+        "detail": "Leave the pot completely alone for exactly 5 min.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "release",
+        "label": "Quick release the rest",
+        "detail": "Move the valve to Venting and open once the pin drops.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "natural"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "bath",
+        "label": "Ice bath 5 min",
+        "detail": "Tongs the eggs straight into the ice water and leave them 5 min.",
+        "durationMin": 5,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "counter",
+        "dependsOn": [
+          "release",
+          "icebath"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "peel",
+        "label": "Peel",
+        "detail": "Crack the fat end, roll the egg under your palm, peel under cold water.",
+        "durationMin": 4,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "sink",
+        "dependsOn": [
+          "bath"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-yogurt": {
+    "serves": 8,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Get out 2 L milk, the starter, and an instant-read thermometer.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "sanitize",
+        "label": "Wash and dry the pot",
+        "detail": "Clean the inner pot, lid, and sealing ring so nothing competes with the culture.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "sink",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "scald",
+        "label": "Scald the milk to 82C",
+        "detail": "Press Yogurt and adjust to Boil; stir the bottom now and then so it does not scorch.",
+        "durationMin": 30,
+        "durationConfidence": "estimated",
+        "attention": "passive",
+        "station": "pressure",
+        "dependsOn": [
+          "sanitize"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "cool",
+        "label": "Cool to 43C",
+        "detail": "Lift the inner pot out and let it drop to 43C; above 46C kills the culture.",
+        "durationMin": 45,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "counter",
+        "dependsOn": [
+          "scald"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "temper",
+        "label": "Temper in the starter",
+        "detail": "Whisk 2 tbsp yogurt into a cup of warm milk, then stir it back into the pot.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "cool"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "incubate",
+        "label": "Incubate 8 hours on Yogurt",
+        "detail": "Lid on, press Yogurt, set 8:00. No pressure involved; do not stir or peek.",
+        "durationMin": 480,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "temper"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "chill",
+        "label": "Chill 6 hours",
+        "detail": "Refrigerate undisturbed; it firms up considerably as it cools.",
+        "durationMin": 360,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "fridge",
+        "dependsOn": [
+          "incubate"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "jar",
+        "label": "Jar it and save starter",
+        "detail": "Spoon into clean jars and set aside 2 tbsp to start the next batch.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "chill"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-mashed-potatoes": {
+    "serves": 6,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Peel and cut the potatoes",
+        "detail": "Peel 1.4 kg Yukon Golds and cut them into even 5cm chunks.",
+        "durationMin": 10,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "load",
+        "label": "Load pot: potatoes, 1 cup liquid",
+        "detail": "Potatoes straight into the water or stock with 1 tsp salt, no trivet.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "warmdairy",
+        "label": "Warm the butter and milk",
+        "detail": "Heat 85g butter with 180ml milk 60-90 sec; cold dairy makes the mash gluey.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "microwave",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressurize",
+        "label": "Come to pressure",
+        "detail": "Lid on, valve Sealing; about 9 min before the cook time starts.",
+        "durationMin": 9,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "load"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "cook",
+        "label": "High pressure 8 min",
+        "detail": "Cook the potato chunks 8 min at high pressure.",
+        "durationMin": 8,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressurize"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "release",
+        "label": "Quick release",
+        "detail": "Valve to Venting the moment it beeps so they do not overcook.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "cook"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "drain",
+        "label": "Drain the excess liquid",
+        "detail": "Tip off standing liquid but keep a few tablespoons in reserve.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "sink",
+        "dependsOn": [
+          "release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "mash",
+        "label": "Mash in the pot",
+        "detail": "Add the warm butter and milk and mash by hand; never a stick blender.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "drain",
+          "warmdairy"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "season",
+        "label": "Season and taste",
+        "detail": "Salt hard, then white pepper, then taste again before serving.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "mash"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-steamed-vegetables": {
+    "serves": 4,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Cut everything to one size",
+        "detail": "Cut 700g of vegetables so the whole basket finishes at the same moment.",
+        "durationMin": 6,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "board",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "load",
+        "label": "Load water, basket, vegetables",
+        "detail": "1 cup cold water in the pot, basket in, vegetables above the water line.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressurize",
+        "label": "Come to pressure",
+        "detail": "Lid on, valve Sealing; roughly 5 min before the count starts.",
+        "durationMin": 5,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "load"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "cook",
+        "label": "High pressure 0-3 min",
+        "detail": "Florets 0 min, green beans 1 min, carrots and sprouts 2-3 min.",
+        "durationMin": 2,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressurize"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "release",
+        "label": "Instant quick release",
+        "detail": "Valve to Venting the second it beeps; 30 seconds of delay is a doneness level.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "pressure",
+        "dependsOn": [
+          "cook"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "lift",
+        "label": "Lift the basket out",
+        "detail": "Get the vegetables onto a plate immediately, away from the residual heat.",
+        "durationMin": 1,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "release"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "dress",
+        "label": "Dress while hot",
+        "detail": "Salt, olive oil, and a squeeze of lemon while they are still steaming.",
+        "durationMin": 2,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "lift"
+        ],
+        "timer": false,
+        "phase": "cleanup"
+      }
+    ]
+  },
+  "ip-cheesecake": {
+    "serves": 8,
+    "steps": [
+      {
+        "id": "prep",
+        "label": "Mise en place",
+        "detail": "Measure everything, fold a foil sling, and set the trivet in the pot.",
+        "durationMin": 8,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "soften",
+        "label": "Cream cheese and eggs to room temp",
+        "detail": "A full hour on the counter; cold cream cheese never beats smooth.",
+        "durationMin": 60,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "counter",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": true,
+        "phase": "prep"
+      },
+      {
+        "id": "crust",
+        "label": "Press and freeze the crust",
+        "detail": "Press crumbs, sugar, and butter into the pan, then freeze it 10 min.",
+        "durationMin": 10,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "prep"
+        ],
+        "timer": false,
+        "phase": "prep"
+      },
+      {
+        "id": "batter",
+        "label": "Beat the batter",
+        "detail": "Cream cheese and sugar smooth, then cornstarch, vanilla, sour cream, eggs on lowest speed.",
+        "durationMin": 10,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "mixer",
+        "dependsOn": [
+          "soften"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "fill",
+        "label": "Fill and cover with foil",
+        "detail": "Pour in, rap out the bubbles, cover tightly so condensation cannot drip.",
+        "durationMin": 3,
+        "durationConfidence": "estimated",
+        "attention": "active",
+        "station": "counter",
+        "dependsOn": [
+          "crust",
+          "batter"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "pressurize",
+        "label": "Come to pressure",
+        "detail": "Pan onto the trivet over 1 1/2 cups water; about 10 min to pressurize.",
+        "durationMin": 10,
+        "durationConfidence": "estimated",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "fill"
+        ],
+        "timer": false,
+        "phase": "cook"
+      },
+      {
+        "id": "cook",
+        "label": "High pressure 37 min",
+        "detail": "Steam the cheesecake 37 min; the center should still wobble as one piece.",
+        "durationMin": 37,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "pressurize"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "natural",
+        "label": "Full natural release",
+        "detail": "Do not touch the valve; about 20 min until the pin drops. This prevents cracks.",
+        "durationMin": 20,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "pressure",
+        "dependsOn": [
+          "cook"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "cool",
+        "label": "Blot and cool 1 hour",
+        "detail": "Blot the surface dry with a paper towel and cool on the counter.",
+        "durationMin": 60,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "counter",
+        "dependsOn": [
+          "natural"
+        ],
+        "timer": true,
+        "phase": "cook"
+      },
+      {
+        "id": "chill",
+        "label": "Chill 6 hours",
+        "detail": "Refrigerate at least 6 hours, overnight if you can; it is a different dessert cold.",
+        "durationMin": 360,
+        "durationConfidence": "explicit",
+        "attention": "wait",
+        "station": "fridge",
+        "dependsOn": [
+          "cool"
+        ],
+        "timer": true,
+        "phase": "cleanup"
+      }
     ]
   }
 }

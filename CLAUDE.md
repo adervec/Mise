@@ -24,15 +24,16 @@ When asked to report on progress:
 - **Exclude** entries with `simulate: true` or `speed > 1` — those are previews.
 - Interesting angles: cooking frequency over time, repeat recipes, skipped-step
   rate (recipes with many skips may have bad DAGs worth fixing), unexplored
-  areas of the 114-recipe catalog, elapsed vs planned time.
+  areas of the 134-recipe catalog, elapsed vs planned time.
 
 ## Adding or updating recipes
 
 Never edit `public/data/*.json` directly — it's generated. New/changed recipes
 go in two committed source files (copy the shape of existing entries):
 
-1. `src/data/extra-recipes.json` — catalog items (`type: "recipe"`, see
-   `src/data/types.ts`).
+1. `src/data/extra-recipes.json` — catalog items. Despite the name it takes any
+   `cat` from `src/data/types.ts` (`recipe`, `technique`, `reference`,
+   `equipment`, …); only `cat: "recipe"` entries need a DAG and a `checklist`.
 2. `src/data/extra-dags.json` — the step DAG: steps with `id`, `label`,
    `detail`, `durationMin`, `attention` (`active` | `passive` | `wait`),
    `station`, `dependsOn`. Valid stations are in
