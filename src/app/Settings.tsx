@@ -1,9 +1,27 @@
+import { useState } from "react";
 import { useTheme, THEMES } from "./theme";
 import { useOrientation, ORIENTATIONS } from "./orientation";
 import { useFilters } from "./filters";
 import { useUi } from "./ui";
 import { DIETS } from "@/data/catalog";
 import { exportCookLog, readCookLog } from "@/execute/runtime/cookLog";
+import {
+  syncCookLog,
+  disconnectDrive,
+  driveOriginAllowed,
+  driveProfile,
+  syncEnabled,
+  lastSyncedAt,
+} from "@/execute/runtime/driveSync";
+
+function agoLabel(at: number | null): string {
+  if (!at) return "never";
+  const min = Math.round((Date.now() - at) / 60000);
+  if (min < 1) return "just now";
+  if (min < 60) return `${min} min ago`;
+  const h = Math.round(min / 60);
+  return h < 24 ? `${h} h ago` : `${Math.round(h / 24)} d ago`;
+}
 
 export default function Settings() {
   const open = useUi((s) => s.settingsOpen);
@@ -13,6 +31,29 @@ export default function Settings() {
   const diet = useFilters((s) => s.diet);
   const toggleDiet = useFilters((s) => s.toggleDiet);
   const clearDiet = useFilters((s) => s.clearDiet);
+  const [sync, setSync] = useState<{ busy: boolean; msg: string; err: boolean }>({
+    busy: false,
+    msg: "",
+    err: false,
+  });
+
+  async function runSync() {
+    setSync({ busy: true, msg: "Syncing…", err: false });
+    try {
+      const r = await syncCookLog();
+      const who = driveProfile()?.email;
+      setSync({
+        busy: false,
+        err: false,
+        msg:
+          `${r.total} cooks in Drive` +
+          (r.pulled > 0 ? `, ${r.pulled} pulled from another device` : "") +
+          (who ? ` · ${who}` : ""),
+      });
+    } catch (e) {
+      setSync({ busy: false, err: true, msg: (e as Error).message || "Sync failed." });
+    }
+  }
 
   if (!open) return null;
   const activeCount = DIETS.filter((d) => diet[d.key]).length;
@@ -122,6 +163,48 @@ export default function Settings() {
                 Export cook log
               </button>
             </div>
+          </section>
+
+          <section className="settings-section">
+            <h3>Google Drive sync</h3>
+            <p className="hint">
+              {driveOriginAllowed()
+                ? "Keep your cook log in step across phone and desktop. It goes to a private app folder in your own Drive — nothing passes through a server, and the two logs merge rather than overwrite."
+                : "Drive sync only runs on the published site (adervec.github.io) or a local dev server."}
+            </p>
+            {driveOriginAllowed() && (
+              <>
+                <div className="settings-actions">
+                  <button className="text-btn" onClick={runSync} disabled={sync.busy}>
+                    {sync.busy ? "Syncing…" : syncEnabled() ? "Sync now" : "Connect Google Drive"}
+                  </button>
+                  {syncEnabled() && !sync.busy && (
+                    <button
+                      className="text-btn"
+                      onClick={() => {
+                        disconnectDrive();
+                        setSync({ busy: false, msg: "Disconnected on this device.", err: false });
+                      }}
+                    >
+                      Disconnect
+                    </button>
+                  )}
+                </div>
+                <p className="hint" style={{ marginTop: 10, marginBottom: 0 }}>
+                  {sync.msg ? (
+                    <span style={{ color: sync.err ? "var(--accent-4)" : "var(--accent-2)" }}>
+                      {sync.msg}
+                    </span>
+                  ) : syncEnabled() ? (
+                    `${
+                      lastSyncedAt() ? `Last synced ${agoLabel(lastSyncedAt())}` : "Not synced yet"
+                    }. Syncs on its own when you open the app and after each cook.`
+                  ) : (
+                    "Signs in with the same Google account you use for Tachyread."
+                  )}
+                </p>
+              </>
+            )}
           </section>
         </div>
       </aside>

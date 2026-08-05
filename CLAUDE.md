@@ -20,6 +20,11 @@ Cook log → Export** as `mise-cook-log.json` (usually saved to the repo root
 or `~/Downloads`). Entry fields: `recipeId`, `title`, `finishedAt`,
 `elapsedMin`, `steps {total, completed, skipped}`, `simulate`, `speed`.
 
+The log can also sync through **Settings → Google Drive sync** (private Drive
+appDataFolder, merged by union so two devices converge). It reuses Tachyread's
+OAuth client id, so both apps share one Drive app folder and one grant —
+revoking access in the Google account page cuts off both.
+
 When asked to report on progress:
 - **Exclude** entries with `simulate: true` or `speed > 1` — those are previews.
 - Interesting angles: cooking frequency over time, repeat recipes, skipped-step
@@ -46,7 +51,8 @@ rather than shipping a fallback.
 ## Constraints
 
 - Keep the execute engine a lazy chunk — nothing in `src/app/` may import from
-  `src/execute/` except zero-dependency modules like `cookLog.ts`.
+  `src/execute/` except zero-dependency modules like `cookLog.ts` and
+  `driveSync.ts` (it imports only `cookLog.ts`, so it stays a leaf).
 - Catalog JSON is fetched at startup, not bundled.
 - The user launches via `Mise.cmd` (or the installed PWA). After changing
   recipes, tell them to run it once so the service worker picks up the update.

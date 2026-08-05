@@ -35,6 +35,34 @@ export function appendCookLog(entry: CookLogEntry): void {
   }
 }
 
+export function writeCookLog(log: CookLogEntry[]): void {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(log.slice(-MAX)));
+  } catch {
+    /* quota — ignore */
+  }
+}
+
+/** One recipe cannot finish twice at the same instant, so this identifies a cook. */
+function entryKey(e: CookLogEntry): string {
+  return e.recipeId + "@" + e.finishedAt;
+}
+
+// Cook logs are append-only records, so two devices merge by UNION rather than
+// last-writer-wins: order-independent, so it converges no matter who syncs first
+// and nothing a device already recorded can be clobbered by a stale copy.
+export function mergeCookLog(a: CookLogEntry[], b: CookLogEntry[]): CookLogEntry[] {
+  const byKey = new Map<string, CookLogEntry>();
+  for (const e of [...a, ...b]) {
+    if (e && typeof e.recipeId === "string" && typeof e.finishedAt === "string") {
+      byKey.set(entryKey(e), e);
+    }
+  }
+  return [...byKey.values()]
+    .sort((x, y) => Date.parse(x.finishedAt) - Date.parse(y.finishedAt))
+    .slice(-MAX);
+}
+
 /** Download the log as mise-cook-log.json (drop it in the project folder for Claude). */
 export function exportCookLog(): void {
   const blob = new Blob([JSON.stringify(readCookLog(), null, 2)], {

@@ -4,6 +4,7 @@ import { getDag, type DagSource } from "../model/dag";
 import * as E from "./engine";
 import { clearCook, loadCook, saveCook } from "./persistence";
 import { appendCookLog } from "./cookLog";
+import { autoSyncCookLog } from "./driveSync";
 import {
   beepDone,
   beepStep,
@@ -74,6 +75,7 @@ export const useExecute = create<ExecuteStore>((set, get) => {
       simulate: state.simulate,
       speed: state.speed,
     });
+    autoSyncCookLog(); // silent no-op unless Drive sync is connected
   }
 
   function startClock() {

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./app/App";
 import { loadCatalog } from "./data/catalog";
+import { autoSyncCookLog } from "./execute/runtime/driveSync";
 import "./styles/theme.css";
 import "./styles/execute.css";
 
@@ -15,4 +16,5 @@ loadCatalog().then(() => {
       </BrowserRouter>
     </React.StrictMode>
   );
+  autoSyncCookLog(); // pulls cooks logged on another device; no-op until connected
 });
