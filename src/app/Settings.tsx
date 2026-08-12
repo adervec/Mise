@@ -206,6 +206,21 @@ export default function Settings() {
               </>
             )}
           </section>
+
+          <section className="settings-section">
+            <h3>About</h3>
+            <p className="hint">
+              More apps by this maker —{" "}
+              <a
+                href="https://adervec.github.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "underline" }}
+              >
+                adervec.github.io
+              </a>
+            </p>
+          </section>
         </div>
       </aside>
     </>
