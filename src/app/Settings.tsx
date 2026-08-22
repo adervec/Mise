@@ -1,10 +1,43 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme, THEMES } from "./theme";
 import { useOrientation, ORIENTATIONS } from "./orientation";
 import { useFilters } from "./filters";
 import { useUi } from "./ui";
 import { DIETS } from "@/data/catalog";
 import { exportCookLog, readCookLog } from "@/execute/runtime/cookLog";
+
+// Folder cowork through the maker's shared panel (https://adervec.github.io/cowork.js, fs mode):
+// the cook log goes to coach/request.json in a folder you pick; an agent (CoworkSyncHub,
+// Claude Desktop, a person) answers in coach/reply.json and the reply shows here.
+type CoworkGlobal = { mount: (host: HTMLElement, cfg: unknown) => unknown };
+function loadCowork(): Promise<CoworkGlobal | null> {
+  const w = window as unknown as { cowork?: CoworkGlobal };
+  if (w.cowork) return Promise.resolve(w.cowork);
+  return new Promise((res) => {
+    const s = document.createElement("script");
+    s.src = "https://adervec.github.io/cowork.js";
+    s.async = true;
+    s.onload = () => res(w.cowork ?? null);
+    s.onerror = () => res(null);
+    document.head.appendChild(s);
+  });
+}
+function djb2(text: string): string {
+  let h = 5381;
+  for (let i = 0; i < text.length; i++) h = ((h * 33) ^ text.charCodeAt(i)) >>> 0;
+  return h.toString(16);
+}
+const COWORK_INSTRUCTIONS = `# Mise — coach channel
+
+Read \`coach/request.json\`: \`payload.cookLog\` is the cook history (recipe, when, minutes,
+steps done / skipped; preview runs already excluded). Write \`coach/reply.json\`:
+
+\`\`\`json
+{ "requestHash": "<copy the request's requestHash verbatim>",
+  "reply": "<a short, warm progress report in markdown: what they cook most, what's getting faster, what they skip, two or three suggestions of what to cook next and why.>" }
+\`\`\`
+`;
+const COACH_REPLY_KEY = "mise-coach-reply";
 import {
   syncCookLog,
   disconnectDrive,
@@ -26,6 +59,37 @@ function agoLabel(at: number | null): string {
 export default function Settings() {
   const open = useUi((s) => s.settingsOpen);
   const close = useUi((s) => s.closeSettings);
+  const coworkHost = useRef<HTMLDivElement>(null);
+  const [coachReply, setCoachReply] = useState(() => {
+    try { return localStorage.getItem(COACH_REPLY_KEY) || ""; } catch { return ""; }
+  });
+  useEffect(() => {
+    const host = coworkHost.current;
+    if (!host) return;
+    loadCowork().then((cw) => {
+      if (!cw || !host.isConnected || host.childElementCount) return;
+      cw.mount(host, {
+        app: "mise",
+        manifest: { protocol: "cowork-manifest", protocolVersion: 1, app: "mise",
+          channels: [{ name: "coach", request: ["coach/request.json"], instructions: "coach/INSTRUCTIONS.md", replyPath: "coach/reply.json" }] },
+        files: () => {
+          const payload = { cookLog: readCookLog().filter((e) => !e.simulate).slice(-200) };
+          return {
+            "coach/request.json": { protocol: "mise-coach", protocolVersion: 1, kind: "coach-request",
+              generatedAt: new Date().toISOString(), requestHash: djb2(JSON.stringify(payload)), payload },
+            "coach/INSTRUCTIONS.md": COWORK_INSTRUCTIONS,
+          };
+        },
+        apply: (_ch: string, reply: unknown) => {
+          const r = reply as { reply?: string; payload?: { reply?: string } } | string;
+          const text = typeof r === "string" ? r : r?.reply ?? r?.payload?.reply ?? JSON.stringify(reply, null, 2);
+          try { localStorage.setItem(COACH_REPLY_KEY, text); } catch { /* quota */ }
+          setCoachReply(text);
+        },
+      });
+    });
+    return () => { host.replaceChildren(); };
+  }, [open]);  // the panel host only exists while the drawer is open
   const { theme, setTheme } = useTheme();
   const { orientation, lockFailed, setOrientation } = useOrientation();
   const diet = useFilters((s) => s.diet);
@@ -163,6 +227,10 @@ export default function Settings() {
                 Export cook log
               </button>
             </div>
+            <div ref={coworkHost} style={{ marginTop: 10 }} />
+            {coachReply && (
+              <pre className="hint" style={{ whiteSpace: "pre-wrap", marginTop: 10 }}>{coachReply}</pre>
+            )}
           </section>
 
           <section className="settings-section">
