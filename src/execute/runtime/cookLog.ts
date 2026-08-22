@@ -26,6 +26,8 @@ export function readCookLog(): CookLogEntry[] {
 }
 
 export function appendCookLog(entry: CookLogEntry): void {
+  // maker-portal character sheet: a real cook happened (same-origin localStorage; stays in this browser)
+  if (!entry.simulate) try { const k = "portal-activity", a = JSON.parse(localStorage.getItem(k) || "[]"); a.push([Math.round(Date.now() / 1000), "Mise", "cook", Math.max(1, Math.round((entry.elapsedMin || 10) / 10))]); localStorage.setItem(k, JSON.stringify(a.slice(-2000))); } catch (_) { /* quota — ignore */ }
   try {
     const log = readCookLog();
     log.push(entry);
