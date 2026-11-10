@@ -56,3 +56,13 @@ rather than shipping a fallback.
 - Catalog JSON is fetched at startup, not bundled.
 - The user launches via `Mise.cmd` (or the installed PWA). After changing
   recipes, tell them to run it once so the service worker picks up the update.
+
+## House standards (shared across every app by this maker)
+
+@../CoworkSyncHub/HOUSE-STANDARDS.md
+
+For this app:
+- Check the standards: `node ../CoworkSyncHub/standards.mjs mise -v`. Keep it all `ok` before pushing.
+- Test: `npm test && npm run build`
+- Deploy: `npm run deploy` tests, builds, pushes gh-pages, live-checks and tags
+- Work on `main`, push your own work when it passes, and add user-visible changes to `whatsnew.json`.
