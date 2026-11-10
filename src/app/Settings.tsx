@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { createElement, useEffect, useRef, useState } from "react";
 import { useTheme, THEMES } from "./theme";
 import { useOrientation, ORIENTATIONS } from "./orientation";
 import { useFilters } from "./filters";
@@ -152,6 +152,12 @@ export default function Settings() {
                 </button>
               ))}
             </div>
+          </section>
+
+          <section className="settings-section">
+            <h3>Font</h3>
+            {/* shared picker from https://adervec.github.io/font.js; the choice applies to every app by this maker */}
+            {createElement("app-font-picker")}
           </section>
 
           <section className="settings-section">
