@@ -232,6 +232,17 @@ export default function Settings() {
               <button className="text-btn" onClick={exportCookLog}>
                 Export cook log
               </button>
+              {/* Only this app's own keys: every app by this maker shares one origin, so never localStorage.clear(). */}
+              <button
+                className="text-btn"
+                onClick={() => {
+                  if (!confirm("Erase the cook log and every setting stored on this device?\n\nA copy in Google Drive is not touched. Export the cook log first if you are not sure.")) return;
+                  Object.keys(localStorage).filter((k) => k.startsWith("mise.") || k.startsWith("mise-")).forEach((k) => localStorage.removeItem(k));
+                  location.reload();
+                }}
+              >
+                Erase everything
+              </button>
             </div>
             <div ref={coworkHost} style={{ marginTop: 10 }} />
             {coachReply && (

@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { guideById } from "@/data/catalog";
 
 const FONTS =
-  '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">';
+  '<link rel="stylesheet" href="https://adervec.github.io/fonts/fraunces.css"><link rel="stylesheet" href="https://adervec.github.io/fonts/jetbrains-mono.css"><link rel="stylesheet" href="https://adervec.github.io/fonts/newsreader.css"><link rel="stylesheet" href="https://adervec.github.io/fonts/inter-tight.css">';
 
 // The field guides are bespoke full-bleed editorial pages (each with its own
 // 100vh hero + design language). We present them within the app shell but render
