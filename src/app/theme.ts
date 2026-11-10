@@ -15,7 +15,8 @@ const STORAGE_KEY = "mise.theme";
 function readInitial(): ThemeId {
   const saved = localStorage.getItem(STORAGE_KEY) as ThemeId | null;
   if (saved && THEMES.some((t) => t.id === saved)) return saved;
-  return "ember";
+  // House standard: with no saved choice, start from the device's light/dark setting.
+  return typeof matchMedia === "function" && matchMedia("(prefers-color-scheme: light)").matches ? "paper" : "ember";
 }
 
 function apply(id: ThemeId) {

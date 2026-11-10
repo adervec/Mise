@@ -20,3 +20,9 @@ test("no third-party font CDN, and Settings can erase this app's own data only",
   expect(settings).toContain("Erase everything");
   expect(settings).toMatch(/startsWith\("mise\."\)/);
 });
+
+test("the default theme follows the device, and a saved choice wins", () => {
+  const src = readFileSync("src/app/theme.ts", "utf8");
+  expect(src).toMatch(/prefers-color-scheme: light\)"\)\.matches \? "paper" : "ember"/);
+  expect(src.indexOf("return saved")).toBeLessThan(src.indexOf("prefers-color-scheme"));
+});
