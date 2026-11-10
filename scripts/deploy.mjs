@@ -5,6 +5,9 @@ import { copyFileSync, rmSync } from "node:fs";
 
 const run = (cmd, opts = {}) => execSync(cmd, { stdio: "inherit", ...opts });
 
+// House standard: nothing reaches the live site unless the checks passed (execSync throws on failure).
+run("npm test");
+
 process.env.GHPAGES_BASE = "/Mise/";
 run("npm run build");
 
