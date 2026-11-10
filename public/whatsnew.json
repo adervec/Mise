@@ -1,0 +1,14 @@
+[
+ {
+  "date": "2026-11-10",
+  "items": [
+   "A new default font, Atkinson Hyperlegible, chosen for easy reading. Change it in Settings; the choice applies to every app by this maker on this device.",
+   "About this app (under the font choice) shows the version, where your data lives, how much storage it uses, and a Copy diagnostics button for reporting a problem.",
+   "You are told when a new version is ready, and if something goes wrong you see a message with a Reload button instead of a frozen screen.",
+   "Mise now starts in the light Paper theme or the dark Ember theme to match your device, until you pick one yourself.",
+   "When Drive sync is on, your Google profile picture shows beside the sync status.",
+   "Settings has an Erase everything button for the cook log and settings on this device, after asking. Your Drive copy is not touched.",
+   "Fonts now load from the maker's own site, so the app makes no requests to Google Fonts."
+  ]
+ }
+]
