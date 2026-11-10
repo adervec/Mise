@@ -8,3 +8,8 @@ test("Atkinson Hyperlegible is the default font and Settings offers a choice", (
   expect(readFileSync("src/styles/theme.css", "utf8")).toMatch(/--body:\s*var\(--app-font,/);
   expect(readFileSync("src/app/Settings.tsx", "utf8")).toContain('createElement("app-font-picker")');
 });
+
+test("a connected Drive sync shows the Google account picture", () => {
+  expect(readFileSync("src/execute/runtime/driveSync.ts", "utf8")).toContain('picture: j.picture || ""');
+  expect(readFileSync("src/app/Settings.tsx", "utf8")).toMatch(/<img\s+src=\{driveProfile\(\)!\.picture\}[\s\S]{0,80}referrerPolicy="no-referrer"/);
+});

@@ -265,6 +265,15 @@ export default function Settings() {
                   )}
                 </div>
                 <p className="hint" style={{ marginTop: 10, marginBottom: 0 }}>
+                  {/* the Google account picture shows whose Drive this is */}
+                  {syncEnabled() && driveProfile()?.picture ? (
+                    <img
+                      src={driveProfile()!.picture}
+                      alt=""
+                      referrerPolicy="no-referrer"
+                      style={{ width: 22, height: 22, borderRadius: "50%", verticalAlign: "middle", marginRight: 6 }}
+                    />
+                  ) : null}
                   {sync.msg ? (
                     <span style={{ color: sync.err ? "var(--accent-4)" : "var(--accent-2)" }}>
                       {sync.msg}

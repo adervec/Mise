@@ -103,7 +103,7 @@ function loadGis(): Promise<void> {
 }
 
 let token: { value: string; exp: number } | null = null;
-let profile: { name: string; email: string } | null = null;
+let profile: { name: string; email: string; picture: string } | null = null;
 function tokenValid() {
   return !!token && token.exp > Date.now() + 60_000;
 }
@@ -139,7 +139,7 @@ async function fetchProfile(t: string) {
     });
     if (r.ok) {
       const j = await r.json();
-      profile = { name: j.name || j.email || "Google account", email: j.email || "" };
+      profile = { name: j.name || j.email || "Google account", email: j.email || "", picture: j.picture || "" };
     }
   } catch {
     /* cosmetic only */
