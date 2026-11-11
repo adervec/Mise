@@ -86,6 +86,26 @@ export default function Settings() {
           try { localStorage.setItem(COACH_REPLY_KEY, text); } catch { /* quota */ }
           setCoachReply(text);
         },
+        // cowork v2 (house standard): review the reply before it replaces the current one; undo from the history
+        channels: {
+          coach: {
+            label: "Cooking coach",
+            preview: (reply: unknown) => {
+              const r = reply as { reply?: string; payload?: { reply?: string } } | string;
+              const text = typeof r === "string" ? r : r?.reply ?? r?.payload?.reply ?? "";
+              return [{ id: "reply", label: "Show this advice in Mise (replaces the current one)", detail: text.slice(0, 400) }];
+            },
+            apply: (reply: unknown) => {
+              let prev = ""; try { prev = localStorage.getItem(COACH_REPLY_KEY) || ""; } catch { /* private mode */ }
+              const r = reply as { reply?: string; payload?: { reply?: string } } | string;
+              const text = typeof r === "string" ? r : r?.reply ?? r?.payload?.reply ?? JSON.stringify(reply, null, 2);
+              try { localStorage.setItem(COACH_REPLY_KEY, text); } catch { /* quota */ }
+              setCoachReply(text);
+              return { summary: "new advice shown", undo: { prev } };
+            },
+            undo: (d: { prev?: string }) => { try { localStorage.setItem(COACH_REPLY_KEY, d.prev || ""); } catch { /* quota */ } setCoachReply(d.prev || ""); },
+          },
+        },
       });
     });
     return () => { host.replaceChildren(); };

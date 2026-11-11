@@ -8,7 +8,8 @@
    "Mise now starts in the light Paper theme or the dark Ember theme to match your device, until you pick one yourself.",
    "When Drive sync is on, your Google profile picture shows beside the sync status.",
    "Settings has an Erase everything button for the cook log and settings on this device, after asking. Your Drive copy is not touched.",
-   "Fonts now load from the maker's own site, so the app makes no requests to Google Fonts."
+   "Fonts now load from the maker's own site, so the app makes no requests to Google Fonts.",
+   "AI cowork sync now shows the agent's advice for review before it replaces yours, can run on a schedule from one computer, keeps a history, and can undo."
   ]
  }
 ]
