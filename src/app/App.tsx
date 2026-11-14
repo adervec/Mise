@@ -1,4 +1,5 @@
-import { useEffect, lazy, Suspense } from "react";
+import { createElement, useEffect, lazy, Suspense } from "react";
+import { useUi } from "./ui";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Browse from "./Browse";
 import ItemDetail from "./ItemDetail";
@@ -15,6 +16,8 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  // the corner avatar (font.js <app-account>) opens Settings, where Drive sync lives
+  useEffect(() => { const open = () => useUi.getState().openSettings(); document.addEventListener("app-account-click", open); return () => document.removeEventListener("app-account-click", open); }, []);
   return (
     <>
       <ScrollToTop />
@@ -33,6 +36,8 @@ export default function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Settings />
+      {/* house standard: the signed-in Google picture in the corner of every page, like YouTube; click opens Settings */}
+      <div style={{ position: "fixed", top: "calc(10px + env(safe-area-inset-top, 0px))", right: 12, zIndex: 50 }}>{createElement("app-account")}</div>
     </>
   );
 }

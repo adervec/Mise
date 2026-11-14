@@ -140,6 +140,7 @@ async function fetchProfile(t: string) {
     if (r.ok) {
       const j = await r.json();
       profile = { name: j.name || j.email || "Google account", email: j.email || "", picture: j.picture || "" };
+      (window as unknown as { appFont?: { setAccount(a: unknown): void } }).appFont?.setAccount(profile); // house standard: picture in the corner
     }
   } catch {
     /* cosmetic only */
@@ -239,6 +240,7 @@ export async function syncCookLog({ silent = false } = {}): Promise<SyncResult> 
 export function disconnectDrive(): void {
   token = null;
   profile = null;
+  (window as unknown as { appFont?: { setAccount(a: unknown): void } }).appFont?.setAccount(null);
   setEnabled(false);
   try {
     localStorage.removeItem(LAST_KEY);
