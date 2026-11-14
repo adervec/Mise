@@ -1,8 +1,9 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { RecipeDag, ScheduleResult, StationId } from "../model/types";
-import { ATTENTION_VAR, stationLabel } from "../model/stations";
+import { ATTENTION_LABEL, ATTENTION_VAR, stationLabel } from "../model/stations";
 import { useExecute } from "../runtime/executeStore";
 import * as E from "../runtime/engine";
+import { t } from "@/i18n";
 
 const LABEL_W = 78;
 const ROW_H = 30;
@@ -127,17 +128,17 @@ export default function Timeline({ dag }: { dag: RecipeDag }) {
   const stepById = new Map(dag.steps.map((s) => [s.id, s]));
   const step = tickStepFor(total);
   const ticks: number[] = [];
-  for (let t = 0; t <= total + 0.001; t += step) ticks.push(Math.round(t));
+  for (let m = 0; m <= total + 0.001; m += step) ticks.push(Math.round(m));
 
   return (
     <div className="timeline-wrap" ref={wrapRef}>
       <div className="timeline-legend">
-        <span className="lg"><span className="sw" style={{ background: "var(--accent)" }} /> Hands-on</span>
-        <span className="lg"><span className="sw" style={{ background: "var(--accent-2)" }} /> Monitor</span>
-        <span className="lg"><span className="sw" style={{ background: "var(--accent-6)" }} /> Unattended</span>
-        <span className="lg" style={{ marginLeft: "auto" }}>● on the critical path = the bottleneck chain</span>
+        <span className="lg"><span className="sw" style={{ background: "var(--accent)" }} /> {t("Hands-on")}</span>
+        <span className="lg"><span className="sw" style={{ background: "var(--accent-2)" }} /> {t("Monitor")}</span>
+        <span className="lg"><span className="sw" style={{ background: "var(--accent-6)" }} /> {t("Unattended")}</span>
+        <span className="lg" style={{ marginInlineStart: "auto" }}>{t("● on the critical path = the bottleneck chain")}</span>
       </div>
-      <svg width={width} height={height} role="img" aria-label="Recipe timeline">
+      <svg width={width} height={height} role="img" aria-label={t("Recipe timeline")}>
         {/* lane backgrounds + labels */}
         {lanes.map((lane, i) => (
           <g key={lane.station}>
@@ -146,18 +147,18 @@ export default function Timeline({ dag }: { dag: RecipeDag }) {
             )}
             <line x1={0} y1={lane.y} x2={width} y2={lane.y} stroke="var(--border)" strokeWidth={1} />
             <text className="tl-lane-label" x={6} y={lane.y + lane.height / 2 + 3}>
-              {stationLabel(lane.station)}
+              {t(stationLabel(lane.station))}
             </text>
           </g>
         ))}
 
         {/* time grid + axis labels */}
-        {ticks.map((t) => {
-          const x = LABEL_W + t * pxPerMin;
+        {ticks.map((m) => {
+          const x = LABEL_W + m * pxPerMin;
           return (
-            <g key={t}>
+            <g key={m}>
               <line x1={x} y1={HEADER_H} x2={x} y2={contentH} stroke="var(--border)" strokeWidth={1} opacity={0.5} />
-              <text className="tl-axis-label" x={x + 3} y={14}>{t}′</text>
+              <text className="tl-axis-label" x={x + 3} y={14}>{m}′</text>
             </g>
           );
         })}
@@ -188,7 +189,7 @@ export default function Timeline({ dag }: { dag: RecipeDag }) {
                   strokeDasharray: st.durationConfidence === "estimated" ? "3 2" : undefined,
                 }}
               >
-                <title>{`${st.label} · ${st.attention} · ${Math.round(p.dur)} min`}</title>
+                <title>{`${st.label} · ${t(ATTENTION_LABEL[st.attention])} · ${t("{n} min", { n: Math.round(p.dur) })}`}</title>
               </rect>
               {showLabel && (
                 <text className="tl-block-label" x={x + 7} y={y + h / 2 + 4}>

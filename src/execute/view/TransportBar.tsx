@@ -1,6 +1,7 @@
 import { useExecute } from "../runtime/executeStore";
 import * as E from "../runtime/engine";
 import { useVoice, voiceSupported } from "../runtime/voice";
+import { t } from "@/i18n";
 
 const SPEEDS = [1, 5, 20, 60];
 const COOKS = [1, 2, 3];
@@ -36,7 +37,7 @@ export default function TransportBar() {
       <button
         className="play-btn"
         onClick={() => (running ? pause() : play())}
-        aria-label={running ? "Pause" : "Play"}
+        aria-label={running ? t("Pause") : t("Play")}
         disabled={engine.status === "completed"}
       >
         {running ? (
@@ -46,26 +47,26 @@ export default function TransportBar() {
         )}
       </button>
 
-      <button className="text-btn" onClick={reset}>Reset</button>
+      <button className="text-btn" onClick={reset}>{t("Reset")}</button>
 
       <div className="clock">
         <span className="big">{fmtClock(elapsed)}</span>
-        <span className="tot">/ {fmtClock(total)} planned</span>
+        <span className="tot">{t("/ {time} planned", { time: fmtClock(total) })}</span>
       </div>
 
       <div className="progress-bar"><i style={{ width: `${pct}%` }} /></div>
 
       {engine.status === "ready" && (
-        <div className="seg" aria-label="Cooks">
-          <span className="seg-label" style={{ alignSelf: "center", padding: "0 8px" }}>Cooks</span>
+        <div className="seg" aria-label={t("Cooks")}>
+          <span className="seg-label" style={{ alignSelf: "center", padding: "0 8px" }}>{t("Cooks")}</span>
           {COOKS.map((c) => (
             <button key={c} className={engine.cooks === c ? "on" : ""} onClick={() => setCooks(c)}>{c}</button>
           ))}
         </div>
       )}
 
-      <div className="seg" aria-label="Speed">
-        <span className="seg-label" style={{ alignSelf: "center", padding: "0 8px" }}>Speed</span>
+      <div className="seg" aria-label={t("Speed")}>
+        <span className="seg-label" style={{ alignSelf: "center", padding: "0 8px" }}>{t("Speed")}</span>
         {SPEEDS.map((sp) => (
           <button key={sp} className={engine.speed === sp ? "on" : ""} onClick={() => setSpeed(sp)}>{sp}×</button>
         ))}
@@ -75,9 +76,9 @@ export default function TransportBar() {
         className={"text-btn" + (engine.simulate ? " " : "")}
         style={engine.simulate ? { borderColor: "var(--accent)", color: "var(--ink)" } : undefined}
         onClick={() => setSimulate(!engine.simulate)}
-        title="Preview the whole cook hands-free (auto-advances every step)"
+        title={t("Preview the whole cook hands-free (auto-advances every step)")}
       >
-        {engine.simulate ? "Preview: on" : "Preview"}
+        {engine.simulate ? t("Preview: on") : t("Preview")}
       </button>
 
       {voiceSupported && (
@@ -85,9 +86,9 @@ export default function TransportBar() {
           className="text-btn"
           style={voice.on ? { borderColor: "var(--accent)", color: "var(--ink)" } : undefined}
           onClick={voice.toggle}
-          title="Hands-free: say play, pause, done, skip, or repeat"
+          title={t("Hands-free voice control (English commands): say play, pause, done, skip, or repeat")}
         >
-          {voice.on ? "🎙 Voice: on" : "🎙 Voice"}
+          {"🎙 " + (voice.on ? t("Voice: on") : t("Voice"))}
         </button>
       )}
     </div>

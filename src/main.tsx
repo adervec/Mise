@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./app/App";
 import { loadCatalog } from "./data/catalog";
+import { i18nReady } from "./i18n";
 import { autoSyncCookLog } from "./execute/runtime/driveSync";
 import "./styles/theme.css";
 import "./styles/execute.css";
@@ -22,7 +23,7 @@ try {
 }
 
 // Fetch catalog data, then mount. The #root splash shows until this resolves.
-loadCatalog().then(() => {
+Promise.all([loadCatalog(), i18nReady()]).then(() => {
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
       <BrowserRouter basename={import.meta.env.BASE_URL}>

@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 export const ORIENTATIONS = [
+  // i18n-keys: Auto | Portrait | Landscape
   { id: "auto", name: "Auto" },
   { id: "portrait", name: "Portrait" },
   { id: "landscape", name: "Landscape" },

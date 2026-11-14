@@ -2,6 +2,7 @@ import type { RecipeDag } from "../model/types";
 import { ATTENTION_LABEL, stationLabel } from "../model/stations";
 import { useExecute } from "../runtime/executeStore";
 import * as E from "../runtime/engine";
+import { t } from "@/i18n";
 
 function fmt(min: number): string {
   const sign = min < 0 ? "-" : "";
@@ -31,41 +32,41 @@ export default function NowNextPanel({ dag }: { dag: RecipeDag }) {
     return (
       <div className="now-panel">
         <div className="now-card attn-passive">
-          <div className="now-eyebrow"><span>Done</span></div>
-          <h3>Plated.</h3>
-          <p>Finished in {fmt(E.elapsedMin(engine, Date.now()))}. Nicely done.</p>
+          <div className="now-eyebrow"><span>{t("Done")}</span></div>
+          <h3>{t("Plated.")}</h3>
+          <p>{t("Finished in {time}. Nicely done.", { time: fmt(E.elapsedMin(engine, Date.now())) })}</p>
         </div>
       </div>
     );
   }
 
   const liveText = active.length
-    ? `Now: ${active.map((s) => s.label).join("; ")}`
+    ? t("Now: {steps}", { steps: active.map((s) => s.label).join("; ") })
     : engine.status === "running"
-      ? "Waiting for the next step."
+      ? t("Waiting for the next step.")
       : "";
 
   return (
     <div className="now-panel">
       <div aria-live="polite" className="sr-only">{liveText}</div>
       {resumed && engine.status === "paused" && (
-        <div className="now-card" style={{ borderLeft: "4px solid var(--accent-3)" }}>
-          <div className="now-eyebrow"><span>Resumed</span></div>
-          <p>Picked up where you left off. Press play to continue the cook.</p>
+        <div className="now-card" style={{ borderInlineStart: "4px solid var(--accent-3)" }}>
+          <div className="now-eyebrow"><span>{t("Resumed")}</span></div>
+          <p>{t("Picked up where you left off. Press play to continue the cook.")}</p>
         </div>
       )}
       {engine.status === "ready" && (
         <div className="now-card">
-          <div className="now-eyebrow"><span>Ready</span></div>
-          <h3>Press play to start cooking.</h3>
-          <p>The flow chart will light up step by step. Timers fire on their own; tap “Done” when you finish a hands-on step.</p>
+          <div className="now-eyebrow"><span>{t("Ready")}</span></div>
+          <h3>{t("Press play to start cooking.")}</h3>
+          <p>{t("The flow chart will light up step by step. Timers fire on their own; tap “Done” when you finish a hands-on step.")}</p>
         </div>
       )}
 
       {active.length === 0 && engine.status === "running" && (
         <div className="now-card">
-          <div className="now-eyebrow"><span>Now</span></div>
-          <div className="now-empty">Hold tight — next step coming up.</div>
+          <div className="now-eyebrow"><span>{t("Now")}</span></div>
+          <div className="now-empty">{t("Hold tight — next step coming up.")}</div>
         </div>
       )}
 
@@ -78,21 +79,21 @@ export default function NowNextPanel({ dag }: { dag: RecipeDag }) {
         return (
           <div key={s.id} className={`now-card attn-${s.attention}`}>
             <div className="now-eyebrow">
-              <span>Now · {ATTENTION_LABEL[s.attention]}</span>
-              <span className="station-pill">{stationLabel(s.station)}</span>
+              <span>{t("Now")} · {t(ATTENTION_LABEL[s.attention])}</span>
+              <span className="station-pill">{t(stationLabel(s.station))}</span>
             </div>
             <h3>{s.label}</h3>
             <p>{s.detail}</p>
             {s.attention === "active" ? (
-              <div className="now-countdown">{fmt(elapsedInStep)} <span style={{ fontSize: 13, color: "var(--ink-dim)" }}>elapsed · ~{Math.round(s.durationMin)}m</span></div>
+              <div className="now-countdown">{fmt(elapsedInStep)} <span style={{ fontSize: 13, color: "var(--ink-dim)" }}>{t("elapsed · ~{n} min", { n: Math.round(s.durationMin) })}</span></div>
             ) : (
-              <div className="now-countdown">{fmt(Math.max(0, remaining))} <span style={{ fontSize: 13, color: "var(--ink-dim)" }}>left</span></div>
+              <div className="now-countdown">{fmt(Math.max(0, remaining))} <span style={{ fontSize: 13, color: "var(--ink-dim)" }}>{t("left")}</span></div>
             )}
             <div className="now-actions">
               <button className="now-done" onClick={() => complete(s.id)}>
-                {s.attention === "active" ? "Done" : "Done early"}
+                {s.attention === "active" ? t("Done") : t("Done early")}
               </button>
-              <button className="text-btn" onClick={() => skip(s.id)}>Skip</button>
+              <button className="text-btn" onClick={() => skip(s.id)}>{t("Skip")}</button>
             </div>
           </div>
         );
@@ -100,12 +101,12 @@ export default function NowNextPanel({ dag }: { dag: RecipeDag }) {
 
       {upcoming.length > 0 && (
         <div className="next-list">
-          <h4>Next up</h4>
+          <h4>{t("Next up")}</h4>
           {upcoming.map(({ s, start }) => (
             <div className="next-item" key={s.id}>
               <span className="at">{fmt(Math.max(0, start - elapsed))}</span>
               <span style={{ flex: 1 }}>{stepById.get(s.id)!.label}</span>
-              <span className="station-pill">{stationLabel(s.station)}</span>
+              <span className="station-pill">{t(stationLabel(s.station))}</span>
             </div>
           ))}
         </div>

@@ -4,6 +4,7 @@ import { itemById, CAT_LABELS, DIETS, authoredDags } from "@/data/catalog";
 import type { Checklist } from "@/data/types";
 import { stationLabel, ATTENTION_LABEL, ATTENTION_VAR } from "@/execute/model/stations";
 import type { RecipeDag, Step } from "@/execute/model/types";
+import { t } from "@/i18n";
 
 export default function ItemDetail() {
   const { id } = useParams();
@@ -14,9 +15,9 @@ export default function ItemDetail() {
   if (!item) {
     return (
       <div className="wrap">
-        <div className="empty">Not found.</div>
+        <div className="empty">{t("Not found.")}</div>
         <Link className="text-btn" to="/">
-          Back to browse
+          {t("Back to browse")}
         </Link>
       </div>
     );
@@ -31,12 +32,12 @@ export default function ItemDetail() {
     <div className="wrap">
       <div style={{ padding: "24px 0 0" }}>
         <Link className="text-btn" to="/">
-          ← Browse
+          ← {t("Browse")}
         </Link>
       </div>
 
       <div className="detail-head">
-        <div className="detail-cat">{CAT_LABELS[item.cat]}</div>
+        <div className="detail-cat">{t(CAT_LABELS[item.cat])}</div>
         <h2>{item.title}</h2>
         <p className="lede" style={{ marginTop: 6 }}>
           {item.summary}
@@ -44,19 +45,19 @@ export default function ItemDetail() {
         <div className="detail-meta">
           {item.timeLabel && (
             <span>
-              <b>Time</b>
+              <b>{t("Time")}</b>
               {item.timeLabel}
             </span>
           )}
           {item.nutrition?.cal != null && (
             <span>
-              <b>Calories</b>
-              {item.nutrition.cal} cal
+              <b>{t("Calories")}</b>
+              {t("{n} cal", { n: item.nutrition.cal })}
             </span>
           )}
           {item.tags.length > 0 && (
             <span>
-              <b>Tags</b>
+              <b>{t("Tags")}</b>
               {item.tags.join(", ")}
             </span>
           )}
@@ -68,7 +69,7 @@ export default function ItemDetail() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M8 5v14l11-7z" />
               </svg>
-              Execute this recipe
+              {t("Execute this recipe")}
             </button>
           </div>
         )}
@@ -78,7 +79,7 @@ export default function ItemDetail() {
         <div className="card-diet" style={{ marginTop: 18 }}>
           {dietBadges.map((d) => (
             <span className="diet-badge" key={d.key}>
-              {d.badge}
+              {t(d.badge)}
             </span>
           ))}
         </div>
@@ -88,19 +89,19 @@ export default function ItemDetail() {
         <div className="nutrition">
           <div className="nut-cell">
             <div className="nut-val cal">{item.nutrition.cal}</div>
-            <div className="nut-label">Calories</div>
+            <div className="nut-label">{t("Calories")}</div>
           </div>
           <div className="nut-cell">
             <div className="nut-val">{item.nutrition.protein}</div>
-            <div className="nut-label">Protein</div>
+            <div className="nut-label">{t("Protein")}</div>
           </div>
           <div className="nut-cell">
             <div className="nut-val">{item.nutrition.carbs}</div>
-            <div className="nut-label">Carbs</div>
+            <div className="nut-label">{t("Carbs")}</div>
           </div>
           <div className="nut-cell">
             <div className="nut-val">{item.nutrition.fat}</div>
-            <div className="nut-label">Fat</div>
+            <div className="nut-label">{t("Fat")}</div>
           </div>
           <div className="nut-serv">{item.nutrition.serving}</div>
         </div>
@@ -112,14 +113,14 @@ export default function ItemDetail() {
             className={view === "notes" ? "active" : ""}
             onClick={() => setView("notes")}
           >
-            Notes
+            {t("Notes")}
           </button>
           {item.checklist && (
             <button
               className={view === "checklist" ? "active" : ""}
               onClick={() => setView("checklist")}
             >
-              Checklist
+              {t("Checklist")}
             </button>
           )}
           {hasGrid && (
@@ -127,7 +128,7 @@ export default function ItemDetail() {
               className={view === "grid" ? "active" : ""}
               onClick={() => setView("grid")}
             >
-              Grid
+              {t("Grid")}
             </button>
           )}
         </div>
@@ -158,6 +159,7 @@ interface GridCard {
   eyebrow?: string; // fallback cards: checklist module title
 }
 
+// i18n-keys: Prep | Cook | Cleanup
 const GRID_SECTIONS = [
   { phase: "prep", cls: "prep", title: "Prep" },
   { phase: "cook", cls: "steps", title: "Cook" },
@@ -180,7 +182,7 @@ function StepGridView({ dag, checklist }: { dag?: RecipeDag; checklist?: Checkli
         durationText:
           s.durationConfidence === "instant"
             ? undefined
-            : `${s.durationConfidence === "estimated" ? "~" : ""}${s.durationMin} min`,
+            : (s.durationConfidence === "estimated" ? "~" : "") + t("{n} min", { n: s.durationMin }),
       });
     }
   } else if (checklist) {
@@ -200,7 +202,7 @@ function StepGridView({ dag, checklist }: { dag?: RecipeDag; checklist?: Checkli
           byPhase[phase].length > 0 && (
             <section className={`check-section ${cls}`} key={phase}>
               <h4>
-                <span className="ph">{title}</span>
+                <span className="ph">{t(title)}</span>
               </h4>
               <div className="step-grid">
                 {byPhase[phase].map((c) => (
@@ -209,14 +211,14 @@ function StepGridView({ dag, checklist }: { dag?: RecipeDag; checklist?: Checkli
                     key={c.key}
                     style={
                       c.attention
-                        ? { borderLeftColor: `var(${ATTENTION_VAR[c.attention]})` }
+                        ? { borderInlineStartColor: `var(${ATTENTION_VAR[c.attention]})` }
                         : undefined
                     }
                   >
                     <div className="step-card-meta">
-                      {c.attention && <span>{ATTENTION_LABEL[c.attention]}</span>}
+                      {c.attention && <span>{t(ATTENTION_LABEL[c.attention])}</span>}
                       {c.durationText && <span className="step-dur">{c.durationText}</span>}
-                      {c.station && <span className="station-pill">{stationLabel(c.station)}</span>}
+                      {c.station && <span className="station-pill">{t(stationLabel(c.station))}</span>}
                       {c.eyebrow && <span>{c.eyebrow}</span>}
                     </div>
                     <h5>{c.label}</h5>
@@ -267,7 +269,7 @@ function ChecklistView({ checklist }: { checklist: Checklist }) {
       {checklist.prep?.length > 0 && (
         <section className="check-section prep">
           <h4>
-            <span className="ph">Prep</span> Mise en place
+            <span className="ph">{t("Prep")}</span> {t("Mise en place")}
           </h4>
           {renderItems("prep", checklist.prep, false)}
         </section>
@@ -275,7 +277,7 @@ function ChecklistView({ checklist }: { checklist: Checklist }) {
       {checklist.modules?.map((mod, mi) => (
         <section className="check-section steps" key={mi}>
           <h4>
-            <span className="ph">Steps</span> {mod.title}
+            <span className="ph">{t("Steps")}</span> {mod.title}
           </h4>
           {renderItems(`mod${mi}`, mod.steps, true)}
         </section>
@@ -283,7 +285,7 @@ function ChecklistView({ checklist }: { checklist: Checklist }) {
       {checklist.cleanup?.length > 0 && (
         <section className="check-section cleanup">
           <h4>
-            <span className="ph">Cleanup</span> After the cook
+            <span className="ph">{t("Cleanup")}</span> {t("After the cook")}
           </h4>
           {renderItems("cleanup", checklist.cleanup, false)}
         </section>

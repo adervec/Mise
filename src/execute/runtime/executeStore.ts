@@ -1,3 +1,4 @@
+import { t } from "@/i18n";
 import { create } from "zustand";
 import type { Item } from "@/data/types";
 import { getDag, type DagSource } from "../model/dag";
@@ -92,7 +93,7 @@ export const useExecute = create<ExecuteStore>((set, get) => {
 
       if (fired.length) {
         beepDone();
-        for (const f of fired) notify("Timer done", f.label);
+        for (const f of fired) notify(t("Timer done"), f.label);
       } else if (isNew) {
         beepStep();
       }

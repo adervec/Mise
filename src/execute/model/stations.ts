@@ -8,6 +8,7 @@ interface StationMeta {
 
 // Display order for swimlanes (top to bottom). `none` items collapse into the cook lane.
 export const STATIONS: StationMeta[] = [
+  // i18n-keys: Stove | Oven | Pressure cooker | Microwave | Mixer / blender | Cutting board | Counter | Sink | Fridge / freezer | Hands
   { id: "stove", label: "Stove", short: "STOVE" },
   { id: "oven", label: "Oven", short: "OVEN" },
   { id: "pressure", label: "Pressure cooker", short: "PRESSURE" },
@@ -53,6 +54,7 @@ export const ATTENTION_VAR: Record<Attention, string> = {
   wait: "--accent-6", // unattended, cool blue
 };
 
+// i18n-keys: Hands-on | Monitor | Unattended
 export const ATTENTION_LABEL: Record<Attention, string> = {
   active: "Hands-on",
   passive: "Monitor",

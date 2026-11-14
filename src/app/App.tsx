@@ -5,6 +5,7 @@ import Browse from "./Browse";
 import ItemDetail from "./ItemDetail";
 import GuidePage from "./GuidePage";
 import Settings from "./Settings";
+import { t } from "@/i18n";
 
 // The execute engine (scheduler, runtime, SVG timeline) loads on demand.
 const ExecuteScreen = lazy(() => import("@/execute/view/ExecuteScreen"));
@@ -27,7 +28,7 @@ export default function App() {
         <Route
           path="/i/:id/cook"
           element={
-            <Suspense fallback={<div className="exec"><div className="now-empty">Loading the kitchen…</div></div>}>
+            <Suspense fallback={<div className="exec"><div className="now-empty">{t("Loading the kitchen…")}</div></div>}>
               <ExecuteScreen />
             </Suspense>
           }

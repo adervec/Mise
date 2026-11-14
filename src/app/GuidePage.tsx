@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { guideById } from "@/data/catalog";
+import { t } from "@/i18n";
 
 const FONTS =
   '<link rel="stylesheet" href="https://adervec.github.io/fonts/fraunces.css"><link rel="stylesheet" href="https://adervec.github.io/fonts/jetbrains-mono.css"><link rel="stylesheet" href="https://adervec.github.io/fonts/newsreader.css"><link rel="stylesheet" href="https://adervec.github.io/fonts/inter-tight.css">';
@@ -15,8 +16,8 @@ export default function GuidePage() {
   if (!guide) {
     return (
       <div className="wrap">
-        <div className="empty">Guide not found.</div>
-        <Link className="text-btn" to="/">Back to browse</Link>
+        <div className="empty">{t("Guide not found.")}</div>
+        <Link className="text-btn" to="/">{t("Back to browse")}</Link>
       </div>
     );
   }
@@ -26,9 +27,9 @@ export default function GuidePage() {
   return (
     <div className="wrap" style={{ paddingBottom: 40 }}>
       <div style={{ padding: "20px 0 12px", display: "flex", gap: 14, alignItems: "baseline" }}>
-        <Link className="text-btn" to="/">← Browse</Link>
+        <Link className="text-btn" to="/">← {t("Browse")}</Link>
         <span style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--accent-2)" }}>
-          Field Guide
+          {t("Field Guide")}
         </span>
       </div>
       <iframe

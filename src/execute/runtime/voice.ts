@@ -2,6 +2,7 @@
 // Commands: play/start · pause/stop · done/next · skip · repeat.
 import { useEffect, useRef, useState } from "react";
 import { useExecute } from "./executeStore";
+import { t } from "@/i18n";
 
 // ponytail: webkit-prefixed API, no polyfill — unsupported browsers just hide the button
 const SR: (new () => SpeechRecognitionLike) | undefined =
@@ -40,26 +41,26 @@ function handleCommand(text: string): void {
 
   if (/\b(pause|stop|hold on)\b/.test(text)) {
     st.pause();
-    speak("Paused.");
+    speak(t("Paused."));
   } else if (/\b(play|start|resume|go|continue)\b/.test(text)) {
     st.play();
-    speak("Cooking.");
+    speak(t("Cooking."));
   } else if (/\b(done|next|finished|complete)\b/.test(text)) {
     if (first) {
       st.complete(first.id);
-      speak(`Done. ${first.label}.`);
+      speak(t("Done. {step}.", { step: first.label }));
     }
   } else if (/\bskip\b/.test(text)) {
     if (first) {
       st.skip(first.id);
-      speak(`Skipped ${first.label}.`);
+      speak(t("Skipped {step}.", { step: first.label }));
     }
   } else if (/\b(repeat|what now|what's now|current step)\b/.test(text)) {
     const act = activeSteps();
     speak(
       act.length
-        ? act.map((s) => `${s.label}. ${s.detail ?? ""}`).join(" Also: ")
-        : "Nothing active right now."
+        ? act.map((s) => `${s.label}. ${s.detail ?? ""}`).join(" " + t("Also:") + " ")
+        : t("Nothing active right now.")
     );
   }
 }
@@ -74,7 +75,7 @@ export function useVoice(): { on: boolean; toggle: () => void } {
     const r = new SR();
     r.continuous = true;
     r.interimResults = false;
-    r.lang = "en-US";
+    r.lang = "en"; // ponytail: the command words below are English; per-language commands when someone asks
     r.onresult = (e: any) => {
       const res = e.results[e.results.length - 1];
       if (res.isFinal) handleCommand(res[0].transcript.toLowerCase());

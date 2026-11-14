@@ -29,6 +29,7 @@ export async function loadCatalog(): Promise<void> {
   loaded = true;
 }
 
+// i18n-keys: Recipe | Prep & Freeze | Technique | Equipment | Reference | Ingredient
 export const CAT_LABELS: Record<Category, string> = {
   recipe: "Recipe",
   prep: "Prep & Freeze",
@@ -47,6 +48,8 @@ export const CATEGORY_ORDER: Category[] = [
   "reference",
 ];
 
+// i18n-keys: Vegan | Vegetarian | Veg | Pescatarian | Pesc | Gluten-free | GF | Dairy-free | DF | Nut-free | NF | Egg-free | EF | Pork-free | Shellfish-free | SF | Halal-friendly | Halal | Kosher-friendly | Kosher
+// i18n-keys: no animal products | no meat or fish | no meat; fish OK | no gluten as written | no milk products | no peanuts/tree nuts | no eggs | no pork products | no shellfish | no pork or alcohol; source halal meat | no pork/shellfish; no meat+dairy mix
 export const DIETS: DietMeta[] = [
   { key: "vegan", label: "Vegan", badge: "Vegan", note: "no animal products" },
   { key: "vegetarian", label: "Vegetarian", badge: "Veg", note: "no meat or fish" },

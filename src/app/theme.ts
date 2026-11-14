@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 export const THEMES = [
+  // i18n-keys: Ember | Midnight | Forest | Paper | Mono
   { id: "ember", name: "Ember", swatch: ["#0c0a09", "#e5723f", "#d4a857"] },
   { id: "midnight", name: "Midnight", swatch: ["#0a0c12", "#5b8cff", "#52d1c8"] },
   { id: "forest", name: "Forest", swatch: ["#0a0f0c", "#6fae5a", "#d9b44a"] },

@@ -4,6 +4,7 @@ import { DIETS } from "@/data/catalog";
 
 export type SortMode = "default" | "az" | "time-asc" | "time-desc" | "cal-asc";
 
+// i18n-keys: Curated | A → Z | Time: quick first | Time: long first | Calories: low first
 export const SORT_LABELS: Record<SortMode, string> = {
   default: "Curated",
   az: "A → Z",

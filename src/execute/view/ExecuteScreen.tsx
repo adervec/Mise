@@ -6,6 +6,7 @@ import { useExecute } from "../runtime/executeStore";
 import TransportBar from "./TransportBar";
 import NowNextPanel from "./NowNextPanel";
 import Timeline from "./Timeline";
+import { t } from "@/i18n";
 
 export default function ExecuteScreen() {
   const { id } = useParams();
@@ -42,8 +43,8 @@ export default function ExecuteScreen() {
   if (!item) {
     return (
       <div className="wrap">
-        <div className="empty">Recipe not found.</div>
-        <Link className="text-btn" to="/">Back to browse</Link>
+        <div className="empty">{t("Recipe not found.")}</div>
+        <Link className="text-btn" to="/">{t("Back to browse")}</Link>
       </div>
     );
   }
@@ -52,15 +53,15 @@ export default function ExecuteScreen() {
     return (
       <div className="wrap">
         <div style={{ padding: "24px 0 12px" }}>
-          <Link className="text-btn" to={`/i/${item.id}`}>← Back</Link>
+          <Link className="text-btn" to={`/i/${item.id}`}>← {t("Back")}</Link>
         </div>
-        <div className="empty">This card isn’t an executable recipe — it’s reference material.</div>
+        <div className="empty">{t("This card isn’t an executable recipe — it’s reference material.")}</div>
       </div>
     );
   }
 
   if (!engine) {
-    return <div className="exec"><div className="now-empty">Planning the cook…</div></div>;
+    return <div className="exec"><div className="now-empty">{t("Planning the cook…")}</div></div>;
   }
 
   const total = Math.round(engine.plan.projectedDurationMin);
@@ -75,15 +76,15 @@ export default function ExecuteScreen() {
           </div>
           <div className="exec-title">{item.title}</div>
           <div className="exec-sub">
-            <span><b>{total}</b> min planned</span>
-            <span>{engine.dag.steps.length} steps</span>
-            <span>{laneCount} stations</span>
+            <span>{t("{n} min planned", { n: total })}</span>
+            <span>{t.n("{n} step", "{n} steps", engine.dag.steps.length)}</span>
+            <span>{t.n("{n} station", "{n} stations", laneCount)}</span>
             {source === "curated" ? (
-              <span className="badge-curated">curated flow</span>
+              <span className="badge-curated">{t("curated flow")}</span>
             ) : source === "authored" ? (
-              <span className="badge-curated">authored flow</span>
+              <span className="badge-curated">{t("authored flow")}</span>
             ) : (
-              <span className="badge-draft">auto-drafted flow</span>
+              <span className="badge-draft">{t("auto-drafted flow")}</span>
             )}
           </div>
         </div>
