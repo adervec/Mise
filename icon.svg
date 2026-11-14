@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#0c0a09"/>
+  <circle cx="256" cy="248" r="150" fill="none" stroke="#e5723f" stroke-width="14" opacity="0.35"/>
+  <!-- ember flame -->
+  <path d="M256 120c34 44 60 70 60 116a60 60 0 0 1-120 0c0-20 8-34 20-48-4 22 8 36 22 36 16 0 24-14 18-34 12 14 18 30 18 46a36 36 0 0 1-72 0c0-40 30-66 36-116z"
+        fill="#e5723f"/>
+  <text x="256" y="448" text-anchor="middle" font-family="Georgia, serif" font-style="italic"
+        font-size="96" fill="#d4a857">Mise</text>
+</svg>
